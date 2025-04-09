@@ -8,6 +8,10 @@ website:
     border: true
     
   navbar:
+    left:
+      - text: Main_Blog
+        href: https://seoyeonc.github.io/sy_hub/
+        
     right:
       - about.qmd
       - icon: github
