@@ -11,6 +11,8 @@ website:
     left:
       - text: Main_Blog
         href: https://seoyeonc.github.io/sy_hub/
+      - text: Linkedin
+        href: https://www.linkedin.com/in/seoyeon-choi-6b3b60231/
         
     right:
       - about.qmd
