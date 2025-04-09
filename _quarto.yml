@@ -28,6 +28,7 @@ website:
           - 2_rand.qmd
           - 2_pkpd.qmd
           - 2_rwdrwe.qmd
+          - 2_pro.qmd
           - 2_kno.qmd
       
 format:

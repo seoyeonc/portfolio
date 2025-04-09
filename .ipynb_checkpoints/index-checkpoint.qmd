@@ -20,17 +20,17 @@ title-block-banner: true
 - (10/2020 - 9/2022) Jeonbuk National University Hospital Center for Clinical Pharmacology
     - Clinical Statistics Team / Statistician
 
-## Publications
-
-- Choi, S. & Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding; \textit{Journal of the Korean Statistical Society, 1-21
-    - keywords: Outlier Detection, Non-Euclidean Data, Graph Fourier Transform, Bayesian Modelings
-    - https://link.springer.com/article/10.1007/s42952-024-00303-1
-
 ## Education
 
 - (9/2021 - 8/2023) Jeonbuk National University, South Korea
     - Department of Statistics / Master's degree
 - (3/2014 - 2/2018) Jeonbuk National University, South Korea
     - Department of Statistics / Bachelor's degree
+
+## Publications
+
+- Choi, S. & Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding; \textit{Journal of the Korean Statistical Society, 1-21
+    - keywords: Outlier Detection, Non-Euclidean Data, Graph Fourier Transform, Bayesian Modelings
+    - https://link.springer.com/article/10.1007/s42952-024-00303-1
     
 :::

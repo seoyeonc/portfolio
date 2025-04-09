@@ -6,12 +6,9 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/2_rand.html",
     "items": [
-      "/posts/rand/2025-04-09-randomization.html",
-      "/posts/kno/2025-04-09-definitions.html",
-      "/posts/pkpd/2025-04-09-pkparameters.html",
-      "/posts/rwdrwe/2025-04-09-rwdrwe.html"
+      "/posts/rand/2025-04-09-randomization.html"
     ]
   },
   {
@@ -21,9 +18,19 @@
     ]
   },
   {
-    "listing": "/2_rand.html",
+    "listing": "/2_pro.html",
     "items": [
-      "/posts/rand/2025-04-09-randomization.html"
+      "/posts/pro/2025-04-09-mixedmodel.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/pro/2025-04-09-mixedmodel.html",
+      "/posts/rand/2025-04-09-randomization.html",
+      "/posts/kno/2025-04-09-definitions.html",
+      "/posts/pkpd/2025-04-09-pkparameters.html",
+      "/posts/rwdrwe/2025-04-09-rwdrwe.html"
     ]
   },
   {
