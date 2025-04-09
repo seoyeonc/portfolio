@@ -21,7 +21,6 @@ website:
     style: "docked"
     search: true
     contents:
-      - 1_note.qmd
       - section: "**Statistics**"
         contents:
           - 2_rand.qmd
