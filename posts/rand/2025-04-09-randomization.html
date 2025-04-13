@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -215,7 +249,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#code" id="toc-code" class="nav-link active" data-scroll-target="#code">Code</a>
+  <ul class="collapse">
+  <li><a href="#block-randomization" id="toc-block-randomization" class="nav-link" data-scroll-target="#block-randomization">Block Randomization</a></li>
+  <li><a href="#stratified-randomization" id="toc-stratified-randomization" class="nav-link" data-scroll-target="#stratified-randomization">Stratified Randomization</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -224,9 +268,148 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>dd</p>
+<section id="code" class="level1">
+<h1>Code</h1>
+<section id="block-randomization" class="level2">
+<h2 class="anchored" data-anchor-id="block-randomization">Block Randomization</h2>
+<div id="504b6df3-3ceb-4f80-90ab-3389d701051f" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chunked_shuffle(base_list, repeat<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">42</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    random.seed(seed)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(repeat):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        chunk <span class="op">=</span> base_list.copy()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        random.shuffle(chunk)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        result.extend(chunk)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>shuffled_list <span class="op">=</span> chunked_shuffle(base, repeat<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">20252025</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>binary_list <span class="op">=</span> [<span class="dv">1</span> <span class="cf">if</span> x <span class="op">&lt;=</span> <span class="dv">3</span> <span class="cf">else</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> shuffled_list]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>subject_ids <span class="op">=</span> [<span class="ss">f"S</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">:03}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(shuffled_list))]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>sequence_list <span class="op">=</span> [<span class="st">'T-R'</span> <span class="cf">if</span> b <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'R-T'</span> <span class="cf">for</span> b <span class="kw">in</span> binary_list]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>subject_ids <span class="op">=</span> [<span class="ss">f"S</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">:03}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(shuffled_list))]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Subject_ID'</span>: subject_ids,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Treatment'</span>: binary_list,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Sequence'</span>: sequence_list</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Subject_ID  Treatment Sequence
+0        S001          1      T-R
+1        S002          2      R-T
+2        S003          2      R-T
+3        S004          2      R-T
+4        S005          1      T-R
+5        S006          1      T-R
+6        S007          2      R-T
+7        S008          1      T-R
+8        S009          1      T-R
+9        S010          2      R-T
+10       S011          2      R-T
+11       S012          1      T-R
+12       S013          1      T-R
+13       S014          2      R-T
+14       S015          2      R-T
+15       S016          1      T-R
+16       S017          2      R-T
+17       S018          1      T-R
+18       S019          2      R-T
+19       S020          1      T-R
+20       S021          1      T-R
+21       S022          1      T-R
+22       S023          2      R-T
+23       S024          2      R-T</code></pre>
+</div>
+</div>
+</section>
+<section id="stratified-randomization" class="level2">
+<h2 class="anchored" data-anchor-id="stratified-randomization">Stratified Randomization</h2>
+<p>잠재적 교란요인을 줄이기 위해 층(strate)을 만든 후 각 층 내에서 간단한 무작위화 수행</p>
+<div id="1aea4024-324a-4b9f-9e1d-8a65a58e1f09" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>n_per_stratum <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>strata_sex <span class="op">=</span> [<span class="st">'Male'</span>, <span class="st">'Female'</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>strata_bmi <span class="op">=</span> [<span class="st">'Underweight'</span>, <span class="st">'Normal'</span>, <span class="st">'Overweight'</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [<span class="st">'Treatment'</span>, <span class="st">'Control'</span>]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>stratum_combinations <span class="op">=</span> [(sex, bmi) <span class="cf">for</span> sex <span class="kw">in</span> strata_sex <span class="cf">for</span> bmi <span class="kw">in</span> strata_bmi]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>subject_data <span class="op">=</span> []</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sex, bmi <span class="kw">in</span> stratum_combinations:</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    stratum_subjects <span class="op">=</span> [<span class="ss">f"S</span><span class="sc">{</span>subject_id <span class="op">+</span> i<span class="sc">:03}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_per_stratum)]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    subject_id <span class="op">+=</span> n_per_stratum</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    group_assignments <span class="op">=</span> (groups <span class="op">*</span> (n_per_stratum <span class="op">//</span> <span class="dv">2</span>))[:n_per_stratum]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    random.shuffle(group_assignments)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sid, group <span class="kw">in</span> <span class="bu">zip</span>(stratum_subjects, group_assignments):</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        subject_data.append({</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Subject_ID'</span>: sid,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Sex'</span>: sex,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            <span class="st">'BMI'</span>: bmi,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Group'</span>: group</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(subject_data)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Subject_ID     Sex          BMI      Group
+0        S001    Male  Underweight    Control
+1        S002    Male  Underweight    Control
+2        S003    Male  Underweight  Treatment
+3        S004    Male  Underweight  Treatment
+4        S005    Male  Underweight  Treatment
+5        S006    Male  Underweight    Control
+6        S007    Male       Normal    Control
+7        S008    Male       Normal  Treatment
+8        S009    Male       Normal  Treatment
+9        S010    Male       Normal  Treatment
+10       S011    Male       Normal    Control
+11       S012    Male       Normal    Control
+12       S013    Male   Overweight    Control
+13       S014    Male   Overweight    Control
+14       S015    Male   Overweight  Treatment
+15       S016    Male   Overweight  Treatment
+16       S017    Male   Overweight  Treatment
+17       S018    Male   Overweight    Control
+18       S019  Female  Underweight    Control
+19       S020  Female  Underweight  Treatment
+20       S021  Female  Underweight    Control
+21       S022  Female  Underweight  Treatment
+22       S023  Female  Underweight    Control
+23       S024  Female  Underweight  Treatment
+24       S025  Female       Normal    Control
+25       S026  Female       Normal    Control
+26       S027  Female       Normal  Treatment
+27       S028  Female       Normal  Treatment
+28       S029  Female       Normal    Control
+29       S030  Female       Normal  Treatment
+30       S031  Female   Overweight  Treatment
+31       S032  Female   Overweight    Control
+32       S033  Female   Overweight  Treatment
+33       S034  Female   Overweight    Control
+34       S035  Female   Overweight  Treatment
+35       S036  Female   Overweight    Control</code></pre>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
