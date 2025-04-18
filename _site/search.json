@@ -19,11 +19,68 @@
     ]
   },
   {
-    "objectID": "posts/pkpd/2025-04-09-pkparameters.html",
-    "href": "posts/pkpd/2025-04-09-pkparameters.html",
-    "title": "[PK/PD] PK Parameters",
+    "objectID": "posts/rwdrwe/2025-04-09-rwdrwe_figure.html",
+    "href": "posts/rwdrwe/2025-04-09-rwdrwe_figure.html",
+    "title": "[RWD/RWE] RWD Graph with R",
+    "section": "",
+    "text": "Import\n\nlibrary(ggplot2)\n\n\n\nData\n\ndata &lt;- data.frame(\n  Visit = c(\"Visit 2\", \"Visit 3\"),\n  MeanChange = c(-5.2, -7.8),\n  SD = c(1.1, 1.5)\n)\n\n\n\nFigure\n\ndata$ymin &lt;- data$MeanChange - data$SD\ndata$ymax &lt;- data$MeanChange\n\n\np &lt;- ggplot(data, aes(x = Visit, y = MeanChange)) +\n  geom_bar(stat = \"identity\", fill = \"grey60\", width = 0.6, color = \"black\") +\n  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.2, color = \"grey30\") +\n  labs(title = \"Mean Decrease with SD (Lower Bound)\",\n       y = \"Mean Decrease\", x = \"\") +\n  theme_minimal(base_family = \"sans\") +\n  theme(\n    panel.background = element_rect(fill = \"transparent\", color = NA),\n    plot.background = element_rect(fill = \"transparent\", color = NA),\n    panel.grid.major = element_line(color = \"grey80\"),\n    panel.grid.minor = element_blank(),\n    axis.text = element_text(color = \"grey30\"),\n    axis.title = element_text(color = \"grey30\"),\n    plot.title = element_text(color = \"grey30\", face = \"bold\", hjust = 0.5)\n  )\n\n\n\nGraph\n\np\n\n\n\n\n\n\n\n\n\n\nSave\n\n# ggsave(\"plot.png\", p, bg = \"transparent\", width = 6, height = 4, dpi = 300)\n\n\n\nReference\n[1] : Fixed Bsseline, Displayed Change.\n[2] : Mean values were plotted over time with error bars representing standard deviation to illustrate variability across groups."
+  },
+  {
+    "objectID": "posts/kno/2025-04-09-definitions.html",
+    "href": "posts/kno/2025-04-09-definitions.html",
+    "title": "[Knowledge] Definition",
     "section": "",
     "text": "dd"
+  },
+  {
+    "objectID": "posts/pro/2025-04-09-mixedmodel.html",
+    "href": "posts/pro/2025-04-09-mixedmodel.html",
+    "title": "[Program] Mixed model",
+    "section": "",
+    "text": "dd"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SEOYEON CHOI",
+    "section": "",
+    "text": "Professional ExperienceEducationPublications\n\n\n\n(10/2022 - 5/2025) Nanum Space Corp.\n\nData Analystic Team / Statistician\n\n(10/2020 - 9/2022) Jeonbuk National University Hospital Center for Clinical Pharmacology\n\nClinical Statistics Team / Statistician\n\n\n\n\n\n(9/2021 - 8/2023) Jeonbuk National University, South Korea\n\nDepartment of Statistics / Master’s degree\n\n(3/2014 - 2/2018) Jeonbuk National University, South Korea\n\nDepartment of Statistics / Bachelor’s degree\n\n\n\n\n\nChoi, S. & Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding; \\textit{Journal of the Korean Statistical Society, 1-21\n\nkeywords: Outlier Detection, Non-Euclidean Data, Graph Fourier Transform, Bayesian Modelings\nhttps://link.springer.com/article/10.1007/s42952-024-00303-1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[RWD/RWE] RWD Table with Python\n\n\n\n\n\n\n\n\n\n\n\nApr 18, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[Program] Mixed model\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[Randomzation] Randomization\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[Knowledge] Definition\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[PK/PD] PK Parameters\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[RWD/RWE] RWD Graph with R\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "2_pro.html",
+    "href": "2_pro.html",
+    "title": "Programs",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 9, 2025\n\n\n[Program] Mixed model\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Main_Blog",
+      "**Statistics**",
+      "Programs"
+    ]
+  },
+  {
+    "objectID": "2_rwdrwe.html",
+    "href": "2_rwdrwe.html",
+    "title": "RWD/RWE",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 18, 2025\n\n\n[RWD/RWE] RWD Table with Python\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[RWD/RWE] RWD Graph with R\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Main_Blog",
+      "**Statistics**",
+      "RWD/RWE"
+    ]
+  },
+  {
+    "objectID": "2_rand.html",
+    "href": "2_rand.html",
+    "title": "Randomization",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 9, 2025\n\n\n[Randomzation] Randomization\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Main_Blog",
+      "**Statistics**",
+      "Randomization"
+    ]
   },
   {
     "objectID": "posts/rand/2025-04-09-randomization.html",
@@ -47,68 +104,18 @@
     "text": "잠재적 교란요인을 줄이기 위해 층(strate)을 만든 후 각 층 내에서 간단한 무작위화 수행\n\nimport random\nimport pandas as pd\n\nrandom.seed(42)\nn_per_stratum = 6\nstrata_sex = ['Male', 'Female']\nstrata_bmi = ['Underweight', 'Normal', 'Overweight']\ngroups = ['Treatment', 'Control']\n\nstratum_combinations = [(sex, bmi) for sex in strata_sex for bmi in strata_bmi]\n\nsubject_data = []\n\nsubject_id = 1\nfor sex, bmi in stratum_combinations:\n    stratum_subjects = [f\"S{subject_id + i:03}\" for i in range(n_per_stratum)]\n    subject_id += n_per_stratum\n    \n    group_assignments = (groups * (n_per_stratum // 2))[:n_per_stratum]\n    random.shuffle(group_assignments)\n    \n    for sid, group in zip(stratum_subjects, group_assignments):\n        subject_data.append({\n            'Subject_ID': sid,\n            'Sex': sex,\n            'BMI': bmi,\n            'Group': group\n        })\n\ndf = pd.DataFrame(subject_data)\nprint(df)\n\n   Subject_ID     Sex          BMI      Group\n0        S001    Male  Underweight    Control\n1        S002    Male  Underweight    Control\n2        S003    Male  Underweight  Treatment\n3        S004    Male  Underweight  Treatment\n4        S005    Male  Underweight  Treatment\n5        S006    Male  Underweight    Control\n6        S007    Male       Normal    Control\n7        S008    Male       Normal  Treatment\n8        S009    Male       Normal  Treatment\n9        S010    Male       Normal  Treatment\n10       S011    Male       Normal    Control\n11       S012    Male       Normal    Control\n12       S013    Male   Overweight    Control\n13       S014    Male   Overweight    Control\n14       S015    Male   Overweight  Treatment\n15       S016    Male   Overweight  Treatment\n16       S017    Male   Overweight  Treatment\n17       S018    Male   Overweight    Control\n18       S019  Female  Underweight    Control\n19       S020  Female  Underweight  Treatment\n20       S021  Female  Underweight    Control\n21       S022  Female  Underweight  Treatment\n22       S023  Female  Underweight    Control\n23       S024  Female  Underweight  Treatment\n24       S025  Female       Normal    Control\n25       S026  Female       Normal    Control\n26       S027  Female       Normal  Treatment\n27       S028  Female       Normal  Treatment\n28       S029  Female       Normal    Control\n29       S030  Female       Normal  Treatment\n30       S031  Female   Overweight  Treatment\n31       S032  Female   Overweight    Control\n32       S033  Female   Overweight  Treatment\n33       S034  Female   Overweight    Control\n34       S035  Female   Overweight  Treatment\n35       S036  Female   Overweight    Control"
   },
   {
-    "objectID": "2_rand.html",
-    "href": "2_rand.html",
-    "title": "Randomization",
-    "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 9, 2025\n\n\n[Randomzation] Randomization\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Main_Blog",
-      "**Statistics**",
-      "Randomization"
-    ]
-  },
-  {
-    "objectID": "2_rwdrwe.html",
-    "href": "2_rwdrwe.html",
-    "title": "RWD/RWE",
-    "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 9, 2025\n\n\n[RWD/RWE] Definitions\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Main_Blog",
-      "**Statistics**",
-      "RWD/RWE"
-    ]
-  },
-  {
-    "objectID": "2_pro.html",
-    "href": "2_pro.html",
-    "title": "Programs",
-    "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 9, 2025\n\n\n[Program] Mixed model\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Main_Blog",
-      "**Statistics**",
-      "Programs"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SEOYEON CHOI",
-    "section": "",
-    "text": "Professional ExperienceEducationPublications\n\n\n\n(10/2022 - 5/2025) Nanum Space Corp.\n\nData Analystic Team / Statistician\n\n(10/2020 - 9/2022) Jeonbuk National University Hospital Center for Clinical Pharmacology\n\nClinical Statistics Team / Statistician\n\n\n\n\n\n(9/2021 - 8/2023) Jeonbuk National University, South Korea\n\nDepartment of Statistics / Master’s degree\n\n(3/2014 - 2/2018) Jeonbuk National University, South Korea\n\nDepartment of Statistics / Bachelor’s degree\n\n\n\n\n\nChoi, S. & Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding; \\textit{Journal of the Korean Statistical Society, 1-21\n\nkeywords: Outlier Detection, Non-Euclidean Data, Graph Fourier Transform, Bayesian Modelings\nhttps://link.springer.com/article/10.1007/s42952-024-00303-1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[Program] Mixed model\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[Randomzation] Randomization\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[Knowledge] Definition\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[PK/PD] PK Parameters\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\n\n\n\n\n\n\n[RWD/RWE] Definitions\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/pro/2025-04-09-mixedmodel.html",
-    "href": "posts/pro/2025-04-09-mixedmodel.html",
-    "title": "[Program] Mixed model",
+    "objectID": "posts/pkpd/2025-04-09-pkparameters.html",
+    "href": "posts/pkpd/2025-04-09-pkparameters.html",
+    "title": "[PK/PD] PK Parameters",
     "section": "",
     "text": "dd"
   },
   {
-    "objectID": "posts/kno/2025-04-09-definitions.html",
-    "href": "posts/kno/2025-04-09-definitions.html",
-    "title": "[Knowledge] Definition",
+    "objectID": "posts/rwdrwe/2025-04-18-rwdrwe_table.html",
+    "href": "posts/rwdrwe/2025-04-18-rwdrwe_table.html",
+    "title": "[RWD/RWE] RWD Table with Python",
     "section": "",
-    "text": "dd"
-  },
-  {
-    "objectID": "posts/rwdrwe/2025-04-09-rwdrwe.html",
-    "href": "posts/rwdrwe/2025-04-09-rwdrwe.html",
-    "title": "[RWD/RWE] RWD Graph with R",
-    "section": "",
-    "text": "Import\n\nlibrary(ggplot2)\n\n\n\nData\n\ndata &lt;- data.frame(\n  Visit = c(\"Visit 2\", \"Visit 3\"),\n  MeanChange = c(-5.2, -7.8),\n  SD = c(1.1, 1.5)\n)\n\n\n\nFigure\n\ndata$ymin &lt;- data$MeanChange - data$SD\ndata$ymax &lt;- data$MeanChange\n\n\np &lt;- ggplot(data, aes(x = Visit, y = MeanChange)) +\n  geom_bar(stat = \"identity\", fill = \"grey60\", width = 0.6, color = \"black\") +\n  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.2, color = \"grey30\") +\n  labs(title = \"Mean Decrease with SD (Lower Bound)\",\n       y = \"Mean Decrease\", x = \"\") +\n  theme_minimal(base_family = \"sans\") +\n  theme(\n    panel.background = element_rect(fill = \"transparent\", color = NA),\n    plot.background = element_rect(fill = \"transparent\", color = NA),\n    panel.grid.major = element_line(color = \"grey80\"),\n    panel.grid.minor = element_blank(),\n    axis.text = element_text(color = \"grey30\"),\n    axis.title = element_text(color = \"grey30\"),\n    plot.title = element_text(color = \"grey30\", face = \"bold\", hjust = 0.5)\n  )\n\n\n\nGraph\n\np\n\n\n\n\n\n\n\n\n\n\nSave\n\n# ggsave(\"plot.png\", p, bg = \"transparent\", width = 6, height = 4, dpi = 300)\n\n\n\nReference\n[1] : Fixed Bsseline, Displayed Change.\n[2] : Mean values were plotted over time with error bars representing standard deviation to illustrate variability across groups."
+    "text": "Import\n\nimport pandas as pd\nimport numpy as np\nfrom scipy import stats\nimport statsmodels.formula.api as smf\n\n\n\nData\n\nnp.random.seed(1212)\nn = 30\nvisit1 = np.random.normal(100, 10, n)\nvisit2 = visit1 + np.random.normal(-5, 5, n)\nvisit3 = visit1 + np.random.normal(-10, 5, n)\n\n\ndf = pd.DataFrame({\n    'Subject': np.arange(1, n + 1),\n    'Visit1': visit1,\n    'Visit2': visit2,\n    'Visit3': visit3\n})\ndf['Change_V2_V1'] = df['Visit2'] - df['Visit1']\ndf['Change_V3_V1'] = df['Visit3'] - df['Visit1']\n\n\n\nFunction\n\nSame as Univariate of SAS\n\n\ndef summary_stats(data):\n    mean = np.mean(data)\n    sd = np.std(data, ddof=1)\n    se = stats.sem(data)\n    ci_low, ci_high = stats.t.interval(0.95, len(data)-1, loc=mean, scale=se)\n    return round(mean,2), round(sd,2), round(se,2), len(data), f\"({round(ci_low,2)}, {round(ci_high,2)})\"\n\n\nvisit_summary = pd.DataFrame([summary_stats(df[col]) for col in ['Visit1', 'Visit2', 'Visit3']],\n                             columns=['Mean', 'SD', 'SE', 'N', '95% CI'],\n                             index=['Visit1', 'Visit2', 'Visit3'])\n\n\nvisit_summary\n\n\n\n\n\n\n\n\nMean\nSD\nSE\nN\n95% CI\n\n\n\n\nVisit1\n99.67\n7.91\n1.44\n30\n(96.72, 102.62)\n\n\nVisit2\n94.52\n9.08\n1.66\n30\n(91.13, 97.91)\n\n\nVisit3\n88.33\n9.74\n1.78\n30\n(84.69, 91.96)\n\n\n\n\n\n\n\n\nchange_summary = pd.DataFrame([summary_stats(df['Change_V2_V1']),\n                               summary_stats(df['Change_V3_V1'])],\n                              columns=['Mean', 'SD', 'SE', 'N', '95% CI'],\n                              index=['Visit2 - Visit1', 'Visit3 - Visit1'])\n\n\nchange_summary\n\n\n\n\n\n\n\n\nMean\nSD\nSE\nN\n95% CI\n\n\n\n\nVisit2 - Visit1\n-5.15\n4.81\n0.88\n30\n(-6.95, -3.36)\n\n\nVisit3 - Visit1\n-11.35\n5.22\n0.95\n30\n(-13.29, -9.4)\n\n\n\n\n\n\n\n\nComparision with SAS\n\nPROC TTEST DATA=mydata;\n  PAIRED Visit2*Visit1;\nRUN;\n\nchange_summary['Paired t-test p'] = [round(stats.ttest_rel(df['Visit2'], df['Visit1']).pvalue, 4),\n                                     round(stats.ttest_rel(df['Visit3'], df['Visit1']).pvalue, 4)]\n\n\nchange_summary\n\n\n\n\n\n\n\n\nMean\nSD\nSE\nN\n95% CI\nPaired t-test p\n\n\n\n\nVisit2 - Visit1\n-5.15\n4.81\n0.88\n30\n(-6.95, -3.36)\n0.0\n\n\nVisit3 - Visit1\n-11.35\n5.22\n0.95\n30\n(-13.29, -9.4)\n0.0\n\n\n\n\n\n\n\nPROC TTEST DATA=mydata H0=0;\n  VAR change_value;\nRUN;\n\nchange_summary['One-sample t-test p'] = [round(stats.ttest_1samp(df['Change_V2_V1'], 0).pvalue, 4),\n                                         round(stats.ttest_1samp(df['Change_V3_V1'], 0).pvalue, 4)]\n\n\nchange_summary\n\n\n\n\n\n\n\n\nMean\nSD\nSE\nN\n95% CI\nPaired t-test p\nOne-sample t-test p\n\n\n\n\nVisit2 - Visit1\n-5.15\n4.81\n0.88\n30\n(-6.95, -3.36)\n0.0\n0.0\n\n\nVisit3 - Visit1\n-11.35\n5.22\n0.95\n30\n(-13.29, -9.4)\n0.0\n0.0\n\n\n\n\n\n\n\n\ndf_long = pd.melt(df, id_vars='Subject', value_vars=['Visit1', 'Visit2', 'Visit3'],\n                  var_name='Visit', value_name='Score')\n\n\ndf_long\n\n\n\n\n\n\n\n\nSubject\nVisit\nScore\n\n\n\n\n0\n1\nVisit1\n107.373521\n\n\n1\n2\nVisit1\n93.827029\n\n\n2\n3\nVisit1\n104.629304\n\n\n3\n4\nVisit1\n96.558097\n\n\n4\n5\nVisit1\n109.795635\n\n\n...\n...\n...\n...\n\n\n85\n26\nVisit3\n98.156855\n\n\n86\n27\nVisit3\n87.828647\n\n\n87\n28\nVisit3\n87.818170\n\n\n88\n29\nVisit3\n95.441655\n\n\n89\n30\nVisit3\n72.320460\n\n\n\n\n90 rows × 3 columns\n\n\n\n\ndf_long['Visit'] = df_long['Visit'].map({'Visit1': 1, 'Visit2': 2, 'Visit3': 3})\ndf_long\n\n\n\n\n\n\n\n\nSubject\nVisit\nScore\n\n\n\n\n0\n1\n1\n107.373521\n\n\n1\n2\n1\n93.827029\n\n\n2\n3\n1\n104.629304\n\n\n3\n4\n1\n96.558097\n\n\n4\n5\n1\n109.795635\n\n\n...\n...\n...\n...\n\n\n85\n26\n3\n98.156855\n\n\n86\n27\n3\n87.828647\n\n\n87\n28\n3\n87.818170\n\n\n88\n29\n3\n95.441655\n\n\n89\n30\n3\n72.320460\n\n\n\n\n90 rows × 3 columns\n\n\n\n\n\nMixed Model\n\nSame as Proc\n\n\nmodel = smf.mixedlm(\"Score ~ Visit\", df_long, groups=df_long[\"Subject\"]).fit()\nmodel\n\n&lt;statsmodels.regression.mixed_linear_model.MixedLMResultsWrapper at 0x7f9ddb066a90&gt;\n\n\n\nmodel.pvalues['Visit']\n\n9.562865213858627e-24\n\n\n\nmixed_model_pvalue = round(model.pvalues['Visit'], 4)\nmixed_model_pvalue\n\n0.0\n\n\n\nvisit_summary['Type'] = 'Visit'\nchange_summary['Type'] = 'Change'\n\n\nsummary_combined = pd.concat([visit_summary, change_summary])\nsummary_combined['Repeated Mixed Model p'] = ''\nsummary_combined.loc['Visit1', 'Repeated Mixed Model p'] = mixed_model_pvalue\n\n\nsummary_combined.reset_index(inplace=True)\nsummary_combined.rename(columns={'index': 'Comparison'}, inplace=True)\n\n\nsummary_combined\n\n\n\n\n\n\n\n\nComparison\nMean\nSD\nSE\nN\n95% CI\nType\nPaired t-test p\nOne-sample t-test p\nRepeated Mixed Model p\n\n\n\n\n0\nVisit1\n99.67\n7.91\n1.44\n30\n(96.72, 102.62)\nVisit\nNaN\nNaN\n0.0\n\n\n1\nVisit2\n94.52\n9.08\n1.66\n30\n(91.13, 97.91)\nVisit\nNaN\nNaN\n\n\n\n2\nVisit3\n88.33\n9.74\n1.78\n30\n(84.69, 91.96)\nVisit\nNaN\nNaN\n\n\n\n3\nVisit2 - Visit1\n-5.15\n4.81\n0.88\n30\n(-6.95, -3.36)\nChange\n0.0\n0.0\n\n\n\n4\nVisit3 - Visit1\n-11.35\n5.22\n0.95\n30\n(-13.29, -9.4)\nChange\n0.0\n0.0"
   },
   {
     "objectID": "2_pkpd.html",
