@@ -106,9 +106,9 @@
   {
     "objectID": "posts/rwdrwe/2025-04-09-rwdrwe.html",
     "href": "posts/rwdrwe/2025-04-09-rwdrwe.html",
-    "title": "[RWD/RWE] Definitions",
+    "title": "[RWD/RWE] RWD Graph with R",
     "section": "",
-    "text": "dd"
+    "text": "Import\n\nlibrary(ggplot2)\n\n\n\nData\n\ndata &lt;- data.frame(\n  Visit = c(\"Visit 2\", \"Visit 3\"),\n  MeanChange = c(-5.2, -7.8),\n  SD = c(1.1, 1.5)\n)\n\n\n\nFigure\n\ndata$ymin &lt;- data$MeanChange - data$SD\ndata$ymax &lt;- data$MeanChange\n\n\np &lt;- ggplot(data, aes(x = Visit, y = MeanChange)) +\n  geom_bar(stat = \"identity\", fill = \"grey60\", width = 0.6, color = \"black\") +\n  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.2, color = \"grey30\") +\n  labs(title = \"Mean Decrease with SD (Lower Bound)\",\n       y = \"Mean Decrease\", x = \"\") +\n  theme_minimal(base_family = \"sans\") +\n  theme(\n    panel.background = element_rect(fill = \"transparent\", color = NA),\n    plot.background = element_rect(fill = \"transparent\", color = NA),\n    panel.grid.major = element_line(color = \"grey80\"),\n    panel.grid.minor = element_blank(),\n    axis.text = element_text(color = \"grey30\"),\n    axis.title = element_text(color = \"grey30\"),\n    plot.title = element_text(color = \"grey30\", face = \"bold\", hjust = 0.5)\n  )\n\n\n\nGraph\n\np\n\n\n\n\n\n\n\n\n\n\nSave\n\n# ggsave(\"plot.png\", p, bg = \"transparent\", width = 6, height = 4, dpi = 300)\n\n\n\nReference\n[1] : Fixed Bsseline, Displayed Change.\n[2] : Mean values were plotted over time with error bars representing standard deviation to illustrate variability across groups."
   },
   {
     "objectID": "2_pkpd.html",
