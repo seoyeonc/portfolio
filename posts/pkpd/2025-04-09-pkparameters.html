@@ -9,7 +9,7 @@
 <meta name="author" content="SEOYEON CHOI">
 <meta name="dcterms.date" content="2025-04-09">
 
-<title>Seoyeon’s Portfolio - [PK/PD] PK Parameters</title>
+<title>Seoyeon’s Portfolio - [PK/PD] PK Table and Figure</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -120,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">[PK/PD] PK Parameters</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">[PK/PD] PK Table and Figure</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -133,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">[PK/PD] PK Parameters</h1>
+      <h1 class="title">[PK/PD] PK Table and Figure</h1>
                       </div>
   </div>
     
@@ -215,7 +249,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data_table" id="toc-data_table" class="nav-link active" data-scroll-target="#data_table">Data_Table</a></li>
+  <li><a href="#ci" id="toc-ci" class="nav-link" data-scroll-target="#ci">90% CI</a></li>
+  <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result">Result</a></li>
+  <li><a href="#data_figure" id="toc-data_figure" class="nav-link" data-scroll-target="#data_figure">Data_Figure</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -224,9 +268,174 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>dd</p>
+<section id="data_table" class="level1">
+<h1>Data_Table</h1>
+<div id="6c9ba828-7b2a-40a8-b308-dddeb376c622" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1212</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">24</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>compounded <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(n, <span class="at">meanlog =</span> <span class="fu">log</span>(<span class="dv">100</span>), <span class="at">sdlog =</span> <span class="fl">0.1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>generic    <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(n, <span class="at">meanlog =</span> <span class="fu">log</span>(<span class="dv">95</span>),  <span class="at">sdlog =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+</div>
+<div id="9ffdc3f5-b2ee-4135-b7b8-a0bac0687710" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>log_comp <span class="ot">&lt;-</span> <span class="fu">log</span>(compounded)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>log_gen  <span class="ot">&lt;-</span> <span class="fu">log</span>(generic)</span></code></pre></div>
+</div>
+<div id="37117959-cf35-4802-8ca5-6ae758594e8f" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mean_diff <span class="ot">&lt;-</span> <span class="fu">mean</span>(log_gen) <span class="sc">-</span> <span class="fu">mean</span>(log_comp)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>se_diff <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(log_gen)<span class="sc">/</span>n <span class="sc">+</span> <span class="fu">var</span>(log_comp)<span class="sc">/</span>n)</span></code></pre></div>
+</div>
+<div id="a8095a53-d0eb-475d-b81e-1ed71bf82f7b" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gmr <span class="ot">&lt;-</span> <span class="fu">exp</span>(mean_diff)</span></code></pre></div>
+</div>
+</section>
+<section id="ci" class="level1">
+<h1>90% CI</h1>
+<blockquote class="blockquote">
+<p>(z = 1.645 for two-sided 90% CI)</p>
+</blockquote>
+<div id="8962c877-4136-4ffb-ba9c-40e6a6281739" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fl">1.645</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="ot">&lt;-</span> <span class="fu">exp</span>(mean_diff <span class="sc">-</span> z <span class="sc">*</span> se_diff)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="ot">&lt;-</span> <span class="fu">exp</span>(mean_diff <span class="sc">+</span> z <span class="sc">*</span> se_diff)</span></code></pre></div>
+</div>
+<div id="345202f2-d10c-490d-b3b0-338752207eac" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>diff_raw <span class="ot">&lt;-</span> <span class="fu">mean</span>(generic) <span class="sc">-</span> <span class="fu">mean</span>(compounded)</span></code></pre></div>
+</div>
+</section>
+<section id="result" class="level1">
+<h1>Result</h1>
+<div id="0bd69972-a08d-451a-a3eb-c539b75f0ea5" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"GMR:"</span>, <span class="fu">round</span>(gmr, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"90% CI:"</span>, <span class="fu">round</span>(ci_lower, <span class="dv">2</span>), <span class="st">"~"</span>, <span class="fu">round</span>(ci_upper, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Difference (raw scale):"</span>, <span class="fu">round</span>(diff_raw, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"SE (log scale):"</span>, <span class="fu">round</span>(se_diff, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GMR: 0.93 
+90% CI: 0.88 ~ 0.97 
+Difference (raw scale): -7.56 
+SE (log scale): 0.0311 </code></pre>
+</div>
+</div>
+</section>
+<section id="data_figure" class="level1">
+<h1>Data_Figure</h1>
+<div id="dd76b450-54b9-4dee-a317-6fbe0afed15e" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+</div>
+<div id="4a579f67-2b06-4bb0-b8e9-5346c7afaee9" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12123</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n_subjects <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>time_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>subjects <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n_subjects</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>seq_A <span class="ot">&lt;-</span> <span class="fu">sample</span>(subjects, <span class="dv">5</span>) </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>seq_B <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(subjects, seq_A) </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>generate_subject_data <span class="ot">&lt;-</span> <span class="cf">function</span>(id, seq_group) {</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (seq_group <span class="sc">==</span> <span class="st">"A"</span>) {</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">subject_id =</span> id,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">period =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">each =</span> <span class="fu">length</span>(time_points)),</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">treatment =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Compounded"</span>, <span class="st">"Generic"</span>), <span class="at">each =</span> <span class="fu">length</span>(time_points)),</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">time =</span> <span class="fu">rep</span>(time_points, <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">subject_id =</span> id,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">period =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">each =</span> <span class="fu">length</span>(time_points)),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">treatment =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Generic"</span>, <span class="st">"Compounded"</span>), <span class="at">each =</span> <span class="fu">length</span>(time_points)),</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">time =</span> <span class="fu">rep</span>(time_points, <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>pk_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(seq_A, <span class="cf">function</span>(id) <span class="fu">generate_subject_data</span>(id, <span class="st">"A"</span>)))</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>pk_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pk_df, <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(seq_B, <span class="cf">function</span>(id) <span class="fu">generate_subject_data</span>(id, <span class="st">"B"</span>))))</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>pk_df<span class="sc">$</span>conc <span class="ot">&lt;-</span> <span class="fu">with</span>(pk_df, <span class="fu">rlnorm</span>(<span class="fu">nrow</span>(pk_df),</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">meanlog =</span> <span class="fu">ifelse</span>(treatment <span class="sc">==</span> <span class="st">"Compounded"</span>,</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>                                                  <span class="fu">log</span>(<span class="dv">50</span> <span class="sc">-</span> <span class="dv">5</span> <span class="sc">*</span> time),</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>                                                  <span class="fu">log</span>(<span class="dv">48</span> <span class="sc">-</span> <span class="dv">5</span> <span class="sc">*</span> time)),</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">sdlog =</span> <span class="fl">0.2</span>))</span></code></pre></div>
+</div>
+<div id="5d008b5e-b901-444a-b59f-bf202aa99f90" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">6</span>)</span></code></pre></div>
+</div>
+<div id="fafe587f-bf27-4af1-a8e9-6d8e06bb54cf" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pk_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(subject_id <span class="sc">==</span> <span class="dv">1</span>), </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> conc, <span class="at">color =</span> treatment)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Spaghetti Plot of PK Profile (Subject 1)"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time (hr)"</span>, <span class="at">y =</span> <span class="st">"Concentration (ng/mL)"</span>, <span class="at">color =</span> <span class="st">"Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.85</span>, <span class="fl">0.9</span>),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"gray80"</span>),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+</div>
+<div id="c37e30c2-6424-4381-b0bd-d165ea8fa2df" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-04-09-pkparameters_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="aac11005-a1f9-433d-9113-806ee1623fff" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("subject1_pk_plot.png", plot = p, width = 10, height = 6, dpi = 300)</span></span></code></pre></div>
+</div>
+<div id="4e4b5ea6-86f0-4347-be4d-648e2d29fe0c" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">8</span>, <span class="at">repr.plot.height =</span> <span class="dv">8</span>)</span></code></pre></div>
+</div>
+<div id="c2405c9d-7cef-4a6a-930a-f6b26e7f3d02" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>compute_auc <span class="ot">&lt;-</span> <span class="cf">function</span>(time, conc) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">diff</span>(time) <span class="sc">*</span> (<span class="fu">head</span>(conc, <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> <span class="fu">tail</span>(conc, <span class="sc">-</span><span class="dv">1</span>)) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>auc_df <span class="ot">&lt;-</span> pk_df <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject_id, period, treatment) <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">AUC =</span> <span class="fu">compute_auc</span>(time, conc),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_AUC =</span> <span class="fu">log</span>(AUC))</span></code></pre></div>
+</div>
+<div id="d6069762-70e4-4f14-9a8c-c5b98749f69a" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(auc_df, <span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> log_AUC, <span class="at">fill =</span> treatment)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Log-transformed AUC by Treatment"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Treatment"</span>, <span class="at">y =</span> <span class="st">"log(AUC)"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div>
+</div>
+<div id="d6438187-ed06-420a-93fc-21ff7a2f17db" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-04-09-pkparameters_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="3c2eee27-a37f-4557-bbc5-e40d68b7ba87" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("auc_plot.png", plot = p, width = 8, height = 8, dpi = 300)</span></span></code></pre></div>
+</div>
+</section>
+<section id="reference" class="level1">
+<h1>Reference</h1>
+<p><a href="https://www.researchgate.net/figure/Bioequivalence-calculations-for-log-trans-formed-values-of-AUC-and-C-MAX-for-comparison_tbl3_259764867">[1]</a> PK Table Example</p>
+<p><a href="https://www.researchgate.net/figure/Box-plots-for-the-comparison-of-individual-plasma-trazpiroben-AUC-a-and-Cmax-b-for_fig3_358886907">[2]</a> AUC, Cmax Boxplot</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
