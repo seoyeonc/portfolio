@@ -433,6 +433,95 @@ SE (log scale): 0.0311 </code></pre>
 <h1>Reference</h1>
 <p><a href="https://www.researchgate.net/figure/Bioequivalence-calculations-for-log-trans-formed-values-of-AUC-and-C-MAX-for-comparison_tbl3_259764867">[1]</a> PK Table Example</p>
 <p><a href="https://www.researchgate.net/figure/Box-plots-for-the-comparison-of-individual-plasma-trazpiroben-AUC-a-and-Cmax-b-for_fig3_358886907">[2]</a> AUC, Cmax Boxplot</p>
+<hr>
+<div id="7eb2ae2e-7bae-4051-820a-0abcd0848896" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code></pre></div>
+</div>
+<div id="2fa64559-aa64-4f89-8933-87eb90c831f6" class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>two_compartment_model <span class="ot">&lt;-</span> <span class="cf">function</span>(t, ka, ke, Vc, Vp, dose) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  Cp <span class="ot">&lt;-</span> dose <span class="sc">/</span> (Vc <span class="sc">+</span> Vp) <span class="sc">*</span> (ka <span class="sc">/</span> (ka <span class="sc">-</span> ke)) <span class="sc">*</span> (<span class="fu">exp</span>(<span class="sc">-</span>ke <span class="sc">*</span> t) <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>ka <span class="sc">*</span> t))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Cp)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="4d570f80-64a8-46a9-abea-56bc71591148" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="at">length.out =</span> <span class="dv">20</span>)</span></code></pre></div>
+</div>
+<div id="bbf4836a-f07f-495c-9298-5edfe093981e" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>n_subjects <span class="ot">&lt;-</span> <span class="dv">36</span></span></code></pre></div>
+</div>
+<div id="c3c78068-3c34-44f2-a3f7-5c2de18f3f02" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1212</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>seq <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>), <span class="at">each =</span> <span class="dv">18</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ka1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_subjects, <span class="fl">0.2</span>, <span class="fl">0.8</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ke1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_subjects, <span class="fl">0.05</span>, <span class="fl">0.15</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>Vc1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_subjects, <span class="dv">8</span>, <span class="dv">12</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>Vp1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_subjects, <span class="dv">3</span>, <span class="dv">7</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> <span class="dv">100</span></span></code></pre></div>
+</div>
+<div id="d5fcf117-3563-4f48-9f56-743ce5b10fef" class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_subjects) {</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  Cp <span class="ot">&lt;-</span> <span class="fu">two_compartment_model</span>(t, ka1[i], ke1[i], Vc1[i], Vp1[i], dose)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Subject =</span> <span class="fu">paste0</span>(<span class="st">"S"</span>, <span class="fu">sprintf</span>(<span class="st">"%02d"</span>, i)),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Time =</span> t,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Concentration =</span> Cp,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Period =</span> <span class="st">"Period 1"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sequence =</span> seq[i]</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  df1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df1, temp)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="7decbabd-5e26-4289-8b07-f1a1e22f4ad0" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ka2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_subjects, <span class="fl">0.2</span>, <span class="fl">0.8</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ke2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_subjects, <span class="fl">0.05</span>, <span class="fl">0.15</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>Vc2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_subjects, <span class="dv">8</span>, <span class="dv">12</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>Vp2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_subjects, <span class="dv">3</span>, <span class="dv">7</span>)</span></code></pre></div>
+</div>
+<div id="f04e7d8e-864a-4785-af2f-7331dd28db2c" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_subjects) {</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  Cp <span class="ot">&lt;-</span> <span class="fu">two_compartment_model</span>(t, ka2[i], ke2[i], Vc2[i], Vp2[i], dose)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Subject =</span> <span class="fu">paste0</span>(<span class="st">"S"</span>, <span class="fu">sprintf</span>(<span class="st">"%02d"</span>, i)),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Time =</span> t,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Concentration =</span> Cp,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Period =</span> <span class="st">"Period 2"</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sequence =</span> seq[i]</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  df2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df2, temp)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="373e419d-8a4a-46df-9109-e45460ea1b1f" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_all <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df1, df2)</span></code></pre></div>
+</div>
+<div id="c417e3a9-d3cb-4fa6-bc94-d44f9ec7d156" class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">12</span>, <span class="at">repr.plot.height =</span> <span class="dv">8</span>)</span></code></pre></div>
+</div>
+<div id="79206779-c9c3-47eb-a174-216555725114" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_all, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Concentration, <span class="at">group =</span> Subject)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Period) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pharmacokinetic Concentration Profile (36 Subjects)"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time (hours)"</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Concentration (mg/L)"</span>) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-04-09-pkparameters_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="7e24c530-c2eb-4b1c-9b86-278fd038e03d" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("conc.png", plot = p, width = 12, height = 8, dpi = 300)</span></span></code></pre></div>
+</div>
 
 
 </section>
