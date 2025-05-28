@@ -9,4 +9,4 @@ about:
       href: https://github.com/seoyeonc
 ---
 
-This blog was generated to manage my blogs.
+Contact me: seoyeonchoi.data@gmail.com

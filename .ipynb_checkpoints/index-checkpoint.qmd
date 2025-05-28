@@ -29,8 +29,14 @@ title-block-banner: true
 
 ## Publications
 
-- Choi, S. & Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding; \textit{Journal of the Korean Statistical Society, 1-21
+- Choi, S. & Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding;
+    - Journal of the Korean Statistical Society, 1-21
     - keywords: Outlier Detection, Non-Euclidean Data, Graph Fourier Transform, Bayesian Modelings
     - https://link.springer.com/article/10.1007/s42952-024-00303-1
+    
+- Choi, S., Sim, J. & Choi, G.(2025) Synthetic Text as Data: On Usefulness and Limitations. 
+    - Applied Sciences, 15(10), 5460.
+    - keywords: GPT-generated text, synthetic data, data augmentation, MBTI classification, class imbalance, few-shot learning, fine-grained classification, data granularity, large language models
+    - https://www.mdpi.com/2076-3417/15/10/5460
     
 :::
