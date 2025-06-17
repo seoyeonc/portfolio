@@ -28,34 +28,27 @@
   {
     "objectID": "posts/kno/2025-04-09-definitions.html",
     "href": "posts/kno/2025-04-09-definitions.html",
-    "title": "[Knowledge] Survival Analysis",
+    "title": "[Knowledge] Linear Algebra",
     "section": "",
     "text": "dd"
   },
   {
-    "objectID": "posts/pro/2025-04-09-mixedmodel.html",
-    "href": "posts/pro/2025-04-09-mixedmodel.html",
-    "title": "[Program] Time Series",
+    "objectID": "posts/pro/2025-06-17-saspythonr.html",
+    "href": "posts/pro/2025-06-17-saspythonr.html",
+    "title": "[Program] SAS vs Python vs R",
     "section": "",
-    "text": "dd\n\n# 필수 패키지 설치\n# pip install matplotlib seaborn\n\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport pandas as pd\n\n# 예시 데이터 생성 (실제 실습에서는 모델 결과를 사용)\nnp.random.seed(42)\ndates = pd.date_range(start=\"2020-01-01\", periods=200)\nactual = np.sin(np.linspace(0, 20, 200)) + np.random.normal(0, 0.1, 200)  # 실제값\npredicted = np.sin(np.linspace(0, 20, 200)) + np.random.normal(0, 0.2, 200)  # 예측값\nloss = np.linspace(0.8, 0.1, 50) + np.random.normal(0, 0.02, 50)  # 손실 감소 과정 (학습 과정)\n\n# 1. 학습 데이터 vs 예측 결과 비교 (시계열 플롯)\ndef plot_actual_vs_predicted(dates, actual, predicted):\n    plt.figure(figsize=(12, 6))\n    plt.plot(dates, actual, label='Actual', color='blue')\n    plt.plot(dates, predicted, label='Predicted', color='red', linestyle='--')\n    plt.title('Actual vs Predicted Stock Prices')\n    plt.xlabel('Date')\n    plt.ylabel('Stock Price')\n    plt.legend()\n    plt.grid(True)\n    plt.tight_layout()\n    plt.savefig('actual_vs_predicted.png', dpi=300)\n    plt.show()\n\n# 2. 손실 함수 감소 과정 (Loss Curve)\ndef plot_loss_curve(loss):\n    plt.figure(figsize=(8, 5))\n    plt.plot(range(1, len(loss) + 1), loss, marker='o', color='green')\n    plt.title('Training Loss Over Epochs')\n    plt.xlabel('Epoch')\n    plt.ylabel('Loss')\n    plt.grid(True)\n    plt.tight_layout()\n    plt.savefig('loss_curve.png', dpi=300)\n    plt.show()\n\n# 3. 실제값 vs 예측값 산점도 (Scatter Plot)\ndef plot_actual_vs_predicted_scatter(actual, predicted):\n    plt.figure(figsize=(6, 6))\n    sns.scatterplot(x=actual, y=predicted, color='purple')\n    plt.plot([actual.min(), actual.max()], [actual.min(), actual.max()], 'k--', lw=2)\n    plt.title('Actual vs Predicted (Scatter)')\n    plt.xlabel('Actual Stock Price')\n    plt.ylabel('Predicted Stock Price')\n    plt.tight_layout()\n    plt.savefig('scatter_actual_predicted.png', dpi=300)\n    plt.show()\n\n# 함수 실행\nplot_actual_vs_predicted(dates, actual, predicted)\nplot_loss_curve(loss)\nplot_actual_vs_predicted_scatter(actual, predicted)"
+    "text": "Import\n\npython\n\n\nimport scipy.stats as stats\nimport pandas as pd\n\n\nR\n\n\nimport rpy2\n\n\n%load_ext rpy2.ipython\n\n\n\nData\nref\n\n\n\n\n\n\n\n변수명\n설명\n\n\n\n\nPerson ID\n각 개인을 식별하기 위한 고유 식별자입니다.\n\n\nGender\n개인의 성별을 나타냅니다. 값: Male, Female\n\n\nAge\n개인의 나이(연령)를 년 단위로 나타냅니다.\n\n\nOccupation\n개인의 직업 또는 직무 유형을 나타냅니다.\n\n\nSleep Duration (hours)\n하루 평균 수면 시간 (단위: 시간)\n\n\nQuality of Sleep (scale: 1-10)\n수면의 질을 1~10 척도로 평가한 값입니다. 1: 매우 나쁨, 10: 매우 좋음\n\n\nPhysical Activity Level (minutes/day)\n하루 평균 신체 활동 시간 (단위: 분)\n\n\nStress Level (scale: 1-10)\n스트레스 수준을 1~10 척도로 평가한 값입니다. 1: 매우 낮음, 10: 매우 높음\n\n\nBMI Category\n체질량지수(BMI)에 따른 분류 값 예시: Underweight, Normal, Overweight\n\n\nBlood Pressure (systolic/diastolic)\n혈압 수치로, 수축기/이완기 형식 (예: 120/80)\n\n\nHeart Rate (bpm)\n안정 시 심박수 (단위: bpm, beats per minute)\n\n\nDaily Steps\n하루 동안 걸은 총 걸음 수\n\n\nSleep Disorder\n수면 장애 여부 및 유형\n\n\n \n- None: 수면 장애 없음\n\n\n \n- Insomnia: 불면증\n\n\n \n- Sleep Apnea: 수면 무호흡증\n\n\n\n\ndf = pd.read_csv('../../../../delete/Sleep_health_and_lifestyle_dataset.csv')\n\n\ndf\n\n\n\n\n\n\n\n\nPerson ID\nGender\nAge\nOccupation\nSleep Duration\nQuality of Sleep\nPhysical Activity Level\nStress Level\nBMI Category\nBlood Pressure\nHeart Rate\nDaily Steps\nSleep Disorder\n\n\n\n\n0\n1\nMale\n27\nSoftware Engineer\n6.1\n6\n42\n6\nOverweight\n126/83\n77\n4200\nNone\n\n\n1\n2\nMale\n28\nDoctor\n6.2\n6\n60\n8\nNormal\n125/80\n75\n10000\nNone\n\n\n2\n3\nMale\n28\nDoctor\n6.2\n6\n60\n8\nNormal\n125/80\n75\n10000\nNone\n\n\n3\n4\nMale\n28\nSales Representative\n5.9\n4\n30\n8\nObese\n140/90\n85\n3000\nSleep Apnea\n\n\n4\n5\nMale\n28\nSales Representative\n5.9\n4\n30\n8\nObese\n140/90\n85\n3000\nSleep Apnea\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n369\n370\nFemale\n59\nNurse\n8.1\n9\n75\n3\nOverweight\n140/95\n68\n7000\nSleep Apnea\n\n\n370\n371\nFemale\n59\nNurse\n8.0\n9\n75\n3\nOverweight\n140/95\n68\n7000\nSleep Apnea\n\n\n371\n372\nFemale\n59\nNurse\n8.1\n9\n75\n3\nOverweight\n140/95\n68\n7000\nSleep Apnea\n\n\n372\n373\nFemale\n59\nNurse\n8.1\n9\n75\n3\nOverweight\n140/95\n68\n7000\nSleep Apnea\n\n\n373\n374\nFemale\n59\nNurse\n8.1\n9\n75\n3\nOverweight\n140/95\n68\n7000\nSleep Apnea\n\n\n\n\n374 rows × 13 columns\n\n\n\n\n\nOne sample t-test\n\\(t = \\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}\\)\n\nex) score(60, 74, 69, 80, 72)의 평균은 75이다.\n\\(t = \\dfrac{\\bar{x}-75}{s/\\sqrt{n}}\\)\nSAS\ndata test;\n   input score;\n   datalines;\n60\n74\n69\n80\n72\n;\nrun;\n\nproc ttest data=test h0=75; \\*귀무가설 h_0 = 75*\\\n   var score;\nrun;\npython\n\nscores = [60, 74, 69, 80, 72]\n\n\nt_stat, p_value = stats.ttest_1samp(scores, popmean=75)\n\n\nprint(f\"T-statistic: {t_stat:.4f}, P-value: {p_value:.4f}\")\n\nT-statistic: -1.2172, P-value: 0.2904\n\n\nR\n\n%%R\nscores &lt;- c(60, 74, 69, 80, 72)\n\nt.test(scores, mu = 75)\n\n\n    One Sample t-test\n\ndata:  scores\nt = -1.2172, df = 4, p-value = 0.2904\nalternative hypothesis: true mean is not equal to 75\n95 percent confidence interval:\n 61.87567 80.12433\nsample estimates:\nmean of x \n       71 \n\n\n\n\n\ndata ex) Sleep Duration 평균은 7이다.\nSAS\nproc ttest data=df h0=7; \\*귀무가설 h_0 = 75*\\\n   var Sleep Duration;\nrun;\npython\n\nstats.ttest_1samp(df['Sleep Duration'], popmean=7)\n\nTtest_1sampResult(statistic=3.2104462758942, pvalue=0.0014402421900475528)\n\n\nR\n\n%R -i df \n\n/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/rpy2/robjects/pandas2ri.py:55: FutureWarning: iteritems is deprecated and will be removed in a future version. Use .items instead.\n  for name, values in obj.iteritems():\n\n\n\n%%R\nt.test(df['Sleep Duration'], mu = 7)\n\n\n    One Sample t-test\n\ndata:  df[\"Sleep Duration\"]\nt = 3.2104, df = 373, p-value = 0.00144\nalternative hypothesis: true mean is not equal to 7\n95 percent confidence interval:\n 7.051185 7.212986\nsample estimates:\nmean of x \n 7.132086 \n\n\n\n결론: p-value가 0.05보다 작아 귀무가설 기각하여 평균은 7이 아님을 알 수 있다.\n\n\n\nTwo sample t-test\n\\(t = \\dfrac{\\bar{x}_1 - \\bar{x}_2}{\\sqrt{s_p (\\frac{1}{n_1}-\\frac{1}{n_2})}}, s_p = \\dfrac{(n_1 - 1)s_1^2 - (n_2 - 1)s_2^2}{n_1 - n_2-2}\\)\n\nex) a vs b group 평균 비교\nSAS\ndata two_group;\n   input group $ score;\n   datalines;\nA 85\nA 88\nA 90\nB 80\nB 78\nB 82\n;\nrun;\n\nproc ttest data=two_group;\n   class group;\n   var score;\nrun;\n\nSAS에서는 등분산을 가정한 결과(Pooled)와 가정하지 않은 결과(Satterthwaite/Welch)를 모두 제시하고 있어 별도의 옵션은 존재하지 않는다.\n\npython\n\ngroup_a = [85, 88, 90]\ngroup_b = [80, 78, 82]\n\n\nequal_var는 등분산 가정 어떻게 할지\n\n\nt_stat, p_value = stats.ttest_ind(group_a, group_b, equal_var=True)\n\n\nprint(f\"T-statistic: {t_stat:.4f}, P-value: {p_value:.4f}\")\n\nT-statistic: 4.1309, P-value: 0.0145\n\n\nR\n\nvar.equal는 등분산 가정 어떻게 할지\n\n\n%%R\ngroup_a &lt;- c(85, 88, 90)\ngroup_b &lt;- c(80, 78, 82)\n\nt.test(group_a, group_b, var.equal = TRUE)\n\n\n    Two Sample t-test\n\ndata:  group_a and group_b\nt = 4.1309, df = 4, p-value = 0.01448\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n  2.513803 12.819531\nsample estimates:\nmean of x mean of y \n 87.66667  80.00000 \n\n\n\n\n\n\nPaired t-test"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SEOYEON CHOI",
+    "objectID": "2_rand.html",
+    "href": "2_rand.html",
+    "title": "Randomization",
     "section": "",
-    "text": "Professional ExperienceEducationPublications\n\n\n\n(10/2022 - 5/2025) Nanum Space Corp.\n\nData Analystic Team / Statistician\n\n(10/2020 - 9/2022) Jeonbuk National University Hospital Center for Clinical Pharmacology\n\nClinical Statistics Team / Statistician\n\n\n\n\n\n(9/2021 - 8/2023) Jeonbuk National University, South Korea\n\nDepartment of Statistics / Master’s degree\n\n(3/2014 - 2/2018) Jeonbuk National University, South Korea\n\nDepartment of Statistics / Bachelor’s degree\n\n\n\n\n\nChoi, S. & Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding;\n\nJournal of the Korean Statistical Society, 1-21\nkeywords: Outlier Detection, Non-Euclidean Data, Graph Fourier Transform, Bayesian Modelings\nhttps://link.springer.com/article/10.1007/s42952-024-00303-1\n\nChoi, S., Sim, J. & Choi, G.(2025) Synthetic Text as Data: On Usefulness and Limitations.\n\nApplied Sciences, 15(10), 5460.\nkeywords: GPT-generated text, synthetic data, data augmentation, MBTI classification, class imbalance, few-shot learning, fine-grained classification, data granularity, large language models\nhttps://www.mdpi.com/2076-3417/15/10/5460\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 18, 2025\n\n\n[RWD/RWE] RWD Table with Python\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[Program] Mixed model\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[Randomzation] Randomization\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[Knowledge] Definition\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[PK/PD] PK Parameters\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[RWD/RWE] RWD Graph with R\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "2_pro.html",
-    "href": "2_pro.html",
-    "title": "Programs",
-    "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 9, 2025\n\n\n[Program] Mixed model\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 9, 2025\n\n\n[Randomzation] Randomization\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Main_Blog",
       "**Statistics**",
-      "Programs"
+      "Randomization"
     ]
   },
   {
@@ -71,16 +64,30 @@
     ]
   },
   {
-    "objectID": "2_rand.html",
-    "href": "2_rand.html",
-    "title": "Randomization",
+    "objectID": "2_pro.html",
+    "href": "2_pro.html",
+    "title": "Programs",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 9, 2025\n\n\n[Randomzation] Randomization\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJun 17, 2025\n\n\n[Program] SAS vs Python vs R\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[Program] Mixed model\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Main_Blog",
       "**Statistics**",
-      "Randomization"
+      "Programs"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SEOYEON CHOI",
+    "section": "",
+    "text": "Professional ExperienceEducationPublications\n\n\n\n(10/2022 - 5/2025) Nanum Space Corp.\n\nData Analystic Team / Statistician\n\n(10/2020 - 9/2022) Jeonbuk National University Hospital Center for Clinical Pharmacology\n\nClinical Statistics Team / Statistician\n\n\n\n\n\n(9/2021 - 8/2023) Jeonbuk National University, South Korea\n\nDepartment of Statistics / Master’s degree\n\n(3/2014 - 2/2018) Jeonbuk National University, South Korea\n\nDepartment of Statistics / Bachelor’s degree\n\n\n\n\n\nChoi, S. & Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding;\n\nJournal of the Korean Statistical Society, 1-21\nkeywords: Outlier Detection, Non-Euclidean Data, Graph Fourier Transform, Bayesian Modelings\nhttps://link.springer.com/article/10.1007/s42952-024-00303-1\n\nChoi, S., Sim, J. & Choi, G.(2025) Synthetic Text as Data: On Usefulness and Limitations.\n\nApplied Sciences, 15(10), 5460.\nkeywords: GPT-generated text, synthetic data, data augmentation, MBTI classification, class imbalance, few-shot learning, fine-grained classification, data granularity, large language models\nhttps://www.mdpi.com/2076-3417/15/10/5460\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJun 17, 2025\n\n\n[Program] SAS vs Python vs R\n\n\nSEOYEON CHOI\n\n\n\n\nApr 18, 2025\n\n\n[RWD/RWE] RWD Table with Python\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[Program] Mixed model\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[Randomzation] Randomization\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[Knowledge] Definition\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[PK/PD] PK Parameters\n\n\nSEOYEON CHOI\n\n\n\n\nApr 9, 2025\n\n\n[RWD/RWE] RWD Graph with R\n\n\nSEOYEON CHOI\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/pro/2025-04-09-mixedmodel.html",
+    "href": "posts/pro/2025-04-09-mixedmodel.html",
+    "title": "[Program] Time Series",
+    "section": "",
+    "text": "dd\n\n# 필수 패키지 설치\n# pip install matplotlib seaborn\n\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport pandas as pd\n\n# 예시 데이터 생성 (실제 실습에서는 모델 결과를 사용)\nnp.random.seed(42)\ndates = pd.date_range(start=\"2020-01-01\", periods=200)\nactual = np.sin(np.linspace(0, 20, 200)) + np.random.normal(0, 0.1, 200)  # 실제값\npredicted = np.sin(np.linspace(0, 20, 200)) + np.random.normal(0, 0.2, 200)  # 예측값\nloss = np.linspace(0.8, 0.1, 50) + np.random.normal(0, 0.02, 50)  # 손실 감소 과정 (학습 과정)\n\n# 1. 학습 데이터 vs 예측 결과 비교 (시계열 플롯)\ndef plot_actual_vs_predicted(dates, actual, predicted):\n    plt.figure(figsize=(12, 6))\n    plt.plot(dates, actual, label='Actual', color='blue')\n    plt.plot(dates, predicted, label='Predicted', color='red', linestyle='--')\n    plt.title('Actual vs Predicted Stock Prices')\n    plt.xlabel('Date')\n    plt.ylabel('Stock Price')\n    plt.legend()\n    plt.grid(True)\n    plt.tight_layout()\n    plt.savefig('actual_vs_predicted.png', dpi=300)\n    plt.show()\n\n# 2. 손실 함수 감소 과정 (Loss Curve)\ndef plot_loss_curve(loss):\n    plt.figure(figsize=(8, 5))\n    plt.plot(range(1, len(loss) + 1), loss, marker='o', color='green')\n    plt.title('Training Loss Over Epochs')\n    plt.xlabel('Epoch')\n    plt.ylabel('Loss')\n    plt.grid(True)\n    plt.tight_layout()\n    plt.savefig('loss_curve.png', dpi=300)\n    plt.show()\n\n# 3. 실제값 vs 예측값 산점도 (Scatter Plot)\ndef plot_actual_vs_predicted_scatter(actual, predicted):\n    plt.figure(figsize=(6, 6))\n    sns.scatterplot(x=actual, y=predicted, color='purple')\n    plt.plot([actual.min(), actual.max()], [actual.min(), actual.max()], 'k--', lw=2)\n    plt.title('Actual vs Predicted (Scatter)')\n    plt.xlabel('Actual Stock Price')\n    plt.ylabel('Predicted Stock Price')\n    plt.tight_layout()\n    plt.savefig('scatter_actual_predicted.png', dpi=300)\n    plt.show()\n\n# 함수 실행\nplot_actual_vs_predicted(dates, actual, predicted)\nplot_loss_curve(loss)\nplot_actual_vs_predicted_scatter(actual, predicted)"
   },
   {
     "objectID": "posts/rand/2025-04-09-randomization.html",
