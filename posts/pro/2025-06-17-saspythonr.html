@@ -306,9 +306,17 @@ window.Quarto = {
   </ul></li>
   <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova">ANOVA</a>
   <ul class="collapse">
+  <li><a href="#ex-group별-value-비교" id="toc-ex-group별-value-비교" class="nav-link" data-scroll-target="#ex-group별-value-비교">ex) group별 value 비교</a></li>
+  <li><a href="#data-ex-sleep-duration-bmi-category-별-평균-비교" id="toc-data-ex-sleep-duration-bmi-category-별-평균-비교" class="nav-link" data-scroll-target="#data-ex-sleep-duration-bmi-category-별-평균-비교">data ex) Sleep Duration BMI Category 별 평균 비교</a></li>
   <li><a href="#welchs-anova" id="toc-welchs-anova" class="nav-link" data-scroll-target="#welchs-anova">Welch’s ANOVA</a></li>
   <li><a href="#kruskal-wallis-test" id="toc-kruskal-wallis-test" class="nav-link" data-scroll-target="#kruskal-wallis-test">Kruskal-Wallis Test</a></li>
   </ul></li>
+  <li><a href="#two-way-anova" id="toc-two-way-anova" class="nav-link" data-scroll-target="#two-way-anova">Two-way ANOVA</a>
+  <ul class="collapse">
+  <li><a href="#ex-method-gender-두-요소-비교" id="toc-ex-method-gender-두-요소-비교" class="nav-link" data-scroll-target="#ex-method-gender-두-요소-비교">ex) method, gender 두 요소 비교</a></li>
+  <li><a href="#gender-bmi-category-two-way-anova" id="toc-gender-bmi-category-two-way-anova" class="nav-link" data-scroll-target="#gender-bmi-category-two-way-anova">Gender, BMI Category two-way anova</a></li>
+  </ul></li>
+  <li><a href="#repeated-mesures-anova" id="toc-repeated-mesures-anova" class="nav-link" data-scroll-target="#repeated-mesures-anova">Repeated mesures ANOVA</a></li>
   </ul>
 </nav>
     </div>
@@ -368,17 +376,21 @@ window.Quarto = {
 <ul>
 <li>python</li>
 </ul>
-<div id="6a491b5c-1f09-4e9f-a878-a24aa70d3c5e" class="cell" data-execution_count="70">
+<div id="6a491b5c-1f09-4e9f-a878-a24aa70d3c5e" class="cell" data-execution_count="100">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
 <ul>
 <li>R</li>
 </ul>
-<div id="ab240b7f-ce9f-4d14-bfe9-06a023748ba0" class="cell" data-execution_count="21">
+<div id="ab240b7f-ce9f-4d14-bfe9-06a023748ba0" class="cell" data-execution_count="101">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span></code></pre></div>
 </div>
-<div id="dcfde0b4-9b75-474a-bb22-c154252f2902" class="cell" data-execution_count="23">
+<div id="dcfde0b4-9b75-474a-bb22-c154252f2902" class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The rpy2.ipython extension is already loaded. To reload it, use:
+  %reload_ext rpy2.ipython</code></pre>
+</div>
 </div>
 </section>
 <section id="data" class="level1">
@@ -462,12 +474,12 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<div id="4e8874a7-f3e8-4969-9a25-03443e846a7f" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../../../delete/Sleep_health_and_lifestyle_dataset.csv'</span>)</span></code></pre></div>
+<div id="4e8874a7-f3e8-4969-9a25-03443e846a7f" class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../../../delete/Sleep_health_and_lifestyle_dataset.csv'</span>)</span></code></pre></div>
 </div>
-<div id="1d424668-6594-4252-944d-0650fca5f511" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div id="1d424668-6594-4252-944d-0650fca5f511" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="104">
 <div>
 
 
@@ -698,24 +710,24 @@ proc ttest data=test h0=75; \*귀무가설 h_0 = 75*\
 run;</code></pre>
 <p><code>python</code></p>
 <div id="729a491b-72b8-4b3f-a393-eca7cd5653ca" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> [<span class="dv">60</span>, <span class="dv">74</span>, <span class="dv">69</span>, <span class="dv">80</span>, <span class="dv">72</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> [<span class="dv">60</span>, <span class="dv">74</span>, <span class="dv">69</span>, <span class="dv">80</span>, <span class="dv">72</span>]</span></code></pre></div>
 </div>
 <div id="9fc7f863-78d3-4bb0-9b86-ea0b7bdcd875" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> stats.ttest_1samp(scores, popmean<span class="op">=</span><span class="dv">75</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> stats.ttest_1samp(scores, popmean<span class="op">=</span><span class="dv">75</span>)</span></code></pre></div>
 </div>
 <div id="8a796897-1f05-43e6-9358-05ca0fc99e0b" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"T-statistic: </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">, P-value: </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"T-statistic: </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">, P-value: </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>T-statistic: -1.2172, P-value: 0.2904</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
 <div id="de0a137c-4880-41e1-bf63-ea5a9c1e4b9e" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">&lt;-</span> c(<span class="dv">60</span>, <span class="dv">74</span>, <span class="dv">69</span>, <span class="dv">80</span>, <span class="dv">72</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>t.test(scores, mu <span class="op">=</span> <span class="dv">75</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">&lt;-</span> c(<span class="dv">60</span>, <span class="dv">74</span>, <span class="dv">69</span>, <span class="dv">80</span>, <span class="dv">72</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>t.test(scores, mu <span class="op">=</span> <span class="dv">75</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -740,22 +752,22 @@ mean of x
 run;</code></pre>
 <p><code>python</code></p>
 <div id="351e5808-4da6-4b2d-938a-ca8e29182912" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_1samp(df[<span class="st">'Sleep Duration'</span>], popmean<span class="op">=</span><span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_1samp(df[<span class="st">'Sleep Duration'</span>], popmean<span class="op">=</span><span class="dv">7</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>Ttest_1sampResult(statistic=3.2104462758942, pvalue=0.0014402421900475528)</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
 <div id="66cfbd0b-d9f6-477e-8a63-d82f2e0a8435" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i df </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i df </span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/rpy2/robjects/pandas2ri.py:55: FutureWarning: iteritems is deprecated and will be removed in a future version. Use .items instead.
   for name, values in obj.iteritems():</code></pre>
 </div>
 </div>
 <div id="9fd47717-2881-42c5-877e-f31ae53fd2b6" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>t.test(df[<span class="st">'Sleep Duration'</span>], mu <span class="op">=</span> <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>t.test(df[<span class="st">'Sleep Duration'</span>], mu <span class="op">=</span> <span class="dv">7</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -797,25 +809,25 @@ proc univariate data=height;
 run;</code></pre>
 <p><code>python</code></p>
 <div id="213202f5-41e8-4cf3-b5c4-80ff03657b92" class="cell" data-execution_count="87">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> wilcoxon</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">165</span>, <span class="dv">170</span>, <span class="dv">160</span>, <span class="dv">172</span>, <span class="dv">168</span>, <span class="dv">169</span>, <span class="dv">171</span>, <span class="dv">167</span>]</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> [x <span class="op">-</span> <span class="dv">168</span> <span class="cf">for</span> x <span class="kw">in</span> data]</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>stat, p <span class="op">=</span> wilcoxon(diff)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Wilcoxon stat: </span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">, p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> wilcoxon</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">165</span>, <span class="dv">170</span>, <span class="dv">160</span>, <span class="dv">172</span>, <span class="dv">168</span>, <span class="dv">169</span>, <span class="dv">171</span>, <span class="dv">167</span>]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> [x <span class="op">-</span> <span class="dv">168</span> <span class="cf">for</span> x <span class="kw">in</span> data]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>stat, p <span class="op">=</span> wilcoxon(diff)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Wilcoxon stat: </span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">, p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wilcoxon stat: 13.0, p-value: 0.8653</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
 <div id="183d0704-d692-4ed1-b564-3c5084cc8e48" class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">&lt;-</span> c(<span class="dv">165</span>, <span class="dv">170</span>, <span class="dv">160</span>, <span class="dv">172</span>, <span class="dv">168</span>, <span class="dv">169</span>, <span class="dv">171</span>, <span class="dv">167</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 귀무가설: median = 168</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>wilcox.test(data, mu <span class="op">=</span> <span class="dv">168</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">&lt;-</span> c(<span class="dv">165</span>, <span class="dv">170</span>, <span class="dv">160</span>, <span class="dv">172</span>, <span class="dv">168</span>, <span class="dv">169</span>, <span class="dv">171</span>, <span class="dv">167</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 귀무가설: median = 168</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>wilcox.test(data, mu <span class="op">=</span> <span class="dv">168</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon signed rank test with continuity correction
@@ -858,18 +870,18 @@ run;</code></pre>
 </ul>
 <p><code>python</code></p>
 <div id="82e28788-657d-4a44-84fc-77e150f4df32" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>group_a <span class="op">=</span> [<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>]</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>group_b <span class="op">=</span> [<span class="dv">80</span>, <span class="dv">78</span>, <span class="dv">82</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>group_a <span class="op">=</span> [<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>group_b <span class="op">=</span> [<span class="dv">80</span>, <span class="dv">78</span>, <span class="dv">82</span>]</span></code></pre></div>
 </div>
 <ul>
 <li>equal_var는 등분산 가정 어떻게 할지</li>
 </ul>
 <div id="31226974-5633-48ed-b14b-30ca1f795358" class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> stats.ttest_ind(group_a, group_b, equal_var<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> stats.ttest_ind(group_a, group_b, equal_var<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </div>
 <div id="77697611-dd80-45c4-8f63-9addb796f29c" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"T-statistic: </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">, P-value: </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"T-statistic: </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">, P-value: </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>T-statistic: 4.1309, P-value: 0.0145</code></pre>
 </div>
@@ -879,11 +891,11 @@ run;</code></pre>
 <li>var.equal는 등분산 가정 어떻게 할지</li>
 </ul>
 <div id="68176a1d-86e7-4aa8-b45b-d1309bb3fd3b" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>group_a <span class="op">&lt;-</span> c(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>group_b <span class="op">&lt;-</span> c(<span class="dv">80</span>, <span class="dv">78</span>, <span class="dv">82</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>t.test(group_a, group_b, var.equal <span class="op">=</span> TRUE)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>group_a <span class="op">&lt;-</span> c(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>group_b <span class="op">&lt;-</span> c(<span class="dv">80</span>, <span class="dv">78</span>, <span class="dv">82</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>t.test(group_a, group_b, var.equal <span class="op">=</span> TRUE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -909,15 +921,15 @@ mean of x mean of y
 run;</code></pre>
 <p><code>python</code></p>
 <div id="49cfb120-41af-42d9-8c9e-46e4466bd670" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_ind(df.query(<span class="st">'Gender=="Male"'</span>)[<span class="st">'Sleep Duration'</span>], df.query(<span class="st">'Gender=="Female"'</span>)[<span class="st">'Sleep Duration'</span>], equal_var<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_ind(df.query(<span class="st">'Gender=="Male"'</span>)[<span class="st">'Sleep Duration'</span>], df.query(<span class="st">'Gender=="Female"'</span>)[<span class="st">'Sleep Duration'</span>], equal_var<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>Ttest_indResult(statistic=-2.3624469898393397, pvalue=0.018668859270607456)</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
 <div id="2f9e486b-c215-4bc6-9579-557c0424e048" class="cell" data-execution_count="69">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>t.test(df[df[<span class="st">'Gender'</span>]<span class="op">==</span><span class="st">'Male'</span>,][<span class="st">'Sleep Duration'</span>], df[df[<span class="st">'Gender'</span>]<span class="op">==</span><span class="st">'Female'</span>,][<span class="st">'Sleep Duration'</span>], var.equal <span class="op">=</span> TRUE)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>t.test(df[df[<span class="st">'Gender'</span>]<span class="op">==</span><span class="st">'Male'</span>,][<span class="st">'Sleep Duration'</span>], df[df[<span class="st">'Gender'</span>]<span class="op">==</span><span class="st">'Female'</span>,][<span class="st">'Sleep Duration'</span>], var.equal <span class="op">=</span> TRUE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -962,24 +974,24 @@ run;</code></pre>
 </ul>
 <p><code>python</code></p>
 <div id="c1e9e707-3f13-4a5a-9b0f-173ca8566df5" class="cell" data-execution_count="83">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> mannwhitneyu</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>group_a <span class="op">=</span> [<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>]</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>group_b <span class="op">=</span> [<span class="dv">80</span>, <span class="dv">78</span>, <span class="dv">82</span>]</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>stat, p <span class="op">=</span> mannwhitneyu(group_a, group_b, alternative<span class="op">=</span><span class="st">'two-sided'</span>)</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mann-Whitney U: </span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">, p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> mannwhitneyu</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>group_a <span class="op">=</span> [<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>]</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>group_b <span class="op">=</span> [<span class="dv">80</span>, <span class="dv">78</span>, <span class="dv">82</span>]</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>stat, p <span class="op">=</span> mannwhitneyu(group_a, group_b, alternative<span class="op">=</span><span class="st">'two-sided'</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mann-Whitney U: </span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">, p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mann-Whitney U: 9.0, p-value: 0.1000</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
 <div id="85ef8f7b-04c2-4911-a085-5176e9ceaf37" class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>group_a <span class="op">&lt;-</span> c(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>group_b <span class="op">&lt;-</span> c(<span class="dv">80</span>, <span class="dv">78</span>, <span class="dv">82</span>)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>wilcox.test(group_a, group_b, paired <span class="op">=</span> FALSE)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>group_a <span class="op">&lt;-</span> c(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>group_b <span class="op">&lt;-</span> c(<span class="dv">80</span>, <span class="dv">78</span>, <span class="dv">82</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>wilcox.test(group_a, group_b, paired <span class="op">=</span> FALSE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon rank sum exact test
@@ -1012,28 +1024,28 @@ proc ttest data=bp;
 run;</code></pre>
 <p><code>python</code></p>
 <div id="ce5cf5d5-9121-449b-9bdf-74729f6e52b6" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code></pre></div>
 </div>
 <div id="739c3991-8bf8-42d1-bc1f-8077df857190" class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>before <span class="op">=</span> [<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">135</span>, <span class="dv">133</span>, <span class="dv">129</span>]</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>after  <span class="op">=</span> [<span class="dv">125</span>, <span class="dv">126</span>, <span class="dv">132</span>, <span class="dv">130</span>, <span class="dv">124</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>before <span class="op">=</span> [<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">135</span>, <span class="dv">133</span>, <span class="dv">129</span>]</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>after  <span class="op">=</span> [<span class="dv">125</span>, <span class="dv">126</span>, <span class="dv">132</span>, <span class="dv">130</span>, <span class="dv">124</span>]</span></code></pre></div>
 </div>
 <div id="6ac8c47e-887d-42e9-91d0-160b63ffeb0f" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> stats.ttest_rel(before, after)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> stats.ttest_rel(before, after)</span></code></pre></div>
 </div>
 <div id="76a2e7ee-d96b-4d2a-b465-b1fb2256e864" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"T-statistic: </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">, P-value: </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"T-statistic: </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">, P-value: </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>T-statistic: 6.0000, P-value: 0.0039</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
 <div id="3e3378bc-72e6-4281-89a2-3d8499555446" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>before <span class="op">&lt;-</span> c(<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">135</span>, <span class="dv">133</span>, <span class="dv">129</span>)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>after  <span class="op">&lt;-</span> c(<span class="dv">125</span>, <span class="dv">126</span>, <span class="dv">132</span>, <span class="dv">130</span>, <span class="dv">124</span>)</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>t.test(before, after, paired <span class="op">=</span> TRUE)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>before <span class="op">&lt;-</span> c(<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">135</span>, <span class="dv">133</span>, <span class="dv">129</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>after  <span class="op">&lt;-</span> c(<span class="dv">125</span>, <span class="dv">126</span>, <span class="dv">132</span>, <span class="dv">130</span>, <span class="dv">124</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>t.test(before, after, paired <span class="op">=</span> TRUE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -1074,24 +1086,24 @@ proc univariate data=bp;
 run;</code></pre>
 <p><code>python</code></p>
 <div id="423945a8-5aab-4201-9320-f6c0cc8dc515" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> wilcoxon</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>before <span class="op">=</span> [<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">135</span>, <span class="dv">133</span>, <span class="dv">129</span>]</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>after  <span class="op">=</span> [<span class="dv">125</span>, <span class="dv">126</span>, <span class="dv">132</span>, <span class="dv">130</span>, <span class="dv">124</span>]</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>stat, p <span class="op">=</span> wilcoxon(before, after)</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Wilcoxon stat: </span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">, p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> wilcoxon</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>before <span class="op">=</span> [<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">135</span>, <span class="dv">133</span>, <span class="dv">129</span>]</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>after  <span class="op">=</span> [<span class="dv">125</span>, <span class="dv">126</span>, <span class="dv">132</span>, <span class="dv">130</span>, <span class="dv">124</span>]</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>stat, p <span class="op">=</span> wilcoxon(before, after)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Wilcoxon stat: </span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">, p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wilcoxon stat: 0.0, p-value: 0.0625</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
 <div id="09f2107a-098e-47e3-b196-e0c207778033" class="cell" data-execution_count="82">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>before <span class="op">&lt;-</span> c(<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">135</span>, <span class="dv">133</span>, <span class="dv">129</span>)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>after  <span class="op">&lt;-</span> c(<span class="dv">125</span>, <span class="dv">126</span>, <span class="dv">132</span>, <span class="dv">130</span>, <span class="dv">124</span>)</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>wilcox.test(before, after, paired <span class="op">=</span> TRUE)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>before <span class="op">&lt;-</span> c(<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">135</span>, <span class="dv">133</span>, <span class="dv">129</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>after  <span class="op">&lt;-</span> c(<span class="dv">125</span>, <span class="dv">126</span>, <span class="dv">132</span>, <span class="dv">130</span>, <span class="dv">124</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>wilcox.test(before, after, paired <span class="op">=</span> TRUE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon signed rank test with continuity correction
@@ -1106,6 +1118,17 @@ alternative hypothesis: true location shift is not equal to 0
 </section>
 <section id="anova" class="level1">
 <h1>ANOVA</h1>
+<p>Total <span class="math inline">\(df_T = N-1\)</span></p>
+<p><span class="math inline">\(SST = \sum^k_{i=1} \sum^{n_i}_{j=1} (Y_{ij} - \bar{Y})^2\)</span></p>
+<p>Between-group <span class="math inline">\(df_B = k-1\)</span></p>
+<p><span class="math inline">\(SSB = \sum^k_{i=1} n_i (\bar{Y}_i - \bar{Y})^2\)</span></p>
+<p>Within-group <span class="math inline">\(df_W = N-k\)</span></p>
+<p><span class="math inline">\(SSW = \sum^k_{i=1} \sum^{n_i}_{j=1}(Y_{ij} - \bar{Y}_i)^2\)</span></p>
+<p><span class="math inline">\(MSB = \dfrac{SSB}{k-1}\)</span></p>
+<p><span class="math inline">\(MSW = \dfrac{SSW}{N-k}\)</span></p>
+<p><span class="math inline">\(F = \dfrac{MSB}{MSW}\)</span></p>
+<section id="ex-group별-value-비교" class="level3">
+<h3 class="anchored" data-anchor-id="ex-group별-value-비교">ex) group별 value 비교</h3>
 <p><code>SAS</code></p>
 <pre class="sas"><code>data mydata;
    input group $ value;
@@ -1125,31 +1148,53 @@ run;
 proc glm data=mydata;
    class group;
    model value = group;
+   means group / hovtest=levene;
 run;
-</code></pre>
+quit;</code></pre>
+<ul>
+<li>첫번째 group은 변수가 범주형임을 암시하고</li>
+<li>두번째 group은 변수 이름</li>
+<li>르벤테스트로 등분산도 검정</li>
+</ul>
 <p><code>python</code></p>
-<div id="bd930393-d060-40e6-8350-a40538f32d43" class="cell" data-execution_count="90">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>group_A <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>]</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>group_B <span class="op">=</span> [<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>group_C <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>f_stat, p <span class="op">=</span> stats.f_oneway(group_A, group_B, group_C)</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ANOVA p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div id="bd930393-d060-40e6-8350-a40538f32d43" class="cell" data-execution_count="147">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> levene</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>group_A <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>]</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>group_B <span class="op">=</span> [<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>group_C <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>stat, p <span class="op">=</span> levene(group_A, group_B, group_C)</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Levene’s test statistic = </span><span class="sc">{</span>stat<span class="sc">:.4f}</span><span class="ss">, p-value = </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene’s test statistic = 0.0000, p-value = 1.0000</code></pre>
+</div>
+</div>
+<ul>
+<li>등분산 가정 만족 안하는데, 만족하다고 보고 anova 시행한 결과(아래)</li>
+</ul>
+<div id="fa2f9c83-04e1-409f-b88f-581fb7e4b41f" class="cell" data-execution_count="148">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>f_stat, p <span class="op">=</span> stats.f_oneway(group_A, group_B, group_C)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ANOVA p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ANOVA p-value: 0.0066</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
+<ul>
+<li>leventest를 할 수 있는 car 패키지 설치 문제 있어서 주석으로 대체</li>
+</ul>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(value <span class="sc">~</span> group, <span class="at">data =</span> df)</span></code></pre></div>
 <div id="692a9e43-03cc-4d16-8abf-021a6cbfe851" class="cell" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>group <span class="op">&lt;-</span> c(rep(<span class="st">"A"</span>,<span class="dv">3</span>), rep(<span class="st">"B"</span>,<span class="dv">3</span>), rep(<span class="st">"C"</span>,<span class="dv">3</span>))</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>value <span class="op">&lt;-</span> c(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>, <span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>, <span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>)</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">&lt;-</span> data.frame(group, value)</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>anova_result <span class="op">&lt;-</span> aov(value <span class="op">~</span> group, data <span class="op">=</span> df)</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>summary(anova_result)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>group <span class="op">&lt;-</span> c(rep(<span class="st">"A"</span>,<span class="dv">3</span>), rep(<span class="st">"B"</span>,<span class="dv">3</span>), rep(<span class="st">"C"</span>,<span class="dv">3</span>))</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>value <span class="op">&lt;-</span> c(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>, <span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>, <span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">&lt;-</span> data.frame(group, value)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>anova_result <span class="op">&lt;-</span> aov(value <span class="op">~</span> group, data <span class="op">=</span> df)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>summary(anova_result)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 group        2     26      13      13 0.00659 **
@@ -1158,7 +1203,47 @@ Residuals    6      6       1
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 </div>
 </div>
+</section>
+<section id="data-ex-sleep-duration-bmi-category-별-평균-비교" class="level3">
+<h3 class="anchored" data-anchor-id="data-ex-sleep-duration-bmi-category-별-평균-비교">data ex) Sleep Duration BMI Category 별 평균 비교</h3>
+<p><code>SAS</code></p>
+<pre class="sas"><code>proc glm data=df;
+   class group;
+   model value = BMI Category;
+run;</code></pre>
+<p><code>python</code></p>
+<div id="2f4704e2-1966-4965-8c28-576ffd89f999" class="cell" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'BMI Category'</span>].value_counts()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="111">
+<pre><code>Normal           195
+Overweight       148
+Normal Weight     21
+Obese             10
+Name: BMI Category, dtype: int64</code></pre>
+</div>
+</div>
+<div id="a807b859-d527-4ca2-ae07-c5dbfb694ff1" class="cell" data-execution_count="121">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>stats.f_oneway(df[df[<span class="st">'BMI Category'</span>]<span class="op">==</span><span class="st">'Normal'</span>][<span class="st">'Sleep Duration'</span>], df[df[<span class="st">'BMI Category'</span>]<span class="op">==</span><span class="st">'Overweight'</span>][<span class="st">'Sleep Duration'</span>], df[df[<span class="st">'BMI Category'</span>]<span class="op">==</span><span class="st">'Normal Weight'</span>][<span class="st">'Sleep Duration'</span>], df[df[<span class="st">'BMI Category'</span>]<span class="op">==</span><span class="st">'Obese'</span>][<span class="st">'Sleep Duration'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="121">
+<pre><code>F_onewayResult(statistic=20.66151226910848, pvalue=2.1273445794819254e-12)</code></pre>
+</div>
+</div>
+<p><code>R</code></p>
+<p><strong>R에서는 작은 따옴표나 큰 따옴표 말고 백틱backtick(`)을 이용하기</strong></p>
+<div id="c1638c84-0742-42ae-8571-5cdfa0b7872a" class="cell" data-execution_count="127">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>anova_result <span class="op">&lt;-</span> aov(`Sleep Duration` <span class="op">~</span> `BMI Category`, data <span class="op">=</span> df)</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>summary(anova_result)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+`BMI Category`   3  33.88  11.294   20.66 2.13e-12 ***
+Residuals      370 202.25   0.547                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+</div>
+</div>
 <p><strong>정규성 가정 만족하지만 등분산성 가정 만족 안 한다면?</strong></p>
+</section>
 <section id="welchs-anova" class="level2">
 <h2 class="anchored" data-anchor-id="welchs-anova">Welch’s ANOVA</h2>
 <p><code>SAS</code></p>
@@ -1169,16 +1254,16 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 RUN;</code></pre>
 <p><code>python</code></p>
 <div id="3edc777f-4c29-4b6c-92a4-1bc708637be2" class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'group'</span>: [<span class="st">'A'</span>]<span class="op">*</span><span class="dv">3</span> <span class="op">+</span> [<span class="st">'B'</span>]<span class="op">*</span><span class="dv">3</span> <span class="op">+</span> [<span class="st">'C'</span>]<span class="op">*</span><span class="dv">3</span>,</span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'value'</span>: [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>welch <span class="op">=</span> pg.welch_anova(dv<span class="op">=</span><span class="st">'value'</span>, between<span class="op">=</span><span class="st">'group'</span>, data<span class="op">=</span>df)</span>
-<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(welch)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'group'</span>: [<span class="st">'A'</span>]<span class="op">*</span><span class="dv">3</span> <span class="op">+</span> [<span class="st">'B'</span>]<span class="op">*</span><span class="dv">3</span> <span class="op">+</span> [<span class="st">'C'</span>]<span class="op">*</span><span class="dv">3</span>,</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'value'</span>: [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>welch <span class="op">=</span> pg.welch_anova(dv<span class="op">=</span><span class="st">'value'</span>, between<span class="op">=</span><span class="st">'group'</span>, data<span class="op">=</span>df)</span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(welch)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Source  ddof1  ddof2          F     p-unc     np2
 0  group      2    4.0  11.142857  0.023157  0.8125</code></pre>
@@ -1186,15 +1271,15 @@ RUN;</code></pre>
 </div>
 <p><code>R</code></p>
 <div id="8e847496-08e1-4804-aa11-cf97e30dddbb" class="cell" data-execution_count="96">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i df</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i df</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/rpy2/robjects/pandas2ri.py:55: FutureWarning: iteritems is deprecated and will be removed in a future version. Use .items instead.
   for name, values in obj.iteritems():</code></pre>
 </div>
 </div>
 <div id="3c165c62-6678-4aa4-8684-c3d89735e904" class="cell" data-execution_count="97">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>oneway.test(value <span class="op">~</span> group, data <span class="op">=</span> df, var.equal <span class="op">=</span> FALSE)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>oneway.test(value <span class="op">~</span> group, data <span class="op">=</span> df, var.equal <span class="op">=</span> FALSE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One-way analysis of means (not assuming equal variances)
@@ -1204,7 +1289,11 @@ F = 11.143, num df = 2, denom df = 4, p-value = 0.02316
 </code></pre>
 </div>
 </div>
-<p><strong>정규성 만족하지 않을때</strong></p>
+<ul>
+<li>p-value가 0.05보다 작으므로 귀무가설 기각, 그룹별로 평균이 다르다.</li>
+<li>np2가 1에 가까움. group이 value에 미치는 영향이 크다.</li>
+</ul>
+<p><strong>정규성 만족하지 않고, 등분산성은 만족할때</strong></p>
 </section>
 <section id="kruskal-wallis-test" class="level2">
 <h2 class="anchored" data-anchor-id="kruskal-wallis-test">Kruskal-Wallis Test</h2>
@@ -1215,16 +1304,16 @@ F = 11.143, num df = 2, denom df = 4, p-value = 0.02316
 run;</code></pre>
 <p><code>python</code></p>
 <div id="d7333e24-753a-4521-bacd-c99b4632940a" class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>h_stat, p <span class="op">=</span> stats.kruskal(group_A, group_B, group_C)</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Kruskal-Wallis p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>h_stat, p <span class="op">=</span> stats.kruskal(group_A, group_B, group_C)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Kruskal-Wallis p-value: </span><span class="sc">{</span>p<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Kruskal-Wallis p-value: 0.0484</code></pre>
 </div>
 </div>
 <p><code>R</code></p>
 <div id="70fd7d29-63c7-4b12-a921-e7e85b10fb85" class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>kruskal.test(value <span class="op">~</span> group, data <span class="op">=</span> df)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>kruskal.test(value <span class="op">~</span> group, data <span class="op">=</span> df)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Kruskal-Wallis rank sum test
@@ -1234,10 +1323,283 @@ Kruskal-Wallis chi-squared = 6.0565, df = 2, p-value = 0.0484
 </code></pre>
 </div>
 </div>
-<p>사후검정 2 군간 ttest 수행 후 alpha 조정 0.0167!</p>
-
-
+<ul>
+<li>크루스칼 왈리스의 통계량이 카이제곱 분포에 근사하여 chi-squared가 붙은 채 결과가 나옴</li>
+</ul>
 </section>
+</section>
+<section id="two-way-anova" class="level1">
+<h1>Two-way ANOVA</h1>
+<p><span class="math inline">\(SS_{Total} = SS_A + SS_B + SS_{AB} + SS_{Error}\)</span></p>
+<p><span class="math inline">\(df_{Total} = abn-1\)</span></p>
+<p><span class="math inline">\(SS_A = b - n \sum^a_{i=1} (\bar{Y}_{i..} - \bar{Y}_{...})^2\)</span></p>
+<p><span class="math inline">\(df_a = a-1\)</span></p>
+<p><span class="math inline">\(SS_B = a n \sum^b_{j=1} (\bar{Y}_{.j.} - \bar{Y}_{...})^2\)</span></p>
+<p><span class="math inline">\(df_b = b-1\)</span></p>
+<p><span class="math inline">\(SS_{AB} = n\sum^a_{i=1} \sum^b_{j=1} (\bar{Y}_{ij.} - \bar{Y}_{i..} - \bar{Y}_{.j.} + \bar{Y}_{...})^2\)</span></p>
+<p><span class="math inline">\(df_{ab} = (a-1)(b-1)\)</span></p>
+<p><span class="math inline">\(SS_{Error} = \sum^a_{i=1} \sum^b_{j=1} \sum^n_{k=1} (Y_{ijk} - \bar{Y}_{ij.})^2\)</span></p>
+<p><span class="math inline">\(df_{Error} = ab(n-1)\)</span></p>
+<p><span class="math inline">\(F_A = \dfrac{MS_A}{ME_{Error}}\)</span></p>
+<p><span class="math inline">\(F_B = \dfrac{MS_B}{ME_{Error}}\)</span></p>
+<p><span class="math inline">\(F_{AB} = \dfrac{MS_{AB}}{MS_{Error}}\)</span></p>
+<ul>
+<li><span class="math inline">\(MS = \dfrac{SS}{df}\)</span></li>
+</ul>
+<section id="ex-method-gender-두-요소-비교" class="level3">
+<h3 class="anchored" data-anchor-id="ex-method-gender-두-요소-비교">ex) method, gender 두 요소 비교</h3>
+<p><code>SAS</code></p>
+<pre class="sas"><code>data example;
+   input score method $ gender $;
+   datalines;
+80 A M
+85 A M
+78 A M
+90 B M
+88 B M
+85 B M
+75 A F
+80 A F
+70 A F
+60 B F
+65 B F
+68 B F
+;
+run;
+
+proc glm data=example;
+   class method gender;
+   model score = method gender method*gender;
+   means method gender / tukey;
+run;
+quit;</code></pre>
+<ul>
+<li>tukey 사후 검정까지 시행, method, gender 각각을 검정</li>
+</ul>
+<p><code>python</code></p>
+<div id="157952c8-06eb-415d-aa1b-fa2b7526c244" class="cell" data-execution_count="128">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.formula.api <span class="im">import</span> ols</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'score'</span>: [<span class="dv">80</span>,<span class="dv">85</span>,<span class="dv">78</span>,<span class="dv">90</span>,<span class="dv">88</span>,<span class="dv">85</span>,<span class="dv">75</span>,<span class="dv">80</span>,<span class="dv">70</span>,<span class="dv">60</span>,<span class="dv">65</span>,<span class="dv">68</span>],</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'A'</span>,<span class="st">'A'</span>,<span class="st">'A'</span>,<span class="st">'B'</span>,<span class="st">'B'</span>,<span class="st">'B'</span>,<span class="st">'A'</span>,<span class="st">'A'</span>,<span class="st">'A'</span>,<span class="st">'B'</span>,<span class="st">'B'</span>,<span class="st">'B'</span>],</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gender'</span>: [<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>]</span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ols(<span class="st">'score ~ C(method) * C(gender)'</span>, data<span class="op">=</span>data).fit()</span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>anova_table <span class="op">=</span> sm.stats.anova_lm(model, typ<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anova_table)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                         sum_sq   df          F    PR(&gt;F)
+C(method)             12.000000  1.0   0.791209  0.399691
+C(gender)            645.333333  1.0  42.549451  0.000184
+C(method):C(gender)  225.333333  1.0  14.857143  0.004847
+Residual             121.333333  8.0        NaN       NaN</code></pre>
+</div>
+</div>
+<ul>
+<li>type 2 error 확인</li>
+<li>C()로 묶어주는 이유는 범주형인 것을 알지만 그래도 자동 범주형 처리를 해주기 위함</li>
+</ul>
+<p><code>R</code></p>
+<div id="444406fa-2289-4095-bff3-880eca724bf0" class="cell" data-execution_count="129">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>score <span class="op">&lt;-</span> c(<span class="dv">80</span>,<span class="dv">85</span>,<span class="dv">78</span>,<span class="dv">90</span>,<span class="dv">88</span>,<span class="dv">85</span>,<span class="dv">75</span>,<span class="dv">80</span>,<span class="dv">70</span>,<span class="dv">60</span>,<span class="dv">65</span>,<span class="dv">68</span>)</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>method <span class="op">&lt;-</span> factor(c(<span class="st">'A'</span>,<span class="st">'A'</span>,<span class="st">'A'</span>,<span class="st">'B'</span>,<span class="st">'B'</span>,<span class="st">'B'</span>,<span class="st">'A'</span>,<span class="st">'A'</span>,<span class="st">'A'</span>,<span class="st">'B'</span>,<span class="st">'B'</span>,<span class="st">'B'</span>))</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>gender <span class="op">&lt;-</span> factor(c(<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>,<span class="st">'F'</span>))</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">&lt;-</span> data.frame(score, method, gender)</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA 모델 적합</span></span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">&lt;-</span> aov(score <span class="op">~</span> method <span class="op">*</span> gender, data<span class="op">=</span>data)</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>summary(model)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+method         1   12.0    12.0   0.791 0.399691    
+gender         1  645.3   645.3  42.549 0.000184 ***
+method:gender  1  225.3   225.3  14.857 0.004847 ** 
+Residuals      8  121.3    15.2                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+</div>
+</div>
+<ul>
+<li>formular에 띄어쓰기 있는 열 이름을 쓰고 싶을때 <code>Q("")</code>을 사용하자</li>
+</ul>
+</section>
+<section id="gender-bmi-category-two-way-anova" class="level3">
+<h3 class="anchored" data-anchor-id="gender-bmi-category-two-way-anova">Gender, BMI Category two-way anova</h3>
+<p><code>SAS</code></p>
+<pre class="sas"><code>data df;
+set df;
+BMI_Category = BMI Category;
+    run;
+    
+proc glm data=df;
+   class Gender;
+   model Sleep Duration = Gender BMI_Category Gender*BMI_Category;
+   means Gender BMI Category / tukey;
+run;
+quit;</code></pre>
+<ul>
+<li>sas는 공백있는 문자열 허용하지 않음</li>
+</ul>
+<p><code>python</code></p>
+<div id="3527f60d-affe-4bbb-bb89-105aa4c26092" class="cell" data-execution_count="137">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ols(<span class="st">'Q("Sleep Duration") ~ C(Gender) * C(Q("BMI Category"))'</span>, data<span class="op">=</span>df).fit()</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>anova_table <span class="op">=</span> sm.stats.anova_lm(model, typ<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anova_table)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                    sum_sq     df          F        PR(&gt;F)
+C(Gender)                        17.425305    1.0  35.004829  7.559713e-09
+C(Q("BMI Category"))             47.817415    3.0  32.019343  2.115883e-18
+C(Gender):C(Q("BMI Category"))    2.633401    3.0   1.763369  1.537587e-01
+Residual                        182.193765  366.0        NaN           NaN</code></pre>
+</div>
+</div>
+<p><code>R</code></p>
+<div id="5113eca8-ae26-4c52-a811-0e823c4f4d20" class="cell" data-execution_count="138">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">&lt;-</span> aov(`Sleep Duration` <span class="op">~</span> Gender <span class="op">*</span> `BMI Category`, data<span class="op">=</span>df)</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>summary(model)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       Df Sum Sq Mean Sq F value  Pr(&gt;F)    
+Gender                  1   3.49   3.490   7.012 0.00845 ** 
+`BMI Category`          3  47.82  15.939  32.019 &lt; 2e-16 ***
+Gender:`BMI Category`   3   2.63   0.878   1.763 0.15376    
+Residuals             366 182.19   0.498                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="repeated-mesures-anova" class="level1">
+<h1>Repeated mesures ANOVA</h1>
+<ul>
+<li>반복측정 분석을 위해 반복측정된 조건들 사이에 모든 차이값pairwise difference의 분산이 동일해야 한다는 가정인 구형성 Sphericity가정을 해야한다.</li>
+<li>구형성 가정을 위배할 경우 F값의 자유도 보정이 필요하다
+<ul>
+<li>보정법 및 특징
+<ul>
+<li>Greenhouse-Geisser (GG): 보수적, 대부분 사용되는 보정법</li>
+<li>Huynh-Feldt (HF): 덜 보수적, GG가 너무 작을 때 사용</li>
+<li>Lower-bound: 가장 보수적, 거의 사용 안 함</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(SS_{Total} = SS_{Between Subjects} + SS_{Within Subjects}\)</span></p>
+<p><span class="math inline">\(SS_{Within} = SS_{Treatament} + SS_{Error}\)</span></p>
+<p><span class="math inline">\(SS_{Total} = \sum^n_{i=1} \sum^k_{j=1} (Y_{ij} - \bar{Y}_{..})^2\)</span></p>
+<p><span class="math inline">\(df_{Total} = nk-1\)</span></p>
+<p><span class="math inline">\(SS_{Subjects} = k \sum^n_{i=1} (\bar{Y}_{i.} - \bar{Y}_{..})^2\)</span></p>
+<p><span class="math inline">\(df_{Within} = n-1\)</span></p>
+<p><span class="math inline">\(SS_{Treatment} = n \sum^k_{j=1}(\bar{Y}_{.j} - \bar{Y}_{..})2\)</span></p>
+<p><span class="math inline">\(df_{treatment} = k-1\)</span></p>
+<p><span class="math inline">\(SS_{Error} = SS_{Within} - SS_{Treatment}\)</span></p>
+<p><span class="math inline">\(df_{Error} = (n-1)(k-1)\)</span></p>
+<p><span class="math inline">\(MS_{Treatment} = \dfrac{SS_{Treatment}}{k-1}\)</span></p>
+<p><span class="math inline">\(MS_{Error} = \dfrac{SS_{Error}}{(n-1)(k-1)}\)</span></p>
+<p><span class="math inline">\(F = \dfrac{MS_{Treatment}}{MS_{Error}}\)</span></p>
+<p><code>SAS</code></p>
+<pre class="sas"><code>data rm_data;
+   input Subject $ Condition1 Condition2 Condition3;
+   datalines;
+S1 85 88 90
+S2 78 79 84
+S3 82 85 87
+S4 88 89 93
+S5 75 78 80
+;
+run;
+
+proc glm data=rm_data;
+   class Subject;
+   model Condition1 Condition2 Condition3 = / nouni;
+   repeated Time 3/ printe;  /* 반복 측정 변수 (3시점), 구형성 검정 추가 */
+run;
+quit;</code></pre>
+<p><code>python</code></p>
+<div id="ec2f8282-b7b8-499b-a4da-7d2e62b64055" class="cell" data-execution_count="140">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터 생성</span></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Subject'</span>: [<span class="st">'S1'</span>, <span class="st">'S2'</span>, <span class="st">'S3'</span>, <span class="st">'S4'</span>, <span class="st">'S5'</span>],</span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Condition1'</span>: [<span class="dv">85</span>, <span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">88</span>, <span class="dv">75</span>],</span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Condition2'</span>: [<span class="dv">88</span>, <span class="dv">79</span>, <span class="dv">85</span>, <span class="dv">89</span>, <span class="dv">78</span>],</span>
+<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Condition3'</span>: [<span class="dv">90</span>, <span class="dv">84</span>, <span class="dv">87</span>, <span class="dv">93</span>, <span class="dv">80</span>]</span>
+<span id="cb94-9"><a href="#cb94-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb94-10"><a href="#cb94-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-11"><a href="#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="co"># long-form으로 변환</span></span>
+<span id="cb94-12"><a href="#cb94-12" aria-hidden="true" tabindex="-1"></a>data_long <span class="op">=</span> pd.melt(data, id_vars<span class="op">=</span>[<span class="st">'Subject'</span>], value_vars<span class="op">=</span>[<span class="st">'Condition1'</span>,<span class="st">'Condition2'</span>,<span class="st">'Condition3'</span>],</span>
+<span id="cb94-13"><a href="#cb94-13" aria-hidden="true" tabindex="-1"></a>                    var_name<span class="op">=</span><span class="st">'Condition'</span>, value_name<span class="op">=</span><span class="st">'Score'</span>)</span>
+<span id="cb94-14"><a href="#cb94-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-15"><a href="#cb94-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeated Measures ANOVA</span></span>
+<span id="cb94-16"><a href="#cb94-16" aria-hidden="true" tabindex="-1"></a>aov <span class="op">=</span> pg.rm_anova(dv<span class="op">=</span><span class="st">'Score'</span>, within<span class="op">=</span><span class="st">'Condition'</span>, subject<span class="op">=</span><span class="st">'Subject'</span>, data<span class="op">=</span>data_long, detailed<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb94-17"><a href="#cb94-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aov)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source         SS  DF         MS          F     p-unc       ng2  \
+0  Condition  68.133333   2  34.066667  60.117647  0.000015  0.177925   
+1      Error   4.533333   8   0.566667        NaN       NaN       NaN   
+
+        eps  
+0  0.542214  
+1       NaN  </code></pre>
+</div>
+</div>
+<ul>
+<li>eps Greenhouse-Geisser의 에타로, 보정계수인데 변수가 종속에 얼마나 영향을 미치는지 사용하는 건데</li>
+<li>보정이 필요하다고 보고 아래와 같이 보정 진행</li>
+</ul>
+<div id="f8f95ff8-649b-4e5d-af9a-1a10f90f02b0" class="cell" data-execution_count="144">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> f</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fl">60.117647</span></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> <span class="dv">2</span>  <span class="co"># 조건 수 - 1</span></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> <span class="dv">8</span>  <span class="co"># (n - 1)(조건 수 - 1) = (5-1)*(3-1)</span></span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">0.542214</span></span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 보정된 자유도</span></span>
+<span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a>df1_corr <span class="op">=</span> df1 <span class="op">*</span> eps</span>
+<span id="cb96-10"><a href="#cb96-10" aria-hidden="true" tabindex="-1"></a>df2_corr <span class="op">=</span> df2 <span class="op">*</span> eps</span>
+<span id="cb96-11"><a href="#cb96-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-12"><a href="#cb96-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 보정된 p-value</span></span>
+<span id="cb96-13"><a href="#cb96-13" aria-hidden="true" tabindex="-1"></a>p_corrected <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> f.cdf(F, df1_corr, df2_corr)</span>
+<span id="cb96-14"><a href="#cb96-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"GG-corrected p-value: </span><span class="sc">{</span>p_corrected<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GG-corrected p-value: 0.001006</code></pre>
+</div>
+</div>
+<p><code>R</code></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ez)</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Subject =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"S1"</span>, <span class="st">"S2"</span>, <span class="st">"S3"</span>, <span class="st">"S4"</span>, <span class="st">"S5"</span>)),</span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Condition1 =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">88</span>, <span class="dv">75</span>),</span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Condition2 =</span> <span class="fu">c</span>(<span class="dv">88</span>, <span class="dv">79</span>, <span class="dv">85</span>, <span class="dv">89</span>, <span class="dv">78</span>),</span>
+<span id="cb98-8"><a href="#cb98-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Condition3 =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">84</span>, <span class="dv">87</span>, <span class="dv">93</span>, <span class="dv">80</span>)</span>
+<span id="cb98-9"><a href="#cb98-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb98-10"><a href="#cb98-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-11"><a href="#cb98-11" aria-hidden="true" tabindex="-1"></a><span class="co"># long-form으로 변환</span></span>
+<span id="cb98-12"><a href="#cb98-12" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(data, <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"Condition"</span>),</span>
+<span id="cb98-13"><a href="#cb98-13" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_to =</span> <span class="st">"Condition"</span>, <span class="at">values_to =</span> <span class="st">"Score"</span>)</span>
+<span id="cb98-14"><a href="#cb98-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-15"><a href="#cb98-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ezANOVA 설치 문제로 주석으로 대체</span></span>
+<span id="cb98-16"><a href="#cb98-16" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">ezANOVA</span>(<span class="at">data =</span> data_long,</span>
+<span id="cb98-17"><a href="#cb98-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dv =</span> Score,</span>
+<span id="cb98-18"><a href="#cb98-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">wid =</span> Subject,</span>
+<span id="cb98-19"><a href="#cb98-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">within =</span> Condition,</span>
+<span id="cb98-20"><a href="#cb98-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb98-21"><a href="#cb98-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-22"><a href="#cb98-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<ul>
+<li>결과 산출하면 p값이 두 개 나오는 데 p Mauchly value를 확인해서 0.05보다 크면 p value 사용</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
