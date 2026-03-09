@@ -24,6 +24,8 @@ title-block-banner: true
 
 - (9/2021 - 8/2023) Jeonbuk National University, South Korea
     - Department of Statistics / Master's degree
+    - Supervisor: Guebin Choi
+    - Thesis Title: Spectral Analysis of non-Euclidean Data: A New Statistical Methodology for Graph Signal Processing and Graph Neural Network
 - (3/2014 - 2/2018) Jeonbuk National University, South Korea
     - Department of Statistics / Bachelor's degree
 
@@ -38,5 +40,10 @@ title-block-banner: true
     - Applied Sciences, 15(10), 5460.
     - keywords: GPT-generated text, synthetic data, data augmentation, MBTI classification, class imbalance, few-shot learning, fine-grained classification, data granularity, large language models
     - https://www.mdpi.com/2076-3417/15/10/5460
+    
+- Choi, S., Kim, H. & Choi, G.(2026) Cascading Class Activation Mapping: A Counterfactual Reasoning-Based Explainable Method for Comprehensive Feature Discovery
+    - CMES-Computer Modeling in Engineering & Sciences, 146(2), 37. (SCIE; 22.4%; Q1)
+    - keywords: Explainable AI; Class Activation Mapping; Counterfactual Reasoning; Shortcut Learning; Feature Discovery
+    - https://www.techscience.com/CMES/v146n2/66329
     
 :::
