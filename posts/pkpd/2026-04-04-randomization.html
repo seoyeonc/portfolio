@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2026-03-26">
 
-<title>Seoyeon’s Portfolio - SEOYEON CHOI</title>
+<title>Seoyeon’s Portfolio - Block Randomization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +22,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,67 +102,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -138,7 +114,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Seoyeon’s Portfolio</span>
     </a>
   </div>
@@ -159,7 +135,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -178,7 +154,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">SEOYEON CHOI</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Block Randomization</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -191,20 +167,32 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">SEOYEON CHOI</h1>
+      <h1 class="title">Block Randomization</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-body">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>SEOYEON CHOI </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 26, 2026</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -225,31 +213,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_rand.html" class="sidebar-item-text sidebar-link">
+  <a href="../../2_rand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Randomization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_pkpd.html" class="sidebar-item-text sidebar-link">
+  <a href="../../2_pkpd.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PK/PD</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_rwdrwe.html" class="sidebar-item-text sidebar-link">
+  <a href="../../2_rwdrwe.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RWD/RWE</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_pro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../2_pro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_kno.html" class="sidebar-item-text sidebar-link">
+  <a href="../../2_kno.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Knowledge</span></a>
   </div>
 </li>
@@ -261,204 +249,129 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">Import</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-body" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Professional Experience</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Education</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Publications</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<ul>
-<li>(10/2022 - 5/2025) Nanum Space Corp.
-<ul>
-<li>Data Analystic Team / Statistician</li>
-</ul></li>
-<li>(10/2020 - 9/2022) Jeonbuk National University Hospital Center for Clinical Pharmacology
-<ul>
-<li>Clinical Statistics Team / Statistician</li>
-</ul></li>
-</ul>
+<section id="import" class="level2">
+<h2 class="anchored" data-anchor-id="import">Import</h2>
+<div id="d12b5831-0f98-4a6a-b390-06a9f5e16d11" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<ul>
-<li>(9/2021 - 8/2023) Jeonbuk National University, South Korea
-<ul>
-<li>Department of Statistics / Master’s degree</li>
-<li>Supervisor: Guebin Choi</li>
-<li>Thesis Title: Spectral Analysis of non-Euclidean Data: A New Statistical Methodology for Graph Signal Processing and Graph Neural Network</li>
-</ul></li>
-<li>(3/2014 - 2/2018) Jeonbuk National University, South Korea
-<ul>
-<li>Department of Statistics / Bachelor’s degree</li>
-</ul></li>
-</ul>
+<div id="26005008-64ec-4be6-96d0-91f4b7b89a79" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> block_randomization_random_block_with_info(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    n_subjects,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    block_sizes<span class="op">=</span>[<span class="dv">4</span>, <span class="dv">6</span>],</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    sequence<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">123</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    random.seed(seed)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    assignments <span class="op">=</span> []</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    block_ids <span class="op">=</span> []</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    block_sizes_used <span class="op">=</span> []</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    block_num <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="bu">len</span>(assignments) <span class="op">&lt;</span> n_subjects:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        block_size <span class="op">=</span> random.choice(block_sizes)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        n_per_sequence <span class="op">=</span> block_size <span class="op">//</span> <span class="bu">len</span>(sequence)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        block <span class="op">=</span> []</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> seq <span class="kw">in</span> sequence:</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            block.extend([seq] <span class="op">*</span> n_per_sequence)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        random.shuffle(block)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> seq <span class="kw">in</span> block:</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            assignments.append(seq)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            block_ids.append(block_num)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            block_sizes_used.append(block_size)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        block_num <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    assignments <span class="op">=</span> assignments[:n_subjects]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    block_ids <span class="op">=</span> block_ids[:n_subjects]</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    block_sizes_used <span class="op">=</span> block_sizes_used[:n_subjects]</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Subject_ID'</span>: [<span class="ss">f'SUBJID_</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">:03d}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_subjects)],</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Group'</span>: assignments,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Block'</span>: block_ids,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Block_Size'</span>: block_sizes_used</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code></pre></div>
 </div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<ul>
-<li>Choi, S. &amp; Choi, G.(2025). Gode: graph Fourier transform based outlier detection using empirical Bayesian thresholding;
-<ul>
-<li>Journal of the Korean Statistical Society, 1-21</li>
-<li>keywords: Outlier Detection, Non-Euclidean Data, Graph Fourier Transform, Bayesian Modelings</li>
-<li>https://link.springer.com/article/10.1007/s42952-024-00303-1</li>
-</ul></li>
-<li>Choi, S., Sim, J. &amp; Choi, G.(2025) Synthetic Text as Data: On Usefulness and Limitations.
-<ul>
-<li>Applied Sciences, 15(10), 5460.</li>
-<li>keywords: GPT-generated text, synthetic data, data augmentation, MBTI classification, class imbalance, few-shot learning, fine-grained classification, data granularity, large language models</li>
-<li>https://www.mdpi.com/2076-3417/15/10/5460</li>
-</ul></li>
-<li>Choi, S., Kim, H. &amp; Choi, G.(2026) Cascading Class Activation Mapping: A Counterfactual Reasoning-Based Explainable Method for Comprehensive Feature Discovery
-<ul>
-<li>CMES-Computer Modeling in Engineering &amp; Sciences, 146(2), 37. (SCIE; 22.4%; Q1)</li>
-<li>keywords: Explainable AI; Class Activation Mapping; Counterfactual Reasoning; Shortcut Learning; Feature Discovery</li>
-<li>https://www.techscience.com/CMES/v146n2/66329</li>
-</ul></li>
-</ul>
+<div id="d98a1f75-4994-4190-abed-49bcd893cb4e" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_rand <span class="op">=</span> block_randomization_random_block_with_info(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n_subjects<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    block_sizes<span class="op">=</span>[<span class="dv">4</span>, <span class="dv">6</span>],</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    sequence<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">2026</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
+<div id="0ed13d77-6e6d-4521-b7c6-7ff49208d96c" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_rand)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Subject_ID  Group  Block  Block_Size
+0   SUBJID_001      1      1           4
+1   SUBJID_002      1      1           4
+2   SUBJID_003      2      1           4
+3   SUBJID_004      2      1           4
+4   SUBJID_005      1      2           4
+5   SUBJID_006      1      2           4
+6   SUBJID_007      2      2           4
+7   SUBJID_008      2      2           4
+8   SUBJID_009      1      3           6
+9   SUBJID_010      2      3           6
+10  SUBJID_011      2      3           6
+11  SUBJID_012      2      3           6
+12  SUBJID_013      1      3           6
+13  SUBJID_014      1      3           6
+14  SUBJID_015      2      4           4
+15  SUBJID_016      1      4           4
+16  SUBJID_017      1      4           4
+17  SUBJID_018      2      4           4
+18  SUBJID_019      1      5           6
+19  SUBJID_020      2      5           6
+20  SUBJID_021      2      5           6
+21  SUBJID_022      1      5           6
+22  SUBJID_023      2      5           6
+23  SUBJID_024      1      5           6
+24  SUBJID_025      2      6           6
+25  SUBJID_026      1      6           6
+26  SUBJID_027      1      6           6
+27  SUBJID_028      1      6           6
+28  SUBJID_029      2      6           6
+29  SUBJID_030      2      6           6</code></pre>
+</div>
+</div>
+<div id="183797ed-3d51-470a-87a8-680f033fba1c" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_rand[<span class="st">'Group'</span>].value_counts())</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1    15
+2    15
+Name: Group, dtype: int64</code></pre>
 </div>
 </div>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-<th>
-Author
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1774450800000" data-listing-file-modified-sort="1775328778264" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Block Randomization" data-listing-filename-sort="2026-04-04-randomization.ipynb">
-<td>
-<span class="listing-date">Mar 26, 2026</span>
-</td>
-<td>
-<a href="./posts/pkpd/2026-04-04-randomization.html" class="title listing-title">Block Randomization</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1772982000000" data-listing-file-modified-sort="1774866349925" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290" data-listing-title-sort="[R Shiny] Real-Time Data Dashboard" data-listing-filename-sort="2026-03-09-examplershiny.ipynb">
-<td>
-<span class="listing-date">Mar 9, 2026</span>
-</td>
-<td>
-<a href="./posts/rwdrwe/2026-03-09-examplershiny.html" class="title listing-title">[R Shiny] Real-Time Data Dashboard</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1772982000000" data-listing-file-modified-sort="1773066551134" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1180" data-listing-title-sort="[R Shiny] Basic" data-listing-filename-sort="2026-03-09-rshiny.ipynb">
-<td>
-<span class="listing-date">Mar 9, 2026</span>
-</td>
-<td>
-<a href="./posts/rwdrwe/2026-03-09-rshiny.html" class="title listing-title">[R Shiny] Basic</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1750172400000" data-listing-file-modified-sort="1750261732580" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="[Knowledge] SAP Eng" data-listing-filename-sort="2025-06-18-SAP_eng.ipynb">
-<td>
-<span class="listing-date">Jun 18, 2025</span>
-</td>
-<td>
-<a href="./posts/kno/2025-06-18-SAP_eng.html" class="title listing-title">[Knowledge] SAP Eng</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1750086000000" data-listing-file-modified-sort="1750260644889" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="323" data-listing-title-sort="[Program] SAS vs Python vs R" data-listing-filename-sort="2025-06-17-saspythonr.ipynb">
-<td>
-<span class="listing-date">Jun 17, 2025</span>
-</td>
-<td>
-<a href="./posts/pro/2025-06-17-saspythonr.html" class="title listing-title">[Program] SAS vs Python vs R</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1744902000000" data-listing-file-modified-sort="1773066797035" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29" data-listing-title-sort="[RWD/RWE] RWD Table with Python" data-listing-filename-sort="2025-04-18-rwdrwe_table.ipynb">
-<td>
-<span class="listing-date">Apr 18, 2025</span>
-</td>
-<td>
-<a href="./posts/rwdrwe/2025-04-18-rwdrwe_table.html" class="title listing-title">[RWD/RWE] RWD Table with Python</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1744124400000" data-listing-file-modified-sort="1745847670211" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="[Program] Mixed model" data-listing-filename-sort="2025-04-09-mixedmodel.ipynb">
-<td>
-<span class="listing-date">Apr 9, 2025</span>
-</td>
-<td>
-<a href="./posts/pro/2025-04-09-mixedmodel.html" class="title listing-title">[Program] Mixed model</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1744124400000" data-listing-file-modified-sort="1744549188237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="[Randomzation] Randomization" data-listing-filename-sort="2025-04-09-randomization.ipynb">
-<td>
-<span class="listing-date">Apr 9, 2025</span>
-</td>
-<td>
-<a href="./posts/rand/2025-04-09-randomization.html" class="title listing-title">[Randomzation] Randomization</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="8" data-listing-date-sort="1744124400000" data-listing-file-modified-sort="1773065939806" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="[PK/PD] PK Parameters" data-listing-filename-sort="2025-04-09-pkparameters.ipynb">
-<td>
-<span class="listing-date">Apr 9, 2025</span>
-</td>
-<td>
-<a href="./posts/pkpd/2025-04-09-pkparameters.html" class="title listing-title">[PK/PD] PK Parameters</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-<tr data-index="9" data-listing-date-sort="1744124400000" data-listing-file-modified-sort="1773086871365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29" data-listing-title-sort="[RWD/RWE] RWD Graph with R" data-listing-filename-sort="2025-04-09-rwdrwe_figure.ipynb">
-<td>
-<span class="listing-date">Apr 9, 2025</span>
-</td>
-<td>
-<a href="./posts/rwdrwe/2025-04-09-rwdrwe_figure.html" class="title listing-title">[RWD/RWE] RWD Graph with R</a>
-</td>
-<td>
-<span class="listing-author">SEOYEON CHOI</span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
