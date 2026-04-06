@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.527">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2025-08-18">
+
+<title>Seoyeon’s Portfolio - ECG Heartbeat Categorization Dataset</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://seoyeonc.github.io/sy_hub/"> 
+<span class="menu-text">Main_Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/seoyeon-choi-6b3b60231/"> 
+<span class="menu-text">Linkedin</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">ECG Heartbeat Categorization Dataset</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">ECG Heartbeat Categorization Dataset</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>SEOYEON CHOI </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 18, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>Statistics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_rand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_pkpd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PK/PD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_rwdrwe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RWD/RWE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_pro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_kno.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_proj.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">Import</a></li>
+  <li><a href="#데이터-이해-전처리" id="toc-데이터-이해-전처리" class="nav-link" data-scroll-target="#데이터-이해-전처리">데이터 이해 &amp; 전처리</a></li>
+  <li><a href="#탐색적-데이터-분석-eda" id="toc-탐색적-데이터-분석-eda" class="nav-link" data-scroll-target="#탐색적-데이터-분석-eda">탐색적 데이터 분석 (EDA)</a></li>
+  <li><a href="#특징-기반-머신러닝-접근" id="toc-특징-기반-머신러닝-접근" class="nav-link" data-scroll-target="#특징-기반-머신러닝-접근">특징 기반 머신러닝 접근</a></li>
+  <li><a href="#딥러닝-접근-raw-signal-사용" id="toc-딥러닝-접근-raw-signal-사용" class="nav-link" data-scroll-target="#딥러닝-접근-raw-signal-사용">딥러닝 접근 (Raw Signal 사용)</a>
+  <ul class="collapse">
+  <li><a href="#d-cnn" id="toc-d-cnn" class="nav-link" data-scroll-target="#d-cnn">1D CNN</a></li>
+  <li><a href="#lstmgru" id="toc-lstmgru" class="nav-link" data-scroll-target="#lstmgru">LSTM/GRU</a>
+  <ul class="collapse">
+  <li><a href="#lstm" id="toc-lstm" class="nav-link" data-scroll-target="#lstm">LSTM</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p><a href="https://www.kaggle.com/datasets/shayanfazeli/heartbeat?resource=download">ECG Heartbeat Categorization Dataset</a></p>
+<p>Abstract - This dataset is composed of two collections of heartbeat signals derived from two famous datasets in heartbeat classification, the MIT-BIH Arrhythmia Dataset and The PTB Diagnostic ECG Database. The number of samples in both collections is large enough for training a deep neural network. - This dataset has been used in exploring heartbeat classification using deep neural network architectures, and observing some of the capabilities of transfer learning on it. The signals correspond to electrocardiogram (ECG) shapes of heartbeats for the normal case and the cases affected by different arrhythmias and myocardial infarction. These signals are preprocessed and segmented, with each segment corresponding to a heartbeat.</p>
+<p>Content</p>
+<ul>
+<li>Arrhythmia Dataset</li>
+<li>Number of Samples: 109446</li>
+<li>Number of Categories: 5</li>
+<li>Sampling Frequency: 125Hz</li>
+<li>Data Source: Physionet’s MIT-BIH Arrhythmia Dataset</li>
+<li>Classes: [‘N’: 0, ‘S’: 1, ‘V’: 2, ‘F’: 3, ‘Q’: 4]</li>
+</ul>
+<p>The PTB Diagnostic ECG Database - Number of Samples: 14552 - Number of Categories: 2 - Sampling Frequency: 125Hz - Data Source: Physionet’s PTB Diagnostic Database - Remark: All the samples are cropped, downsampled and padded with zeroes if necessary to the fixed dimension of 188.</p>
+<p>Data Files - This dataset consists of a series of CSV files. Each of these CSV files contain a matrix, with each row representing an example in that portion of the dataset. The final element of each row denotes the class to which that example belongs.</p>
+<p>Acknowledgements - Mohammad Kachuee, Shayan Fazeli, and Majid Sarrafzadeh. “ECG Heartbeat Classification: A Deep Transferable Representation.” arXiv preprint arXiv:1805.00794 (2018).</p>
+<p>Inspiration - Can you identify myocardial infarction?</p>
+<section id="import" class="level1">
+<h1>Import</h1>
+<div id="b32b531a-a021-4a50-a10f-21c5d28b091d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pywt</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> f_oneway</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scikit_posthocs <span class="im">as</span> sp</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> kruskal</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> skew, kurtosis</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.fft <span class="im">import</span> rfft, rfftfreq</span></code></pre></div>
+</div>
+</section>
+<section id="데이터-이해-전처리" class="level1">
+<h1>데이터 이해 &amp; 전처리</h1>
+<p>데이터셋 구성 확인</p>
+<div id="a09056e3-6aa1-42b8-b8d1-16f4cad3239b" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../../delete/mitbih_test.csv'</span>,header<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="8a43666a-e733-4f3b-8cbf-37e7e80936ef" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">4</th>
+<th data-quarto-table-cell-role="th">5</th>
+<th data-quarto-table-cell-role="th">6</th>
+<th data-quarto-table-cell-role="th">7</th>
+<th data-quarto-table-cell-role="th">8</th>
+<th data-quarto-table-cell-role="th">9</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">178</th>
+<th data-quarto-table-cell-role="th">179</th>
+<th data-quarto-table-cell-role="th">180</th>
+<th data-quarto-table-cell-role="th">181</th>
+<th data-quarto-table-cell-role="th">182</th>
+<th data-quarto-table-cell-role="th">183</th>
+<th data-quarto-table-cell-role="th">184</th>
+<th data-quarto-table-cell-role="th">185</th>
+<th data-quarto-table-cell-role="th">186</th>
+<th data-quarto-table-cell-role="th">187</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1.000000</td>
+<td>0.758264</td>
+<td>0.111570</td>
+<td>0.000000</td>
+<td>0.080579</td>
+<td>0.078512</td>
+<td>0.066116</td>
+<td>0.049587</td>
+<td>0.047521</td>
+<td>0.035124</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.908425</td>
+<td>0.783883</td>
+<td>0.531136</td>
+<td>0.362637</td>
+<td>0.366300</td>
+<td>0.344322</td>
+<td>0.333333</td>
+<td>0.307692</td>
+<td>0.296703</td>
+<td>0.300366</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.730088</td>
+<td>0.212389</td>
+<td>0.000000</td>
+<td>0.119469</td>
+<td>0.101770</td>
+<td>0.101770</td>
+<td>0.110619</td>
+<td>0.123894</td>
+<td>0.115044</td>
+<td>0.132743</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1.000000</td>
+<td>0.910417</td>
+<td>0.681250</td>
+<td>0.472917</td>
+<td>0.229167</td>
+<td>0.068750</td>
+<td>0.000000</td>
+<td>0.004167</td>
+<td>0.014583</td>
+<td>0.054167</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.570470</td>
+<td>0.399329</td>
+<td>0.238255</td>
+<td>0.147651</td>
+<td>0.000000</td>
+<td>0.003356</td>
+<td>0.040268</td>
+<td>0.080537</td>
+<td>0.070470</td>
+<td>0.090604</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 188 columns</p>
+</div>
+</div>
+</div>
+<div id="211c564f-c5ff-4bbe-9acf-2190100229bd" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>(21892, 188)</code></pre>
+</div>
+</div>
+<div id="7252c5b4-e0a6-437c-8072-0389bdc22608" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sample_idx <span class="op">=</span> np.random.choice(df.shape[<span class="dv">0</span>], <span class="dv">9</span>, replace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, idx <span class="kw">in</span> <span class="bu">enumerate</span>(sample_idx, <span class="dv">1</span>):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ecg <span class="op">=</span> df.iloc[idx, :<span class="op">-</span><span class="dv">1</span>].values <span class="cf">if</span> df.shape[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">188</span> <span class="cf">else</span> df.iloc[idx, :].values</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">3</span>, <span class="dv">3</span>, i)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    plt.plot(ecg, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f"Sample </span><span class="sc">{</span>idx<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Time index (0-187)"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Amplitude"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-08-18-supervised_learning_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="7b29f28e-e287-4075-bcc0-f60a1583ab60" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">187</span>].unique()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>array([0., 1., 2., 3., 4.])</code></pre>
+</div>
+</div>
+<ul>
+<li>MIT-BIH (부정맥 → 5 classes)</li>
+</ul>
+<p>전처리</p>
+<ul>
+<li>Normalization (z-score scaling)</li>
+</ul>
+<div id="5d720e07-f497-4c05-bc2f-8f7f77559d54" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].values</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df.iloc[:, <span class="op">-</span><span class="dv">1</span>].values</span></code></pre></div>
+</div>
+</section>
+<section id="탐색적-데이터-분석-eda" class="level1">
+<h1>탐색적 데이터 분석 (EDA)</h1>
+<p>평균 파형 시각화</p>
+<div id="98fdcb1e-937b-4cd1-a023-0cc26944bd29" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>label_col <span class="op">=</span> df.columns[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>feature_cols <span class="op">=</span> df.columns[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n_points <span class="op">=</span> <span class="bu">len</span>(feature_cols)</span></code></pre></div>
+</div>
+<div id="5b69d008-aa5b-466b-bf7a-295bd917a309" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> <span class="fl">125.0</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(n_points) <span class="op">/</span> fs</span></code></pre></div>
+</div>
+<div id="08725358-ab35-4faf-a4f0-54254abe10f8" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>label_map <span class="op">=</span> {<span class="dv">0</span>:<span class="st">'N'</span>, <span class="dv">1</span>:<span class="st">'S'</span>, <span class="dv">2</span>:<span class="st">'V'</span>, <span class="dv">3</span>:<span class="st">'F'</span>, <span class="dv">4</span>:<span class="st">'Q'</span>}</span></code></pre></div>
+</div>
+<div id="7e863327-0c58-4317-ba04-47ebde643b48" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 라벨별 평균 파형 계산</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> []</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>labels_present <span class="op">=</span> <span class="bu">sorted</span>(df[label_col].unique())</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> labels_present:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> df.loc[df[label_col] <span class="op">==</span> y, feature_cols].mean(axis<span class="op">=</span><span class="dv">0</span>).values</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    means.append((y, m))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 한 그래프에 라벨별 평균 파형 그리기</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y, m <span class="kw">in</span> means:</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    plt.plot(t, m, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>label_map<span class="sc">.</span>get(<span class="bu">int</span>(y), y)<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="bu">int</span>(y)<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average ECG Waveform by Class"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (s)"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Amplitude"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-08-18-supervised_learning_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>스펙트럼 분석 - FFT or Wavelet 변환을 통한 frequency 특징 비교.</p>
+<p>FFT</p>
+<div id="00ae4fac-fc40-4dee-b7ba-58c1b64c467e" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----- 기본 설정 -----</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> <span class="fl">125.0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>label_col <span class="op">=</span> df.columns[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>feature_cols <span class="op">=</span> df.columns[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(feature_cols)               <span class="co"># 188</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(N) <span class="op">/</span> fs</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>freqs <span class="op">=</span> np.fft.rfftfreq(N, d<span class="op">=</span><span class="dv">1</span><span class="op">/</span>fs)  <span class="co"># 0 ~ Nyquist(62.5 Hz)</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> np.hanning(N)              <span class="co"># 한닝 윈도우(누설 감소)</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 라벨 매핑(가독성)</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>label_map <span class="op">=</span> {<span class="dv">0</span>:<span class="st">'N'</span>, <span class="dv">1</span>:<span class="st">'S'</span>, <span class="dv">2</span>:<span class="st">'V'</span>, <span class="dv">3</span>:<span class="st">'F'</span>, <span class="dv">4</span>:<span class="st">'Q'</span>}</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ----- 클래스별 평균 파워 스펙트럼 -----</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> <span class="bu">sorted</span>(df[label_col].unique()):</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> df.loc[df[label_col] <span class="op">==</span> y, feature_cols].values    <span class="co"># (n_class_samples, N)</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># detrend(평균 제거) + windowing + FFT</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    X_detrended <span class="op">=</span> X <span class="op">-</span> X.mean(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    Xw <span class="op">=</span> X_detrended <span class="op">*</span> window</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    F <span class="op">=</span> np.fft.rfft(Xw, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> (np.<span class="bu">abs</span>(F)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (window<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()                 <span class="co"># 파워 정규화</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    P_mean <span class="op">=</span> P.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    plt.plot(freqs, P_mean, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>label_map<span class="sc">.</span>get(<span class="bu">int</span>(y), y)<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="bu">int</span>(y)<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average Power Spectrum by Class (FFT)"</span>)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Frequency (Hz)"</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Power"</span>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-08-18-supervised_learning_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Wavelet</p>
+<div id="d954b848-c06d-4d27-83ee-9f2e72354084" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----- DWT 파라미터 -----</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>wavelet <span class="op">=</span> <span class="st">'db4'</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>level <span class="op">=</span> <span class="dv">4</span> <span class="co"># 188 포인트면 4~5레벨 적당</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 한 샘플에서 서브밴드 에너지 벡터 추출</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> wavelet_band_energy(x):</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 평균 제거(기저선 영향 완화)</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x <span class="op">-</span> x.mean()</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="op">=</span> pywt.wavedec(x, wavelet<span class="op">=</span>wavelet, level<span class="op">=</span>level)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># coeffs = [cA_L, cD_L, cD_{L-1}, ..., cD_1]</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    energies <span class="op">=</span> [np.<span class="bu">sum</span>(c<span class="op">**</span><span class="dv">2</span>) <span class="cf">for</span> c <span class="kw">in</span> coeffs]</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> np.<span class="bu">sum</span>(energies) <span class="op">+</span> <span class="fl">1e-12</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 상대 에너지(합=1)로 반환하면 샘플 간 진폭 차이 영향 완화</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(energies) <span class="op">/</span> total</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 전체 샘플 처리</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>feat_list <span class="op">=</span> []</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> []</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[feature_cols].values.astype(<span class="bu">float</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> wavelet_band_energy(x)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    feat_list.append(e)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    labels.append(<span class="bu">int</span>(row[label_col]))</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.vstack(feat_list)   <span class="co"># shape: (n_samples, 1 + level)</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array(labels)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 클래스별 평균 상대 에너지</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>classes <span class="op">=</span> <span class="bu">sorted</span>(np.unique(y))</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>E_mean <span class="op">=</span> {c: E[y<span class="op">==</span>c].mean(axis<span class="op">=</span><span class="dv">0</span>) <span class="cf">for</span> c <span class="kw">in</span> classes}</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 플롯: 각 클래스의 subband 에너지 비교 (막대그래프)</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>bands <span class="op">=</span> [<span class="ss">f"cA_</span><span class="sc">{</span>level<span class="sc">}</span><span class="ss">"</span>] <span class="op">+</span> [<span class="ss">f"cD_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(level, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)]  <span class="co"># 상위 스케일→하위 스케일</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>x_pos <span class="op">=</span> np.arange(<span class="bu">len</span>(bands))</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>bar_width <span class="op">=</span> <span class="fl">0.14</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, c <span class="kw">in</span> <span class="bu">enumerate</span>(classes):</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    plt.bar(x_pos <span class="op">+</span> i<span class="op">*</span>bar_width, E_mean[c], width<span class="op">=</span>bar_width, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>plt.xticks(x_pos <span class="op">+</span> bar_width<span class="op">*</span>(<span class="bu">len</span>(classes)<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span>, bands)</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Relative Energy"</span>)</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Wavelet Subband Energy by Class (wavelet=</span><span class="sc">{</span>wavelet<span class="sc">}</span><span class="ss">, level=</span><span class="sc">{</span>level<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">"Class (0=N,1=S,2=V,3=F,4=Q)"</span>)</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-08-18-supervised_learning_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>통계적 비교 - Classes: [‘N’: 0, ‘S’: 1, ‘V’: 2, ‘F’: 3, ‘Q’: 4] 간에 amplitude, variance, QRS duration 등 특징 차이 통계 검정 (t-test, Mann-Whitney).</p>
+<div id="cd49e2c8-29bd-4e4f-993c-b8df4eb09351" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'amp_mean'</span>] <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'amp_max'</span>]  <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'amp_min'</span>]  <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].<span class="bu">min</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'amp_range'</span>] <span class="op">=</span> df[<span class="st">'amp_max'</span>] <span class="op">-</span> df[<span class="st">'amp_min'</span>]</span></code></pre></div>
+</div>
+<div id="86534471-51ac-483a-a9ca-4fa047bd2037" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'variance'</span>] <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].var(axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+</div>
+<div id="30b5046c-fc20-48f7-9d9e-13cb5e4d2527" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> qrs_duration(signal, threshold_ratio<span class="op">=</span><span class="fl">0.5</span>):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># R peak amplitude 추정</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    peak <span class="op">=</span> np.<span class="bu">max</span>(signal)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    threshold <span class="op">=</span> peak <span class="op">*</span> threshold_ratio</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    above <span class="op">=</span> np.where(signal <span class="op">&gt;=</span> threshold)[<span class="dv">0</span>]</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(above) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> above[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> above[<span class="dv">0</span>]   <span class="co"># index 차이 (포인트 수)</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'qrs_dur'</span>] <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> row: qrs_duration(row.values), axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+</div>
+<div id="43fabf14-ee3b-409a-8d01-bd19f2e2ac11" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>label_map <span class="op">=</span> {<span class="dv">0</span>:<span class="st">'N'</span>, <span class="dv">1</span>:<span class="st">'S'</span>, <span class="dv">2</span>:<span class="st">'V'</span>, <span class="dv">3</span>:<span class="st">'F'</span>, <span class="dv">4</span>:<span class="st">'Q'</span>}</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>desc <span class="op">=</span> df.groupby(df.iloc[:, <span class="op">-</span><span class="dv">1</span>])[[<span class="st">'amp_mean'</span>,<span class="st">'variance'</span>,<span class="st">'qrs_dur'</span>]].describe()</span></code></pre></div>
+</div>
+<div id="dc639ac5-a193-4142-9020-db7704d265c8" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [df.loc[df.iloc[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> c, <span class="st">'amp_mean'</span>] <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>(df.iloc[:, <span class="op">-</span><span class="dv">1</span>].unique())]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>anova_amp <span class="op">=</span> f_oneway(<span class="op">*</span>groups)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [df.loc[df.iloc[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> c, <span class="st">'variance'</span>] <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>(df.iloc[:, <span class="op">-</span><span class="dv">1</span>].unique())]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>anova_var <span class="op">=</span> f_oneway(<span class="op">*</span>groups)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [df.loc[df.iloc[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> c, <span class="st">'qrs_dur'</span>] <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>(df.iloc[:, <span class="op">-</span><span class="dv">1</span>].unique())]</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>anova_qrs <span class="op">=</span> f_oneway(<span class="op">*</span>groups)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ANOVA amp_mean:"</span>, anova_amp)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ANOVA variance:"</span>, anova_var)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ANOVA qrs_dur:"</span>, anova_qrs)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ANOVA amp_mean: F_onewayResult(statistic=97.23061517562662, pvalue=0.0)
+ANOVA variance: F_onewayResult(statistic=673.9205351617329, pvalue=0.0)
+ANOVA qrs_dur: F_onewayResult(statistic=inf, pvalue=0.0)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/scipy/stats/_stats_py.py:3903: ConstantInputWarning: Each of the input arrays is constant;the F statistic is not defined or infinite
+  warnings.warn(stats.ConstantInputWarning(msg))</code></pre>
+</div>
+</div>
+<div id="52352f60-7091-4de4-81f1-fd2cc8c54f14" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [df.loc[df.iloc[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> c, <span class="st">'amp_mean'</span>] <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>(df.iloc[:, <span class="op">-</span><span class="dv">1</span>].unique())]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>kw_amp <span class="op">=</span> kruskal(<span class="op">*</span>groups)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [df.loc[df.iloc[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> c, <span class="st">'variance'</span>] <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>(df.iloc[:, <span class="op">-</span><span class="dv">1</span>].unique())]</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>kw_var <span class="op">=</span> kruskal(<span class="op">*</span>groups)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [df.loc[df.iloc[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> c, <span class="st">'qrs_dur'</span>] <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>(df.iloc[:, <span class="op">-</span><span class="dv">1</span>].unique())]</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>kw_qrs <span class="op">=</span> kruskal(<span class="op">*</span>groups)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Kruskal amp_mean:"</span>, kw_amp)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Kruskal variance:"</span>, kw_var)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Kruskal qrs_dur:"</span>, kw_qrs)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Kruskal amp_mean: KruskalResult(statistic=4731.5315295296, pvalue=0.0)
+Kruskal variance: KruskalResult(statistic=8376.756741998353, pvalue=0.0)
+Kruskal qrs_dur: KruskalResult(statistic=21891.0, pvalue=0.0)</code></pre>
+</div>
+</div>
+<div id="d32333b5-570a-4380-9c37-5e6ea1d50723" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>posthoc_amp <span class="op">=</span> sp.posthoc_dunn(df, val_col<span class="op">=</span><span class="st">'amp_mean'</span>, group_col<span class="op">=</span>df.columns[<span class="op">-</span><span class="dv">1</span>], p_adjust<span class="op">=</span><span class="st">'bonferroni'</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(posthoc_amp)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               4    5    6    7    9    10   12   14   15   16   ...  182  \
+4     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+5     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+6     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+7     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+9     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+..             ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...   
+187   1.353411e-35  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+188   3.901249e-05  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+189   1.318389e-12  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+190   2.638355e-03  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+191  4.113517e-283  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+
+     183       184           185            186            187           188  \
+4    1.0  1.000000  1.000000e+00   7.231955e-26   1.353411e-35  3.901249e-05   
+5    1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+6    1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+7    1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+9    1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+..   ...       ...           ...            ...            ...           ...   
+187  1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+188  1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+189  1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+190  1.0  1.000000  1.000000e+00   3.018640e-04   6.368383e-07  1.000000e+00   
+191  1.0  0.000027  4.575056e-07  8.248003e-126  8.271528e-161  2.793909e-34   
+
+              189           190            191  
+4    1.318389e-12  2.638355e-03  4.113517e-283  
+5    1.000000e+00  1.000000e+00   1.000000e+00  
+6    1.000000e+00  1.000000e+00   1.000000e+00  
+7    1.000000e+00  1.000000e+00   1.000000e+00  
+9    1.000000e+00  1.000000e+00   1.000000e+00  
+..            ...           ...            ...  
+187  1.000000e+00  6.368383e-07  8.271528e-161  
+188  1.000000e+00  1.000000e+00   2.793909e-34  
+189  1.000000e+00  3.952042e-01   1.699180e-68  
+190  3.952042e-01  1.000000e+00   2.442212e-88  
+191  1.699180e-68  2.442212e-88   1.000000e+00  
+
+[181 rows x 181 columns]</code></pre>
+</div>
+</div>
+<div id="605cf788-0bb7-442a-83ca-3b03f8f895b5" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 예: amp_mean 특징을 클래스별 비교</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>posthoc_amp <span class="op">=</span> sp.posthoc_dunn(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    df, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    val_col<span class="op">=</span><span class="st">'amp_mean'</span>, </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    group_col<span class="op">=</span>df.columns[<span class="op">-</span><span class="dv">1</span>],  <span class="co"># 마지막 열이 라벨</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    p_adjust<span class="op">=</span><span class="st">'bonferroni'</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dunn post-hoc test (amp_mean):"</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(posthoc_amp)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dunn post-hoc test (amp_mean):
+               4    5    6    7    9    10   12   14   15   16   ...  182  \
+4     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+5     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+6     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+7     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+9     1.000000e+00  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+..             ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...   
+187   1.353411e-35  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+188   3.901249e-05  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+189   1.318389e-12  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+190   2.638355e-03  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+191  4.113517e-283  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  1.0  ...  1.0   
+
+     183       184           185            186            187           188  \
+4    1.0  1.000000  1.000000e+00   7.231955e-26   1.353411e-35  3.901249e-05   
+5    1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+6    1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+7    1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+9    1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+..   ...       ...           ...            ...            ...           ...   
+187  1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+188  1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+189  1.0  1.000000  1.000000e+00   1.000000e+00   1.000000e+00  1.000000e+00   
+190  1.0  1.000000  1.000000e+00   3.018640e-04   6.368383e-07  1.000000e+00   
+191  1.0  0.000027  4.575056e-07  8.248003e-126  8.271528e-161  2.793909e-34   
+
+              189           190            191  
+4    1.318389e-12  2.638355e-03  4.113517e-283  
+5    1.000000e+00  1.000000e+00   1.000000e+00  
+6    1.000000e+00  1.000000e+00   1.000000e+00  
+7    1.000000e+00  1.000000e+00   1.000000e+00  
+9    1.000000e+00  1.000000e+00   1.000000e+00  
+..            ...           ...            ...  
+187  1.000000e+00  6.368383e-07  8.271528e-161  
+188  1.000000e+00  1.000000e+00   2.793909e-34  
+189  1.000000e+00  3.952042e-01   1.699180e-68  
+190  3.952042e-01  1.000000e+00   2.442212e-88  
+191  1.699180e-68  2.442212e-88   1.000000e+00  
+
+[181 rows x 181 columns]</code></pre>
+</div>
+</div>
+<div id="108ed0dd-2d18-48c5-83df-531a33137117" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span>df.iloc[:, <span class="op">-</span><span class="dv">1</span>], y<span class="op">=</span>df[<span class="st">'amp_mean'</span>])</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Amplitude Mean by Class"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Class (0=N,1=S,2=V,3=F,4=Q)"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"amp_mean"</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-08-18-supervised_learning_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="5cc60c8f-aa76-4bdb-9d66-180996b4c73f" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Posthoc heatmap</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">5</span>))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(posthoc_amp, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, cbar<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".3f"</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Post-hoc Dunn Test (p-values)"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2025-08-18-supervised_learning_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="특징-기반-머신러닝-접근" class="level1">
+<h1>특징 기반 머신러닝 접근</h1>
+<p>특징 추출 - 시간영역: mean, std, skewness, kurtosis, peak-to-peak - 주파수영역: dominant frequency, power spectrum - Wavelet: ST segment 관련 coefficient</p>
+<div id="1c080d1d-2799-4862-8a2d-d3f7fc8a0cca" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_time_features(x):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean'</span>: <span class="bu">float</span>(np.mean(x)),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'std'</span>: <span class="bu">float</span>(np.std(x)),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'skew'</span>: <span class="bu">float</span>(skew(x)),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'kurtosis'</span>: <span class="bu">float</span>(kurtosis(x)),</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ptp'</span>: <span class="bu">float</span>(np.ptp(x)),  <span class="co"># peak-to-peak</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_freq_features(x, fs<span class="op">=</span><span class="dv">125</span>):</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(x)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    freqs <span class="op">=</span> rfftfreq(N, d<span class="op">=</span><span class="dv">1</span><span class="op">/</span>fs)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    spectrum <span class="op">=</span> np.<span class="bu">abs</span>(rfft(x))<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    dom_freq <span class="op">=</span> <span class="bu">float</span>(freqs[np.argmax(spectrum)])</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    power <span class="op">=</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(spectrum))</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">'dom_freq'</span>: dom_freq, <span class="st">'power'</span>: power}</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_wavelet_features(x, wavelet<span class="op">=</span><span class="st">'db4'</span>, level<span class="op">=</span><span class="dv">4</span>):</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x <span class="op">-</span> x.mean()</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="op">=</span> pywt.wavedec(x, wavelet<span class="op">=</span>wavelet, level<span class="op">=</span>level)</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>    energies <span class="op">=</span> [np.<span class="bu">sum</span>(c<span class="op">**</span><span class="dv">2</span>) <span class="cf">for</span> c <span class="kw">in</span> coeffs]</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> np.<span class="bu">sum</span>(energies) <span class="op">+</span> <span class="fl">1e-12</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>    rel <span class="op">=</span> [<span class="bu">float</span>(e<span class="op">/</span>total) <span class="cf">for</span> e <span class="kw">in</span> energies]</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cA_L, cD_L, ..., cD_1</span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    names <span class="op">=</span> [<span class="ss">f'wavelet_energy_cA_</span><span class="sc">{</span>level<span class="sc">}</span><span class="ss">'</span>] <span class="op">+</span> [<span class="ss">f'wavelet_energy_cD_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(level, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)]</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">dict</span>(<span class="bu">zip</span>(names, rel))</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_features(x, fs<span class="op">=</span><span class="dv">125</span>):</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>    feats <span class="op">=</span> {}</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>    feats.update(extract_time_features(x))</span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>    feats.update(extract_freq_features(x, fs<span class="op">=</span>fs))</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>    feats.update(extract_wavelet_features(x))</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> feats</span></code></pre></div>
+</div>
+<div id="ee185ae5-8a9c-45b1-8f44-dd0eb1bd5663" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 라벨/피처 컬럼 안전하게 정의 ----</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>label_col <span class="op">=</span> df.columns[<span class="op">-</span><span class="dv">1</span>]              <span class="co"># 마지막 열을 라벨로 사용</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>feature_cols <span class="op">=</span> df.columns[:<span class="op">-</span><span class="dv">1</span>]          <span class="co"># 나머지는 ECG 시계열</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 넘파이로 뽑아서 루프 (빠르고 안전) ----</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.loc[:, feature_cols].to_numpy(dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df.loc[:, label_col].to_numpy()</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>feature_list <span class="op">=</span> []</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> []</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xi, yi <span class="kw">in</span> <span class="bu">zip</span>(X, y):</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    feats <span class="op">=</span> extract_features(xi, fs<span class="op">=</span><span class="dv">125</span>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    feature_list.append(feats)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    labels.append(<span class="bu">int</span>(yi))</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>feature_df <span class="op">=</span> pd.DataFrame(feature_list)</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>feature_df[<span class="st">'label'</span>] <span class="op">=</span> labels</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(feature_df.head())</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(feature_df.shape)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       mean       std      skew   kurtosis  ptp  dom_freq        power  \
+0  0.088813  0.165259  4.148272  18.524207  1.0       0.0   802.459636   
+1  0.201932  0.247202  1.129980   0.747387  1.0       0.0  2657.005592   
+2  0.119641  0.163150  2.984116  12.369159  1.0       0.0  1028.928658   
+3  0.168079  0.222119  1.874741   3.945423  1.0       0.0  1971.182895   
+4  0.207004  0.219523  1.185874   1.866668  1.0       0.0  2493.665686   
+
+   wavelet_energy_cA_4  wavelet_energy_cD_4  wavelet_energy_cD_3  \
+0             0.581605             0.070714             0.143888   
+1             0.781645             0.074139             0.056645   
+2             0.494606             0.057453             0.107020   
+3             0.792486             0.068899             0.062562   
+4             0.613792             0.090211             0.101761   
+
+   wavelet_energy_cD_2  wavelet_energy_cD_1  label  
+0             0.068162             0.135632    191  
+1             0.009751             0.077819    191  
+2             0.097060             0.243862    191  
+3             0.008464             0.067589    191  
+4             0.025589             0.168648    191  
+(21892, 13)</code></pre>
+</div>
+</div>
+<p>ML 모델링 - Logistic Regression, Random Forest, XGBoost - 목표: baseline accuracy/ROC-AUC 확인</p>
+</section>
+<section id="딥러닝-접근-raw-signal-사용" class="level1">
+<h1>딥러닝 접근 (Raw Signal 사용)</h1>
+<section id="d-cnn" class="level2">
+<h2 class="anchored" data-anchor-id="d-cnn">1D CNN</h2>
+<ul>
+<li>Local ECG pattern (QRS, ST-segment)을 자동으로 학습.</li>
+</ul>
+<div id="655c248f-18d7-4edd-a2da-944db14f89f0" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils.class_weight <span class="im">import</span> compute_class_weight</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers, models</span></code></pre></div>
+</div>
+<div id="81a57f41-9fc6-4f18-873f-6a3bcf62b376" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 라벨/피처 분리 ---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>label_col <span class="op">=</span> df.columns[<span class="dv">187</span>]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>feature_cols <span class="op">=</span> df.columns[:<span class="dv">186</span>]</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[feature_cols].to_numpy(dtype<span class="op">=</span>np.float32)   <span class="co"># (N, L)</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[label_col].to_numpy(dtype<span class="op">=</span>np.int64)        <span class="co"># (N, )</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # --- 샘플별 Z-score 표준화(파형 모양만 남기기) ---</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">1e-8</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> X.mean(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>sd <span class="op">=</span> X.std(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> (X <span class="op">-</span> mu) <span class="op">/</span> (sd <span class="op">+</span> eps)</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co"># # --- 80:20 split → train에서 20%를 val (최종 64/16/20) ---</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>X_tr, X_te, y_tr, y_te <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>X_tr, X_va, y_tr, y_va <span class="op">=</span> train_test_split(X_tr, y_tr, test_size<span class="op">=</span><span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y_tr)</span></code></pre></div>
+</div>
+<div id="773a80c8-0b44-43aa-9b54-994156d5b299" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>classes <span class="op">=</span> np.unique(y)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>class_weights <span class="op">=</span> compute_class_weight(<span class="st">'balanced'</span>, classes<span class="op">=</span>classes, y<span class="op">=</span>y_tr)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>class_weight <span class="op">=</span> {<span class="bu">int</span>(c): <span class="bu">float</span>(w) <span class="cf">for</span> c, w <span class="kw">in</span> <span class="bu">zip</span>(classes, class_weights)}</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"class_weight:"</span>, class_weight)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class_weight: {0: 0.24165588615782665, 1: 7.870786516853933, 2: 3.025917926565875, 3: 26.942307692307693, 4: 2.7230320699708455}</code></pre>
+</div>
+</div>
+<div id="ec796ab7-266a-4c9d-818b-8cb2bdd70939" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) 모델: 1D CNN (QRS, ST 등 로컬 패턴 자동 학습)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> X_tr.shape[<span class="dv">1</span>]  <span class="co"># 시퀀스 길이</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>n_classes <span class="op">=</span> <span class="bu">len</span>(np.unique(y))</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_1d_cnn(input_length<span class="op">=</span>L, n_classes<span class="op">=</span>n_classes):</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    inp <span class="op">=</span> layers.Input(shape<span class="op">=</span>(input_length, <span class="dv">1</span>))</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Conv1D(<span class="dv">32</span>, kernel_size<span class="op">=</span><span class="dv">7</span>, padding<span class="op">=</span><span class="st">'same'</span>)(inp)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.BatchNormalization()(x)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.ReLU()(x)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.MaxPool1D(<span class="dv">2</span>)(x)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.2</span>)(x)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Conv1D(<span class="dv">64</span>, kernel_size<span class="op">=</span><span class="dv">5</span>, padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.BatchNormalization()(x)</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.ReLU()(x)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.MaxPool1D(<span class="dv">2</span>)(x)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.3</span>)(x)</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Conv1D(<span class="dv">128</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.BatchNormalization()(x)</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.ReLU()(x)</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.GlobalAveragePooling1D()(x)</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.4</span>)(x)</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> layers.Dense(n_classes, activation<span class="op">=</span><span class="st">'softmax'</span>)(x)</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> models.Model(inp, out)</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">compile</span>(</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>        optimizer<span class="op">=</span>tf.keras.optimizers.Adam(<span class="fl">1e-3</span>),</span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>        loss<span class="op">=</span>tf.keras.losses.SparseCategoricalCrossentropy(),</span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>        metrics<span class="op">=</span>[<span class="st">'accuracy'</span>]</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> build_1d_cnn()</span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: "model_2"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_3 (InputLayer)        [(None, 186, 1)]          0         
+                                                                 
+ conv1d_6 (Conv1D)           (None, 186, 32)           256       
+                                                                 
+ batch_normalization_6 (Batc  (None, 186, 32)          128       
+ hNormalization)                                                 
+                                                                 
+ re_lu_6 (ReLU)              (None, 186, 32)           0         
+                                                                 
+ max_pooling1d_4 (MaxPooling  (None, 93, 32)           0         
+ 1D)                                                             
+                                                                 
+ dropout_6 (Dropout)         (None, 93, 32)            0         
+                                                                 
+ conv1d_7 (Conv1D)           (None, 93, 64)            10304     
+                                                                 
+ batch_normalization_7 (Batc  (None, 93, 64)           256       
+ hNormalization)                                                 
+                                                                 
+ re_lu_7 (ReLU)              (None, 93, 64)            0         
+                                                                 
+ max_pooling1d_5 (MaxPooling  (None, 46, 64)           0         
+ 1D)                                                             
+                                                                 
+ dropout_7 (Dropout)         (None, 46, 64)            0         
+                                                                 
+ conv1d_8 (Conv1D)           (None, 46, 128)           24704     
+                                                                 
+ batch_normalization_8 (Batc  (None, 46, 128)          512       
+ hNormalization)                                                 
+                                                                 
+ re_lu_8 (ReLU)              (None, 46, 128)           0         
+                                                                 
+ global_average_pooling1d_2   (None, 128)              0         
+ (GlobalAveragePooling1D)                                        
+                                                                 
+ dense_4 (Dense)             (None, 128)               16512     
+                                                                 
+ dropout_8 (Dropout)         (None, 128)               0         
+                                                                 
+ dense_5 (Dense)             (None, 5)                 645       
+                                                                 
+=================================================================
+Total params: 53,317
+Trainable params: 52,869
+Non-trainable params: 448
+_________________________________________________________________</code></pre>
+</div>
+</div>
+<ul>
+<li>성능 높이기
+<ul>
+<li>한 층 더 추가한다.</li>
+<li>23-&gt;64-&gt;128… 채널 수를 늘린다.</li>
+</ul></li>
+</ul>
+<div id="7198986b-412b-4975-82f3-8cdeacc6d5ce" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) 학습</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cb <span class="op">=</span> [</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    tf.keras.callbacks.ReduceLROnPlateau(monitor<span class="op">=</span><span class="st">'val_loss'</span>, factor<span class="op">=</span><span class="fl">0.5</span>, patience<span class="op">=</span><span class="dv">3</span>),</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    tf.keras.callbacks.EarlyStopping(monitor<span class="op">=</span><span class="st">'val_loss'</span>, patience<span class="op">=</span><span class="dv">8</span>, restore_best_weights<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>hist <span class="op">=</span> model.fit(</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    X_tr, y_tr,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>(X_va, y_va),</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">256</span>,</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    class_weight<span class="op">=</span>class_weight,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>cb,</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 1/50
+55/55 [==============================] - 4s 41ms/step - loss: 1.3983 - accuracy: 0.2974 - val_loss: 1.6888 - val_accuracy: 0.0234 - lr: 0.0010
+Epoch 2/50
+55/55 [==============================] - 2s 36ms/step - loss: 1.0734 - accuracy: 0.4141 - val_loss: 2.2370 - val_accuracy: 0.0305 - lr: 0.0010
+Epoch 3/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.9189 - accuracy: 0.4235 - val_loss: 2.7122 - val_accuracy: 0.0311 - lr: 0.0010
+Epoch 4/50
+55/55 [==============================] - 2s 37ms/step - loss: 0.8343 - accuracy: 0.4803 - val_loss: 2.9398 - val_accuracy: 0.0400 - lr: 0.0010
+Epoch 5/50
+55/55 [==============================] - 2s 37ms/step - loss: 0.7863 - accuracy: 0.4909 - val_loss: 2.7439 - val_accuracy: 0.0403 - lr: 5.0000e-04
+Epoch 6/50
+55/55 [==============================] - 11s 200ms/step - loss: 0.7505 - accuracy: 0.5074 - val_loss: 2.6304 - val_accuracy: 0.0514 - lr: 5.0000e-04
+Epoch 7/50
+55/55 [==============================] - 12s 220ms/step - loss: 0.7204 - accuracy: 0.5488 - val_loss: 2.3196 - val_accuracy: 0.1048 - lr: 5.0000e-04
+Epoch 8/50
+55/55 [==============================] - 2s 34ms/step - loss: 0.7089 - accuracy: 0.5453 - val_loss: 1.8006 - val_accuracy: 0.2643 - lr: 2.5000e-04
+Epoch 9/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.6870 - accuracy: 0.5555 - val_loss: 1.5701 - val_accuracy: 0.3394 - lr: 2.5000e-04
+Epoch 10/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.6709 - accuracy: 0.5479 - val_loss: 1.3493 - val_accuracy: 0.4099 - lr: 2.5000e-04
+Epoch 11/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.6614 - accuracy: 0.5671 - val_loss: 1.4117 - val_accuracy: 0.3954 - lr: 2.5000e-04
+Epoch 12/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.6540 - accuracy: 0.5715 - val_loss: 1.3136 - val_accuracy: 0.4116 - lr: 2.5000e-04
+Epoch 13/50
+55/55 [==============================] - 2s 37ms/step - loss: 0.6511 - accuracy: 0.5828 - val_loss: 1.1824 - val_accuracy: 0.4382 - lr: 2.5000e-04
+Epoch 14/50
+55/55 [==============================] - 14s 258ms/step - loss: 0.6341 - accuracy: 0.6059 - val_loss: 1.1752 - val_accuracy: 0.4599 - lr: 2.5000e-04
+Epoch 15/50
+55/55 [==============================] - 8s 138ms/step - loss: 0.6238 - accuracy: 0.5824 - val_loss: 1.1429 - val_accuracy: 0.4950 - lr: 2.5000e-04
+Epoch 16/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.6284 - accuracy: 0.5942 - val_loss: 1.0967 - val_accuracy: 0.4747 - lr: 2.5000e-04
+Epoch 17/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.6149 - accuracy: 0.6060 - val_loss: 1.1215 - val_accuracy: 0.4967 - lr: 2.5000e-04
+Epoch 18/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.6041 - accuracy: 0.6247 - val_loss: 1.2169 - val_accuracy: 0.4459 - lr: 2.5000e-04
+Epoch 19/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.5890 - accuracy: 0.6167 - val_loss: 1.1233 - val_accuracy: 0.4425 - lr: 2.5000e-04
+Epoch 20/50
+55/55 [==============================] - 2s 37ms/step - loss: 0.5924 - accuracy: 0.6163 - val_loss: 1.1555 - val_accuracy: 0.4371 - lr: 1.2500e-04
+Epoch 21/50
+55/55 [==============================] - 5s 88ms/step - loss: 0.5795 - accuracy: 0.6340 - val_loss: 1.1013 - val_accuracy: 0.4804 - lr: 1.2500e-04
+Epoch 22/50
+55/55 [==============================] - 15s 269ms/step - loss: 0.5854 - accuracy: 0.6367 - val_loss: 1.1438 - val_accuracy: 0.4459 - lr: 1.2500e-04
+Epoch 23/50
+55/55 [==============================] - 4s 75ms/step - loss: 0.5819 - accuracy: 0.6288 - val_loss: 1.1051 - val_accuracy: 0.4859 - lr: 6.2500e-05
+Epoch 24/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.5769 - accuracy: 0.6416 - val_loss: 1.0771 - val_accuracy: 0.4990 - lr: 6.2500e-05
+Epoch 25/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.5672 - accuracy: 0.6254 - val_loss: 1.0909 - val_accuracy: 0.4927 - lr: 6.2500e-05
+Epoch 26/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.5637 - accuracy: 0.6376 - val_loss: 1.0779 - val_accuracy: 0.4921 - lr: 6.2500e-05
+Epoch 27/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.5760 - accuracy: 0.6438 - val_loss: 1.0539 - val_accuracy: 0.5090 - lr: 6.2500e-05
+Epoch 28/50
+55/55 [==============================] - 2s 37ms/step - loss: 0.5686 - accuracy: 0.6291 - val_loss: 1.0418 - val_accuracy: 0.5136 - lr: 6.2500e-05
+Epoch 29/50
+55/55 [==============================] - 9s 164ms/step - loss: 0.5743 - accuracy: 0.6503 - val_loss: 1.0573 - val_accuracy: 0.5104 - lr: 6.2500e-05
+Epoch 30/50
+55/55 [==============================] - 14s 251ms/step - loss: 0.5613 - accuracy: 0.6415 - val_loss: 1.0678 - val_accuracy: 0.5090 - lr: 6.2500e-05
+Epoch 31/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.5497 - accuracy: 0.6428 - val_loss: 1.0438 - val_accuracy: 0.5201 - lr: 6.2500e-05
+Epoch 32/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.5624 - accuracy: 0.6422 - val_loss: 1.0511 - val_accuracy: 0.5161 - lr: 3.1250e-05
+Epoch 33/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.5558 - accuracy: 0.6507 - val_loss: 1.0276 - val_accuracy: 0.5233 - lr: 3.1250e-05
+Epoch 34/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.5521 - accuracy: 0.6499 - val_loss: 1.0458 - val_accuracy: 0.5144 - lr: 3.1250e-05
+Epoch 35/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.5578 - accuracy: 0.6471 - val_loss: 1.0451 - val_accuracy: 0.5101 - lr: 3.1250e-05
+Epoch 36/50
+55/55 [==============================] - 2s 39ms/step - loss: 0.5499 - accuracy: 0.6488 - val_loss: 1.0554 - val_accuracy: 0.5059 - lr: 3.1250e-05
+Epoch 37/50
+55/55 [==============================] - 14s 258ms/step - loss: 0.5488 - accuracy: 0.6470 - val_loss: 1.0474 - val_accuracy: 0.5107 - lr: 1.5625e-05
+Epoch 38/50
+55/55 [==============================] - 8s 154ms/step - loss: 0.5546 - accuracy: 0.6442 - val_loss: 1.0524 - val_accuracy: 0.5081 - lr: 1.5625e-05
+Epoch 39/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.5499 - accuracy: 0.6490 - val_loss: 1.0415 - val_accuracy: 0.5158 - lr: 1.5625e-05
+Epoch 40/50
+55/55 [==============================] - 2s 35ms/step - loss: 0.5419 - accuracy: 0.6495 - val_loss: 1.0420 - val_accuracy: 0.5161 - lr: 7.8125e-06
+Epoch 41/50
+55/55 [==============================] - 2s 36ms/step - loss: 0.5347 - accuracy: 0.6526 - val_loss: 1.0405 - val_accuracy: 0.5178 - lr: 7.8125e-06</code></pre>
+</div>
+</div>
+<div id="41f73da1-58f7-4692-a2bc-f18bbe96f334" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) 평가: Accuracy / ROC-AUC(One-vs-Rest)</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, roc_auc_score, classification_report, confusion_matrix</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> label_binarize</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 예측</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>proba_te <span class="op">=</span> model.predict(X_te)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>pred_te  <span class="op">=</span> proba_te.argmax(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Accuracy</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>acc <span class="op">=</span> accuracy_score(y_te, pred_te)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test Accuracy:"</span>, acc)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC-AUC (다중클래스 → OvR)</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>y_te_bin <span class="op">=</span> label_binarize(y_te, classes<span class="op">=</span>np.arange(n_classes))</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>auc <span class="op">=</span> roc_auc_score(y_te_bin, proba_te, average<span class="op">=</span><span class="st">'macro'</span>, multi_class<span class="op">=</span><span class="st">'ovr'</span>)</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test ROC-AUC (macro OvR):"</span>, auc)</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 추가 리포트/매트릭스</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_te, pred_te, digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_te, pred_te))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>137/137 [==============================] - 1s 4ms/step
+Test Accuracy: 0.5181548298698333
+Test ROC-AUC (macro OvR): 0.9432353917756396
+              precision    recall  f1-score   support
+
+           0      0.987     0.445     0.614      3624
+           1      0.078     0.829     0.143       111
+           2      0.446     0.807     0.574       290
+           3      0.041     0.938     0.079        32
+           4      0.949     0.929     0.939       322
+
+    accuracy                          0.518      4379
+   macro avg      0.500     0.789     0.470      4379
+weighted avg      0.918     0.518     0.619      4379
+
+[[1614 1080  276  640   14]
+ [   9   92    4    6    0]
+ [   2    6  234   46    2]
+ [   0    1    1   30    0]
+ [  11    0   10    2  299]]</code></pre>
+</div>
+</div>
+</section>
+<section id="lstmgru" class="level2">
+<h2 class="anchored" data-anchor-id="lstmgru">LSTM/GRU</h2>
+<ul>
+<li>ECG 신호의 순차적 dependency 반영.</li>
+</ul>
+<section id="lstm" class="level3">
+<h3 class="anchored" data-anchor-id="lstm">LSTM</h3>
+<div id="22bee789-44ba-496e-b53c-4a01429994e9" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import tensorflow as tf</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from tensorflow.keras import layers, models</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> X_tr.shape[<span class="dv">1</span>]              <span class="co"># 188</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>n_classes <span class="op">=</span> <span class="bu">len</span>(np.unique(y))  <span class="co"># 5</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_bilstm(input_len<span class="op">=</span>L, n_classes<span class="op">=</span>n_classes):</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    inp <span class="op">=</span> layers.Input(shape<span class="op">=</span>(input_len, <span class="dv">1</span>))</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Bidirectional(layers.LSTM(<span class="dv">64</span>, return_sequences<span class="op">=</span><span class="va">True</span>))(inp)</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.3</span>)(x)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Bidirectional(layers.LSTM(<span class="dv">64</span>))(x)</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.3</span>)(x)</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.4</span>)(x)</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> layers.Dense(n_classes, activation<span class="op">=</span><span class="st">'softmax'</span>)(x)</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> models.Model(inp, out)</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">compile</span>(</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>        optimizer<span class="op">=</span>tf.keras.optimizers.Adam(<span class="fl">1e-3</span>),</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>        loss<span class="op">=</span>tf.keras.losses.SparseCategoricalCrossentropy(),</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>        metrics<span class="op">=</span>[<span class="st">'accuracy'</span>]</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>lstm_model <span class="op">=</span> build_bilstm()</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>lstm_model.summary()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: "model_3"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_4 (InputLayer)        [(None, 186, 1)]          0         
+                                                                 
+ bidirectional (Bidirectiona  (None, 186, 128)         33792     
+ l)                                                              
+                                                                 
+ dropout_9 (Dropout)         (None, 186, 128)          0         
+                                                                 
+ bidirectional_1 (Bidirectio  (None, 128)              98816     
+ nal)                                                            
+                                                                 
+ dropout_10 (Dropout)        (None, 128)               0         
+                                                                 
+ dense_6 (Dense)             (None, 128)               16512     
+                                                                 
+ dropout_11 (Dropout)        (None, 128)               0         
+                                                                 
+ dense_7 (Dense)             (None, 5)                 645       
+                                                                 
+=================================================================
+Total params: 149,765
+Trainable params: 149,765
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</div>
+</div>
+<ul>
+<li>GRU</li>
+</ul>
+<div id="002f2785-a58c-41d6-857b-7695fa1c2a72" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_bigru(input_len<span class="op">=</span>L, n_classes<span class="op">=</span>n_classes):</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    inp <span class="op">=</span> layers.Input(shape<span class="op">=</span>(input_len, <span class="dv">1</span>))</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Bidirectional(layers.GRU(<span class="dv">64</span>, return_sequences<span class="op">=</span><span class="va">True</span>))(inp)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.3</span>)(x)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Bidirectional(layers.GRU(<span class="dv">64</span>))(x)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.3</span>)(x)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.4</span>)(x)</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> layers.Dense(n_classes, activation<span class="op">=</span><span class="st">'softmax'</span>)(x)</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> models.Model(inp, out)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">compile</span>(</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>        optimizer<span class="op">=</span>tf.keras.optimizers.Adam(<span class="fl">1e-3</span>),</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>        loss<span class="op">=</span>tf.keras.losses.SparseCategoricalCrossentropy(),</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>        metrics<span class="op">=</span>[<span class="st">'accuracy'</span>]</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>gru_model <span class="op">=</span> build_bigru()</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>gru_model.summary()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: "model_4"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_5 (InputLayer)        [(None, 186, 1)]          0         
+                                                                 
+ bidirectional_2 (Bidirectio  (None, 186, 128)         25728     
+ nal)                                                            
+                                                                 
+ dropout_12 (Dropout)        (None, 186, 128)          0         
+                                                                 
+ bidirectional_3 (Bidirectio  (None, 128)              74496     
+ nal)                                                            
+                                                                 
+ dropout_13 (Dropout)        (None, 128)               0         
+                                                                 
+ dense_8 (Dense)             (None, 128)               16512     
+                                                                 
+ dropout_14 (Dropout)        (None, 128)               0         
+                                                                 
+ dense_9 (Dense)             (None, 5)                 645       
+                                                                 
+=================================================================
+Total params: 117,381
+Trainable params: 117,381
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</div>
+</div>
+<div id="22af2995-6cf0-4ec5-8e04-637555794f5e" class="cell" data-scrolled="true" data-tags="[]">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>cbs <span class="op">=</span> [</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    tf.keras.callbacks.ReduceLROnPlateau(monitor<span class="op">=</span><span class="st">'val_loss'</span>, factor<span class="op">=</span><span class="fl">0.5</span>, patience<span class="op">=</span><span class="dv">3</span>),</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    tf.keras.callbacks.EarlyStopping(monitor<span class="op">=</span><span class="st">'val_loss'</span>, patience<span class="op">=</span><span class="dv">8</span>, restore_best_weights<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>hist_lstm <span class="op">=</span> lstm_model.fit(</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    X_tr, y_tr,</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>(X_va, y_va),</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">50</span>, batch_size<span class="op">=</span><span class="dv">256</span>,</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    class_weight<span class="op">=</span>class_weight,</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>cbs, verbose<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>hist_gru <span class="op">=</span> gru_model.fit(</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    X_tr, y_tr,</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>(X_va, y_va),</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">50</span>, batch_size<span class="op">=</span><span class="dv">256</span>,</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    class_weight<span class="op">=</span>class_weight,</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>cbs, verbose<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 1/50
+55/55 [==============================] - 53s 860ms/step - loss: 1.4447 - accuracy: 0.2344 - val_loss: 1.3851 - val_accuracy: 0.2281 - lr: 0.0010
+Epoch 2/50
+55/55 [==============================] - 55s 985ms/step - loss: 1.0811 - accuracy: 0.3211 - val_loss: 1.1173 - val_accuracy: 0.4059 - lr: 0.0010
+Epoch 3/50
+55/55 [==============================] - 62s 1s/step - loss: 0.8547 - accuracy: 0.4879 - val_loss: 0.7796 - val_accuracy: 0.7025 - lr: 0.0010
+Epoch 4/50
+55/55 [==============================] - 50s 921ms/step - loss: 0.7357 - accuracy: 0.6732 - val_loss: 0.7299 - val_accuracy: 0.8007 - lr: 0.0010
+Epoch 5/50
+55/55 [==============================] - 55s 969ms/step - loss: 0.7025 - accuracy: 0.6655 - val_loss: 0.8919 - val_accuracy: 0.6691 - lr: 0.0010
+Epoch 6/50
+55/55 [==============================] - 59s 1s/step - loss: 0.6482 - accuracy: 0.7323 - val_loss: 0.8052 - val_accuracy: 0.7439 - lr: 0.0010
+Epoch 7/50
+55/55 [==============================] - 55s 1s/step - loss: 0.6159 - accuracy: 0.7287 - val_loss: 0.7832 - val_accuracy: 0.7973 - lr: 0.0010
+Epoch 8/50
+55/55 [==============================] - 46s 823ms/step - loss: 0.5925 - accuracy: 0.7509 - val_loss: 0.6506 - val_accuracy: 0.8356 - lr: 5.0000e-04
+Epoch 9/50
+55/55 [==============================] - 49s 899ms/step - loss: 0.5229 - accuracy: 0.7952 - val_loss: 0.6809 - val_accuracy: 0.8139 - lr: 5.0000e-04
+Epoch 12/50
+55/55 [==============================] - 50s 896ms/step - loss: 0.4991 - accuracy: 0.7887 - val_loss: 0.6454 - val_accuracy: 0.8233 - lr: 2.5000e-04
+Epoch 13/50
+55/55 [==============================] - 59s 1s/step - loss: 0.4935 - accuracy: 0.7840 - val_loss: 0.6209 - val_accuracy: 0.8441 - lr: 2.5000e-04
+Epoch 14/50
+55/55 [==============================] - 58s 1s/step - loss: 0.4958 - accuracy: 0.8033 - val_loss: 0.6542 - val_accuracy: 0.8367 - lr: 2.5000e-04
+Epoch 15/50
+55/55 [==============================] - 46s 836ms/step - loss: 0.4884 - accuracy: 0.8053 - val_loss: 0.6998 - val_accuracy: 0.8139 - lr: 2.5000e-04
+Epoch 16/50
+55/55 [==============================] - 56s 1s/step - loss: 0.4653 - accuracy: 0.8044 - val_loss: 0.6575 - val_accuracy: 0.8167 - lr: 2.5000e-04
+Epoch 17/50
+55/55 [==============================] - 60s 1s/step - loss: 0.4719 - accuracy: 0.8073 - val_loss: 0.6300 - val_accuracy: 0.8390 - lr: 1.2500e-04
+Epoch 18/50
+55/55 [==============================] - 52s 957ms/step - loss: 0.4520 - accuracy: 0.8132 - val_loss: 0.5995 - val_accuracy: 0.8396 - lr: 1.2500e-04
+Epoch 19/50
+55/55 [==============================] - 49s 873ms/step - loss: 0.4573 - accuracy: 0.8223 - val_loss: 0.6010 - val_accuracy: 0.8410 - lr: 1.2500e-04
+Epoch 20/50
+55/55 [==============================] - 61s 1s/step - loss: 0.4486 - accuracy: 0.8178 - val_loss: 0.5740 - val_accuracy: 0.8567 - lr: 1.2500e-04
+Epoch 21/50
+55/55 [==============================] - 58s 1s/step - loss: 0.4543 - accuracy: 0.8139 - val_loss: 0.5989 - val_accuracy: 0.8393 - lr: 1.2500e-04
+Epoch 22/50
+55/55 [==============================] - 45s 821ms/step - loss: 0.4522 - accuracy: 0.8105 - val_loss: 0.5704 - val_accuracy: 0.8567 - lr: 1.2500e-04
+Epoch 23/50
+55/55 [==============================] - 57s 1s/step - loss: 0.4456 - accuracy: 0.8170 - val_loss: 0.5845 - val_accuracy: 0.8464 - lr: 1.2500e-04
+Epoch 24/50
+55/55 [==============================] - 60s 1s/step - loss: 0.4436 - accuracy: 0.8166 - val_loss: 0.5719 - val_accuracy: 0.8464 - lr: 1.2500e-04
+Epoch 25/50
+55/55 [==============================] - 48s 873ms/step - loss: 0.4467 - accuracy: 0.8261 - val_loss: 0.6169 - val_accuracy: 0.8333 - lr: 1.2500e-04
+Epoch 26/50
+55/55 [==============================] - 58s 1s/step - loss: 0.4420 - accuracy: 0.8108 - val_loss: 0.5781 - val_accuracy: 0.8527 - lr: 6.2500e-05
+Epoch 27/50
+55/55 [==============================] - 57s 1s/step - loss: 0.4332 - accuracy: 0.8208 - val_loss: 0.5613 - val_accuracy: 0.8536 - lr: 6.2500e-05
+Epoch 28/50
+55/55 [==============================] - 47s 854ms/step - loss: 0.4198 - accuracy: 0.8161 - val_loss: 0.5954 - val_accuracy: 0.8461 - lr: 6.2500e-05
+Epoch 29/50
+55/55 [==============================] - 53s 953ms/step - loss: 0.4212 - accuracy: 0.8185 - val_loss: 0.5794 - val_accuracy: 0.8461 - lr: 6.2500e-05
+Epoch 30/50
+55/55 [==============================] - 59s 1s/step - loss: 0.4263 - accuracy: 0.8286 - val_loss: 0.5395 - val_accuracy: 0.8578 - lr: 6.2500e-05
+Epoch 31/50
+55/55 [==============================] - 44s 812ms/step - loss: 0.4313 - accuracy: 0.8131 - val_loss: 0.5670 - val_accuracy: 0.8470 - lr: 6.2500e-05
+Epoch 32/50
+55/55 [==============================] - 54s 996ms/step - loss: 0.4285 - accuracy: 0.8227 - val_loss: 0.5752 - val_accuracy: 0.8484 - lr: 6.2500e-05
+Epoch 33/50
+55/55 [==============================] - 48s 853ms/step - loss: 0.4234 - accuracy: 0.8249 - val_loss: 0.5688 - val_accuracy: 0.8501 - lr: 6.2500e-05
+Epoch 34/50
+55/55 [==============================] - 49s 891ms/step - loss: 0.4210 - accuracy: 0.8283 - val_loss: 0.5749 - val_accuracy: 0.8470 - lr: 3.1250e-05
+Epoch 35/50
+55/55 [==============================] - 56s 1s/step - loss: 0.4159 - accuracy: 0.8269 - val_loss: 0.5576 - val_accuracy: 0.8530 - lr: 3.1250e-05
+Epoch 36/50
+55/55 [==============================] - 45s 826ms/step - loss: 0.4144 - accuracy: 0.8286 - val_loss: 0.5677 - val_accuracy: 0.8490 - lr: 3.1250e-05
+Epoch 37/50
+55/55 [==============================] - 59s 1s/step - loss: 0.4163 - accuracy: 0.8278 - val_loss: 0.5573 - val_accuracy: 0.8507 - lr: 1.5625e-05
+Epoch 38/50
+55/55 [==============================] - 56s 1s/step - loss: 0.4125 - accuracy: 0.8261 - val_loss: 0.5558 - val_accuracy: 0.8533 - lr: 1.5625e-05
+Epoch 1/50
+55/55 [==============================] - 38s 601ms/step - loss: 1.4778 - accuracy: 0.2935 - val_loss: 1.3737 - val_accuracy: 0.3097 - lr: 0.0010
+Epoch 2/50
+55/55 [==============================] - 33s 608ms/step - loss: 1.2010 - accuracy: 0.3377 - val_loss: 1.3370 - val_accuracy: 0.2412 - lr: 0.0010
+Epoch 3/50
+55/55 [==============================] - 33s 607ms/step - loss: 1.0183 - accuracy: 0.3458 - val_loss: 1.2278 - val_accuracy: 0.4171 - lr: 0.0010
+Epoch 4/50
+55/55 [==============================] - 31s 572ms/step - loss: 0.9265 - accuracy: 0.3909 - val_loss: 1.1295 - val_accuracy: 0.4256 - lr: 0.0010
+Epoch 5/50
+55/55 [==============================] - 34s 620ms/step - loss: 0.8314 - accuracy: 0.4499 - val_loss: 0.9094 - val_accuracy: 0.5678 - lr: 0.0010
+Epoch 6/50
+55/55 [==============================] - 33s 605ms/step - loss: 0.7969 - accuracy: 0.5272 - val_loss: 1.1571 - val_accuracy: 0.3825 - lr: 0.0010
+Epoch 7/50
+55/55 [==============================] - 33s 597ms/step - loss: 0.7091 - accuracy: 0.5333 - val_loss: 1.0658 - val_accuracy: 0.5133 - lr: 0.0010
+Epoch 8/50
+55/55 [==============================] - 33s 595ms/step - loss: 0.6783 - accuracy: 0.5704 - val_loss: 0.9522 - val_accuracy: 0.6472 - lr: 0.0010
+Epoch 9/50
+55/55 [==============================] - 31s 575ms/step - loss: 0.6493 - accuracy: 0.6109 - val_loss: 0.7449 - val_accuracy: 0.7268 - lr: 5.0000e-04
+Epoch 10/50
+55/55 [==============================] - 33s 597ms/step - loss: 0.6403 - accuracy: 0.6452 - val_loss: 0.8811 - val_accuracy: 0.6594 - lr: 5.0000e-04
+Epoch 11/50
+55/55 [==============================] - 34s 624ms/step - loss: 0.6106 - accuracy: 0.6439 - val_loss: 0.7216 - val_accuracy: 0.7608 - lr: 5.0000e-04
+Epoch 12/50
+15/55 [=======&gt;......................] - ETA: 25s - loss: 0.5640 - accuracy: 0.6893</code></pre>
+</div>
+</div>
+<div id="0bc519c7-cfcd-4489-a34a-24465dac1a41" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from sklearn.metrics import accuracy_score, roc_auc_score, classification_report, confusion_matrix</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from sklearn.preprocessing import label_binarize</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evaluate(model, X_te, y_te, n_classes):</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    proba <span class="op">=</span> model.predict(X_te)</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> proba.argmax(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    acc <span class="op">=</span> accuracy_score(y_te, pred)</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    y_bin <span class="op">=</span> label_binarize(y_te, classes<span class="op">=</span>np.arange(n_classes))</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    auc <span class="op">=</span> roc_auc_score(y_bin, proba, average<span class="op">=</span><span class="st">'macro'</span>, multi_class<span class="op">=</span><span class="st">'ovr'</span>)</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Accuracy:"</span>, acc)</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"ROC-AUC (macro OvR):"</span>, auc)</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(classification_report(y_te, pred, digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(confusion_matrix(y_te, pred))</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> acc, auc</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== LSTM ==="</span>)</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>acc_lstm, auc_lstm <span class="op">=</span> evaluate(lstm_model, X_te, y_te, n_classes)</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== GRU ==="</span>)</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>acc_gru, auc_gru <span class="op">=</span> evaluate(gru_model, X_te, y_te, n_classes)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== LSTM ===
+137/137 [==============================] - 9s 62ms/step
+Accuracy: 0.8597853391185202
+ROC-AUC (macro OvR): 0.9577867423130026
+              precision    recall  f1-score   support
+
+           0      0.980     0.858     0.915      3624
+           1      0.280     0.748     0.408       111
+           2      0.743     0.817     0.778       290
+           3      0.154     0.906     0.264        32
+           4      0.763     0.950     0.846       322
+
+    accuracy                          0.860      4379
+   macro avg      0.584     0.856     0.642      4379
+weighted avg      0.924     0.860     0.883      4379
+
+[[3110  199   78  148   89]
+ [  24   83    2    1    1]
+ [  27   12  237    9    5]
+ [   1    1    1   29    0]
+ [  13    1    1    1  306]]
+
+=== GRU ===
+137/137 [==============================] - 7s 54ms/step
+Accuracy: 0.798812514272665
+ROC-AUC (macro OvR): 0.9510862539659783
+              precision    recall  f1-score   support
+
+           0      0.975     0.787     0.871      3624
+           1      0.194     0.721     0.305       111
+           2      0.581     0.841     0.687       290
+           3      0.101     0.875     0.182        32
+           4      0.849     0.910     0.879       322
+
+    accuracy                          0.799      4379
+   macro avg      0.540     0.827     0.585      4379
+weighted avg      0.914     0.799     0.840      4379
+
+[[2853  327  170  229   45]
+ [  26   80    2    3    0]
+ [  18    6  244   15    7]
+ [   2    0    2   28    0]
+ [  26    0    2    1  293]]</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

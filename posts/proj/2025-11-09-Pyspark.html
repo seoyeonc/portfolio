@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.527">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2025-11-09">
+
+<title>Seoyeon’s Portfolio - Pyspark</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://seoyeonc.github.io/sy_hub/"> 
+<span class="menu-text">Main_Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/seoyeon-choi-6b3b60231/"> 
+<span class="menu-text">Linkedin</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Pyspark</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Pyspark</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>SEOYEON CHOI </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 9, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>Statistics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_rand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_pkpd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PK/PD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_rwdrwe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RWD/RWE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_pro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_kno.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_proj.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pyspark-vs-pandas" id="toc-pyspark-vs-pandas" class="nav-link active" data-scroll-target="#pyspark-vs-pandas">Pyspark vs Pandas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="pyspark-vs-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="pyspark-vs-pandas">Pyspark vs Pandas</h2>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 37%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th><strong>Pandas</strong></th>
+<th><strong>PySpark (Spark DataFrame)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>기본 목적</strong></td>
+<td>소규모 데이터 분석</td>
+<td>대용량(수 GB~TB) 분산 처리</td>
+</tr>
+<tr class="even">
+<td><strong>데이터 처리 위치</strong></td>
+<td>메모리(RAM) 안에서</td>
+<td>여러 서버(클러스터)에 분산</td>
+</tr>
+<tr class="odd">
+<td><strong>속도</strong></td>
+<td>단일 CPU 기반 (작은 데이터 빠름)</td>
+<td>병렬 처리 (큰 데이터 효율적)</td>
+</tr>
+<tr class="even">
+<td><strong>데이터 크기 한계</strong></td>
+<td>메모리에 맞는 크기까지만</td>
+<td>거의 무제한 (디스크·클러스터 기반)</td>
+</tr>
+<tr class="odd">
+<td><strong>언어 스타일</strong></td>
+<td>Pythonic (직관적)</td>
+<td>SQL 스타일 + 함수 체인형</td>
+</tr>
+<tr class="even">
+<td><strong>적합한 용도</strong></td>
+<td>EDA, 통계분석, 머신러닝 전처리</td>
+<td>빅데이터 분석, 로그 처리, ETL 파이프라인</td>
+</tr>
+<tr class="odd">
+<td><strong>대표 함수</strong></td>
+<td><code>df.groupby()</code>, <code>df.apply()</code></td>
+<td><code>df.groupBy()</code>, <code>df.selectExpr()</code></td>
+</tr>
+<tr class="even">
+<td><strong>예시 라이브러리</strong></td>
+<td>NumPy, scikit-learn</td>
+<td>Hadoop, Hive, Spark MLlib</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>pandas
+<ul>
+<li>수천~수만 행 데이터는 RAM 안에서 바로 계산 가능</li>
+<li>하지만 10GB 이상이면 “MemoryError” 발생 가능 ⚠️</li>
+</ul></li>
+<li>pyspark
+<ul>
+<li>데이터가 100GB든 1TB든, Spark가 여러 서버(노드) 로 나눠서 병렬 처리</li>
+<li>로컬에서도 작은 클러스터처럼 흉내 가능</li>
+</ul></li>
+</ul>
+<p>pandas에서 pyspark로 확장 가능(반대도 가능)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pandas_df <span class="op">=</span> df.toPandas()   <span class="co"># Spark → Pandas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spark_df <span class="op">=</span> spark.createDataFrame(pandas_df)   <span class="co"># Pandas → Spark</span></span></code></pre></div>
+<ul>
+<li>pyspark는 java기반 engine이기 때문에 openjdk 설치 필요</li>
+</ul>
+<div id="cell-8" class="cell" data-outputid="3f36204f-7990-4775-aa35-b09b00ef1289" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>apt<span class="op">-</span>get install <span class="op">-</span>y openjdk<span class="op">-</span><span class="dv">11</span><span class="op">-</span>jdk<span class="op">-</span>headless <span class="op">-</span>qq</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>q pyspark</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Selecting previously unselected package java-common.
+(Reading database ... 125082 files and directories currently installed.)
+Preparing to unpack .../java-common_0.72build2_all.deb ...
+Unpacking java-common (0.72build2) ...
+Selecting previously unselected package libpcsclite1:amd64.
+Preparing to unpack .../libpcsclite1_1.9.5-3ubuntu1_amd64.deb ...
+Unpacking libpcsclite1:amd64 (1.9.5-3ubuntu1) ...
+Selecting previously unselected package openjdk-11-jre-headless:amd64.
+Preparing to unpack .../openjdk-11-jre-headless_11.0.28+6-1ubuntu1~22.04.1_amd64.deb ...
+Unpacking openjdk-11-jre-headless:amd64 (11.0.28+6-1ubuntu1~22.04.1) ...
+Selecting previously unselected package ca-certificates-java.
+Preparing to unpack .../ca-certificates-java_20190909ubuntu1.2_all.deb ...
+Unpacking ca-certificates-java (20190909ubuntu1.2) ...
+Selecting previously unselected package openjdk-11-jdk-headless:amd64.
+Preparing to unpack .../openjdk-11-jdk-headless_11.0.28+6-1ubuntu1~22.04.1_amd64.deb ...
+Unpacking openjdk-11-jdk-headless:amd64 (11.0.28+6-1ubuntu1~22.04.1) ...
+Setting up java-common (0.72build2) ...
+Setting up libpcsclite1:amd64 (1.9.5-3ubuntu1) ...
+Setting up openjdk-11-jre-headless:amd64 (11.0.28+6-1ubuntu1~22.04.1) ...
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/java to provide /usr/bin/java (java) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jjs to provide /usr/bin/jjs (jjs) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/rmid to provide /usr/bin/rmid (rmid) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/pack200 to provide /usr/bin/pack200 (pack200) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/unpack200 to provide /usr/bin/unpack200 (unpack200) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
+Setting up openjdk-11-jdk-headless:amd64 (11.0.28+6-1ubuntu1~22.04.1) ...
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jar to provide /usr/bin/jar (jar) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jarsigner to provide /usr/bin/jarsigner (jarsigner) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/javac to provide /usr/bin/javac (javac) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/javadoc to provide /usr/bin/javadoc (javadoc) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/javap to provide /usr/bin/javap (javap) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jcmd to provide /usr/bin/jcmd (jcmd) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jdb to provide /usr/bin/jdb (jdb) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jdeprscan to provide /usr/bin/jdeprscan (jdeprscan) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jdeps to provide /usr/bin/jdeps (jdeps) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jfr to provide /usr/bin/jfr (jfr) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jimage to provide /usr/bin/jimage (jimage) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jinfo to provide /usr/bin/jinfo (jinfo) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jlink to provide /usr/bin/jlink (jlink) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jmap to provide /usr/bin/jmap (jmap) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jmod to provide /usr/bin/jmod (jmod) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jps to provide /usr/bin/jps (jps) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jrunscript to provide /usr/bin/jrunscript (jrunscript) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jshell to provide /usr/bin/jshell (jshell) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jstack to provide /usr/bin/jstack (jstack) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jstat to provide /usr/bin/jstat (jstat) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jstatd to provide /usr/bin/jstatd (jstatd) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/rmic to provide /usr/bin/rmic (rmic) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/serialver to provide /usr/bin/serialver (serialver) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jaotc to provide /usr/bin/jaotc (jaotc) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jhsdb to provide /usr/bin/jhsdb (jhsdb) in auto mode
+Setting up ca-certificates-java (20190909ubuntu1.2) ...
+head: cannot open '/etc/ssl/certs/java/cacerts' for reading: No such file or directory
+Adding debian:SecureSign_RootCA11.pem
+Adding debian:USERTrust_RSA_Certification_Authority.pem
+Adding debian:AffirmTrust_Commercial.pem
+Adding debian:DigiCert_Global_Root_G3.pem
+Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
+Adding debian:certSIGN_Root_CA_G2.pem
+Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+Adding debian:SSL.com_EV_Root_Certification_Authority_RSA_R2.pem
+Adding debian:QuoVadis_Root_CA_3.pem
+Adding debian:GlobalSign_Root_CA_-_R6.pem
+Adding debian:D-TRUST_EV_Root_CA_1_2020.pem
+Adding debian:HARICA_TLS_RSA_Root_CA_2021.pem
+Adding debian:Trustwave_Global_Certification_Authority.pem
+Adding debian:QuoVadis_Root_CA_2_G3.pem
+Adding debian:Comodo_AAA_Services_root.pem
+Adding debian:Certum_EC-384_CA.pem
+Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_ECC_RootCA_2015.pem
+Adding debian:GlobalSign_Root_CA.pem
+Adding debian:HiPKI_Root_CA_-_G1.pem
+Adding debian:emSign_Root_CA_-_G1.pem
+Adding debian:SSL.com_Root_Certification_Authority_RSA.pem
+Adding debian:CFCA_EV_ROOT.pem
+Adding debian:COMODO_Certification_Authority.pem
+Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
+Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
+Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
+Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+Adding debian:Izenpe.com.pem
+Adding debian:HARICA_TLS_ECC_Root_CA_2021.pem
+Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
+Adding debian:Security_Communication_RootCA2.pem
+Adding debian:UCA_Global_G2_Root.pem
+Adding debian:D-TRUST_BR_Root_CA_1_2020.pem
+Adding debian:Secure_Global_CA.pem
+Adding debian:GTS_Root_R3.pem
+Adding debian:ISRG_Root_X1.pem
+Adding debian:Entrust_Root_Certification_Authority.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2015.pem
+Adding debian:GlobalSign_Root_E46.pem
+Adding debian:vTrus_Root_CA.pem
+Adding debian:TWCA_Root_Certification_Authority.pem
+Adding debian:AffirmTrust_Premium.pem
+Adding debian:XRamp_Global_CA_Root.pem
+Adding debian:Starfield_Class_2_CA.pem
+Adding debian:Buypass_Class_2_Root_CA.pem
+Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
+Adding debian:SSL.com_EV_Root_Certification_Authority_ECC.pem
+Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
+Adding debian:Amazon_Root_CA_2.pem
+Adding debian:GLOBALTRUST_2020.pem
+Adding debian:Microsoft_ECC_Root_Certificate_Authority_2017.pem
+Adding debian:certSIGN_ROOT_CA.pem
+Adding debian:OISTE_WISeKey_Global_Root_GC_CA.pem
+Adding debian:DigiCert_Assured_ID_Root_G2.pem
+Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
+Adding debian:ePKI_Root_Certification_Authority.pem
+Adding debian:Certum_Trusted_Root_CA.pem
+Adding debian:Security_Communication_ECC_RootCA1.pem
+Adding debian:Amazon_Root_CA_1.pem
+Adding debian:ACCVRAIZ1.pem
+Adding debian:QuoVadis_Root_CA_2.pem
+Adding debian:TWCA_Global_Root_CA.pem
+Adding debian:Amazon_Root_CA_3.pem
+Adding debian:emSign_Root_CA_-_C1.pem
+Adding debian:DigiCert_Global_Root_CA.pem
+Adding debian:Security_Communication_RootCA3.pem
+Adding debian:UCA_Extended_Validation_Root.pem
+Adding debian:GTS_Root_R1.pem
+Adding debian:Baltimore_CyberTrust_Root.pem
+Adding debian:GDCA_TrustAUTH_R5_ROOT.pem
+Adding debian:Certum_Trusted_Network_CA_2.pem
+Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
+Adding debian:NAVER_Global_Root_Certification_Authority.pem
+Adding debian:GTS_Root_R4.pem
+Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+Adding debian:Buypass_Class_3_Root_CA.pem
+Adding debian:e-Szigno_Root_CA_2017.pem
+Adding debian:Telia_Root_CA_v2.pem
+Adding debian:QuoVadis_Root_CA_1_G3.pem
+Adding debian:Certainly_Root_E1.pem
+Adding debian:AC_RAIZ_FNMT-RCM.pem
+Adding debian:DigiCert_TLS_ECC_P384_Root_G5.pem
+Adding debian:AffirmTrust_Networking.pem
+Adding debian:COMODO_RSA_Certification_Authority.pem
+Adding debian:GlobalSign_Root_R46.pem
+Adding debian:Trustwave_Global_ECC_P384_Certification_Authority.pem
+Adding debian:TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.pem
+Adding debian:Go_Daddy_Class_2_CA.pem
+Adding debian:Certigna_Root_CA.pem
+Adding debian:vTrus_ECC_Root_CA.pem
+Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
+Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
+Adding debian:Microsoft_RSA_Root_Certificate_Authority_2017.pem
+Adding debian:SZAFIR_ROOT_CA2.pem
+Adding debian:Certum_Trusted_Network_CA.pem
+Adding debian:CA_Disig_Root_R2.pem
+Adding debian:Trustwave_Global_ECC_P256_Certification_Authority.pem
+Adding debian:Hongkong_Post_Root_CA_3.pem
+Adding debian:QuoVadis_Root_CA_3_G3.pem
+Adding debian:SSL.com_Root_Certification_Authority_ECC.pem
+Adding debian:Entrust_Root_Certification_Authority_-_G4.pem
+Adding debian:GTS_Root_R2.pem
+Adding debian:ISRG_Root_X2.pem
+Adding debian:emSign_ECC_Root_CA_-_C3.pem
+Adding debian:SwissSign_Silver_CA_-_G2.pem
+Adding debian:Actalis_Authentication_Root_CA.pem
+Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
+Adding debian:ANF_Secure_Server_Root_CA.pem
+Adding debian:USERTrust_ECC_Certification_Authority.pem
+Adding debian:COMODO_ECC_Certification_Authority.pem
+Adding debian:DigiCert_Global_Root_G2.pem
+Adding debian:Security_Communication_Root_CA.pem
+Adding debian:AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.pem
+Adding debian:DigiCert_TLS_RSA4096_Root_G5.pem
+Adding debian:DigiCert_Assured_ID_Root_G3.pem
+Adding debian:TeliaSonera_Root_CA_v1.pem
+Adding debian:SecureTrust_CA.pem
+Adding debian:DigiCert_Trusted_Root_G4.pem
+Adding debian:Certainly_Root_R1.pem
+Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
+Adding debian:TunTrust_Root_CA.pem
+Adding debian:IdenTrust_Commercial_Root_CA_1.pem
+Adding debian:Certigna.pem
+Adding debian:Amazon_Root_CA_4.pem
+Adding debian:SwissSign_Gold_CA_-_G2.pem
+Adding debian:DigiCert_Assured_ID_Root_CA.pem
+Adding debian:AffirmTrust_Premium_ECC.pem
+Adding debian:Atos_TrustedRoot_2011.pem
+Adding debian:GlobalSign_Root_CA_-_R3.pem
+Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
+Adding debian:emSign_ECC_Root_CA_-_G3.pem
+Adding debian:Sectigo_Public_Server_Authentication_Root_R46.pem
+Adding debian:Atos_TrustedRoot_Root_CA_ECC_TLS_2021.pem
+Adding debian:Atos_TrustedRoot_Root_CA_RSA_TLS_2021.pem
+Adding debian:BJCA_Global_Root_CA2.pem
+Adding debian:BJCA_Global_Root_CA1.pem
+Adding debian:CommScope_Public_Trust_ECC_Root-01.pem
+Adding debian:Sectigo_Public_Server_Authentication_Root_E46.pem
+Adding debian:SSL.com_TLS_ECC_Root_CA_2022.pem
+Adding debian:SSL.com_TLS_RSA_Root_CA_2022.pem
+Adding debian:TrustAsia_Global_Root_CA_G4.pem
+Adding debian:CommScope_Public_Trust_RSA_Root-01.pem
+Adding debian:CommScope_Public_Trust_RSA_Root-02.pem
+Adding debian:TrustAsia_Global_Root_CA_G3.pem
+Adding debian:CommScope_Public_Trust_ECC_Root-02.pem
+done.
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+/sbin/ldconfig.real: /usr/local/lib/libtcm.so.1 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libur_adapter_level_zero.so.0 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libtbbmalloc_proxy.so.2 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libtbbmalloc.so.2 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libtbbbind_2_0.so.3 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libtbbbind_2_5.so.3 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libumf.so.1 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libur_adapter_level_zero_v2.so.0 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libtbb.so.12 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libhwloc.so.15 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libtcm_debug.so.1 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libtbbbind.so.3 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libur_adapter_opencl.so.0 is not a symbolic link
+
+/sbin/ldconfig.real: /usr/local/lib/libur_loader.so.0 is not a symbolic link
+
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for ca-certificates (20240203~22.04.1) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+
+done.
+done.</code></pre>
+</div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span></code></pre></div>
+</div>
+<p>환경변수 설정</p>
+<div id="cell-11" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"JAVA_HOME"</span>] <span class="op">=</span> <span class="st">"/usr/lib/jvm/java-11-openjdk-amd64"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"PATH"</span>] <span class="op">=</span> os.environ[<span class="st">"JAVA_HOME"</span>] <span class="op">+</span> <span class="st">"/bin:"</span> <span class="op">+</span> os.environ[<span class="st">"PATH"</span>]</span></code></pre></div>
+</div>
+<p>spark session 지정</p>
+<div id="cell-13" class="cell" data-outputid="ea743fe6-28d8-4325-e180-11df0e090016" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder <span class="op">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    .appName(<span class="st">"Colab EHR Demo"</span>) <span class="op">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .getOrCreate()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>spark</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+            <div>
+                <p><b>SparkSession - in-memory</b></p>
+                
+        <div>
+            <p><b>SparkContext</b></p>
+
+            <p><a href="http://19e3fdbeea80:4040">Spark UI</a></p>
+
+            <dl>
+              <dt>Version</dt>
+                <dd><code>v3.5.1</code></dd>
+              <dt>Master</dt>
+                <dd><code>local[*]</code></dd>
+              <dt>AppName</dt>
+                <dd><code>Colab EHR Demo</code></dd>
+            </dl>
+        </div>
+        
+            </div>
+        
+</div>
+</div>
+<div id="cell-14" class="cell" data-outputid="c2444a45-71a5-4647-b033-f195c6ebb2c7" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, glob</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>glob.glob(<span class="st">"/content/sample_data/*"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>['/content/sample_data/anscombe.json',
+ '/content/sample_data/README.md',
+ '/content/sample_data/mnist_test.csv',
+ '/content/sample_data/california_housing_test.csv',
+ '/content/sample_data/california_housing_train.csv',
+ '/content/sample_data/mnist_train_small.csv']</code></pre>
+</div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"/content/sample_data/california_housing_train.csv"</span></span></code></pre></div>
+</div>
+<div id="cell-16" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.read.csv(path, header<span class="op">=</span><span class="va">True</span>, inferSchema<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+</div>
+<div id="cell-17" class="cell" data-outputid="a6a3d35f-2dbd-49cc-da12-114ad2bb4ab7" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.show(<span class="dv">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---------+--------+------------------+-----------+--------------+----------+----------+-------------+------------------+
+|longitude|latitude|housing_median_age|total_rooms|total_bedrooms|population|households|median_income|median_house_value|
++---------+--------+------------------+-----------+--------------+----------+----------+-------------+------------------+
+|  -114.31|   34.19|              15.0|     5612.0|        1283.0|    1015.0|     472.0|       1.4936|           66900.0|
+|  -114.47|    34.4|              19.0|     7650.0|        1901.0|    1129.0|     463.0|         1.82|           80100.0|
+|  -114.56|   33.69|              17.0|      720.0|         174.0|     333.0|     117.0|       1.6509|           85700.0|
+|  -114.57|   33.64|              14.0|     1501.0|         337.0|     515.0|     226.0|       3.1917|           73400.0|
+|  -114.57|   33.57|              20.0|     1454.0|         326.0|     624.0|     262.0|        1.925|           65500.0|
++---------+--------+------------------+-----------+--------------+----------+----------+-------------+------------------+
+only showing top 5 rows
+</code></pre>
+</div>
+</div>
+<div id="cell-18" class="cell" data-outputid="7b6c4ece-d0a9-4220-c734-47573fb2ce98" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.printSchema()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>root
+ |-- longitude: double (nullable = true)
+ |-- latitude: double (nullable = true)
+ |-- housing_median_age: double (nullable = true)
+ |-- total_rooms: double (nullable = true)
+ |-- total_bedrooms: double (nullable = true)
+ |-- population: double (nullable = true)
+ |-- households: double (nullable = true)
+ |-- median_income: double (nullable = true)
+ |-- median_house_value: double (nullable = true)
+</code></pre>
+</div>
+</div>
+<div id="cell-19" class="cell" data-outputid="07576236-2ce6-45f9-850a-51aed921abcc" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df.columns</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>['longitude',
+ 'latitude',
+ 'housing_median_age',
+ 'total_rooms',
+ 'total_bedrooms',
+ 'population',
+ 'households',
+ 'median_income',
+ 'median_house_value']</code></pre>
+</div>
+</div>
+<div id="cell-20" class="cell" data-outputid="9f678e73-d12c-4bb3-9bf7-15d91808041b" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rows:"</span>, df.count())</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Cols:"</span>, <span class="bu">len</span>(df.columns))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 17000
+Cols: 9</code></pre>
+</div>
+</div>
+<div id="cell-21" class="cell" data-outputid="55de45f6-11ec-4e43-e03a-bf78b34e6be3" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df.describe().show()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+-------+-------------------+------------------+------------------+-----------------+-----------------+------------------+-----------------+------------------+------------------+
+|summary|          longitude|          latitude|housing_median_age|      total_rooms|   total_bedrooms|        population|       households|     median_income|median_house_value|
++-------+-------------------+------------------+------------------+-----------------+-----------------+------------------+-----------------+------------------+------------------+
+|  count|              17000|             17000|             17000|            17000|            17000|             17000|            17000|             17000|             17000|
+|   mean|-119.56210823529375|  35.6252247058827| 28.58935294117647|2643.664411764706|539.4108235294118|1429.5739411764705|501.2219411764706| 3.883578100000021|207300.91235294117|
+| stddev| 2.0051664084260357|2.1373397946570867|12.586936981660406|2179.947071452777|421.4994515798648| 1147.852959159527|384.5208408559016|1.9081565183791036|115983.76438720895|
+|    min|            -124.35|             32.54|               1.0|              2.0|              1.0|               3.0|              1.0|            0.4999|           14999.0|
+|    max|            -114.31|             41.95|              52.0|          37937.0|           6445.0|           35682.0|           6082.0|           15.0001|          500001.0|
++-------+-------------------+------------------+------------------+-----------------+-----------------+------------------+-----------------+------------------+------------------+
+</code></pre>
+</div>
+</div>
+<div id="cell-22" class="cell" data-outputid="415d30d1-e759-49d6-a0b6-39fcb7b48de4" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df.select(<span class="st">"median_income"</span>, <span class="st">"median_house_value"</span>).show(<span class="dv">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+-------------+------------------+
+|median_income|median_house_value|
++-------------+------------------+
+|       1.4936|           66900.0|
+|         1.82|           80100.0|
+|       1.6509|           85700.0|
+|       3.1917|           73400.0|
+|        1.925|           65500.0|
++-------------+------------------+
+only showing top 5 rows
+</code></pre>
+</div>
+</div>
+<div id="cell-23" class="cell" data-outputid="3783e9bc-2a54-4988-fb43-3f750222b139" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df.selectExpr(<span class="st">"avg(median_house_value) as avg_house_value"</span>).show()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+------------------+
+|   avg_house_value|
++------------------+
+|207300.91235294117|
++------------------+
+</code></pre>
+</div>
+</div>
+<div id="cell-24" class="cell" data-outputid="e165d529-0d0f-46af-de7f-edb6902cc55c" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df.groupBy(<span class="st">"median_income"</span>).avg(<span class="st">"median_house_value"</span>) <span class="op">\</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  .orderBy(<span class="st">"avg(median_house_value)"</span>, ascending<span class="op">=</span><span class="va">False</span>) <span class="op">\</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  .show(<span class="dv">10</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+-------------+-----------------------+
+|median_income|avg(median_house_value)|
++-------------+-----------------------+
+|      11.2866|               500001.0|
+|      14.9009|               500001.0|
+|       0.7025|               500001.0|
+|       7.8647|               500001.0|
+|      10.7582|               500001.0|
+|       7.1669|               500001.0|
+|       5.0222|               500001.0|
+|      12.3804|               500001.0|
+|       7.8521|               500001.0|
+|       4.8482|               500001.0|
++-------------+-----------------------+
+only showing top 10 rows
+</code></pre>
+</div>
+</div>
+<div id="cell-25" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
