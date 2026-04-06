@@ -30,6 +30,7 @@ website:
           - 2_rwdrwe.qmd
           - 2_pro.qmd
           - 2_kno.qmd
+          - 2_proj.qmd
       
 format:
   html:
