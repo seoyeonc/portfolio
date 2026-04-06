@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.527">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2025-09-18">
+
+<title>Seoyeon’s Portfolio - [FDA] Bioequivalence Studies With Pharmacokinetic Endpoints</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://seoyeonc.github.io/sy_hub/"> 
+<span class="menu-text">Main_Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/seoyeon-choi-6b3b60231/"> 
+<span class="menu-text">Linkedin</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">[FDA] Bioequivalence Studies With Pharmacokinetic Endpoints</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">[FDA] Bioequivalence Studies With Pharmacokinetic Endpoints</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>SEOYEON CHOI </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 18, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>Statistics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_rand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_pkpd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PK/PD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_rwdrwe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RWD/RWE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_pro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_kno.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_proj.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link active" data-scroll-target="#glossary">Glossary</a></li>
+  <li><a href="#iii.-establishing-bioequivalence" id="toc-iii.-establishing-bioequivalence" class="nav-link" data-scroll-target="#iii.-establishing-bioequivalence">III. ESTABLISHING BIOEQUIVALENCE</a>
+  <ul class="collapse">
+  <li><a href="#a.-pharmacokinetic-studies" id="toc-a.-pharmacokinetic-studies" class="nav-link" data-scroll-target="#a.-pharmacokinetic-studies">A. Pharmacokinetic Studies</a>
+  <ul class="collapse">
+  <li><a href="#study-designs" id="toc-study-designs" class="nav-link" data-scroll-target="#study-designs">4. Study Designs</a></li>
+  <li><a href="#steady-state-studies" id="toc-steady-state-studies" class="nav-link" data-scroll-target="#steady-state-studies">6. Steady-State Studies</a></li>
+  <li><a href="#pharmacokinetic-measures-of-rate-and-extent-of-absorption" id="toc-pharmacokinetic-measures-of-rate-and-extent-of-absorption" class="nav-link" data-scroll-target="#pharmacokinetic-measures-of-rate-and-extent-of-absorption">9. Pharmacokinetic Measures of Rate and Extent of Absorption</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#appendix-a-general-design-and-data-handling-of-bioequivalence-studies-with-pharmacokinetic-endpoints" id="toc-appendix-a-general-design-and-data-handling-of-bioequivalence-studies-with-pharmacokinetic-endpoints" class="nav-link" data-scroll-target="#appendix-a-general-design-and-data-handling-of-bioequivalence-studies-with-pharmacokinetic-endpoints">APPENDIX A: GENERAL DESIGN AND DATA HANDLING OF BIOEQUIVALENCE STUDIES WITH PHARMACOKINETIC ENDPOINTS</a>
+  <ul class="collapse">
+  <li><a href="#pharmacokinetic-information-in-submissions" id="toc-pharmacokinetic-information-in-submissions" class="nav-link" data-scroll-target="#pharmacokinetic-information-in-submissions">Pharmacokinetic information in submissions:</a></li>
+  <li><a href="#statistical-information-for-auc_0-t-auc_0-inf-and-c_max" id="toc-statistical-information-for-auc_0-t-auc_0-inf-and-c_max" class="nav-link" data-scroll-target="#statistical-information-for-auc_0-t-auc_0-inf-and-c_max">Statistical information for <span class="math inline">\(AUC_{0-t}, AUC_{0-inf}\)</span>, and <span class="math inline">\(C_{max}\)</span>:</a></li>
+  <li><a href="#confidence-interval-values-for-unscaled-average-bioequivalence-anaylses" id="toc-confidence-interval-values-for-unscaled-average-bioequivalence-anaylses" class="nav-link" data-scroll-target="#confidence-interval-values-for-unscaled-average-bioequivalence-anaylses">Confidence interval values for unscaled average bioequivalence anaylses:</a></li>
+  </ul></li>
+  <li><a href="#appendix-b-method-for-statistical-analysis-using-the-reference946-scaled-average-bioequivalence-approach-highly-variable-drugs" id="toc-appendix-b-method-for-statistical-analysis-using-the-reference946-scaled-average-bioequivalence-approach-highly-variable-drugs" class="nav-link" data-scroll-target="#appendix-b-method-for-statistical-analysis-using-the-reference946-scaled-average-bioequivalence-approach-highly-variable-drugs">APPENDIX B: METHOD FOR STATISTICAL ANALYSIS USING THE REFERENCE946 SCALED AVERAGE BIOEQUIVALENCE APPROACH: HIGHLY VARIABLE DRUGS</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p><strong>Bioequivalence Studies With Pharmacokinetic Endpoints for Drugs Submitted Under an Abbreviated New Drug Application</strong></p>
+<ul>
+<li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/bioequivalence-studies-pharmacokinetic-endpoints-drugs-submitted-under-abbreviated-new-drug">link</a></li>
+</ul>
+<p><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/statistical-approaches-establishing-bioequivalence">next</a></p>
+<p><a href="https://www.google.com/search?q=Bioanalytical+Method+192+Validation+%28May+2018%29&amp;sca_esv=a1feb94103ceaa7e&amp;rlz=1C5CHFA_enKR1016KR1017&amp;sxsrf=AE3TifOncAg9opWlIvAGlk0bQcm918W1hA%3A1758219781102&amp;ei=BU7MaOqDBpqohbIP7IqO8AE&amp;ved=0ahUKEwiqmvWL9-KPAxUaVEEAHWyFAx4Q4dUDCBI&amp;uact=5&amp;oq=Bioanalytical+Method+192+Validation+%28May+2018%29&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiLkJpb2FuYWx5dGljYWwgTWV0aG9kIDE5MiBWYWxpZGF0aW9uIChNYXkgMjAxOCkyBBAjGCcyBRAAGO8FMggQABiiBBiJBTIIEAAYgAQYogQyCBAAGIAEGKIEMgUQABjvBUi8ClDSA1j4CHACeACQAQCYAdMBoAHzA6oBBTIuMS4xuAEDyAEA-AEBmAIFoAKeA8ICChAAGLADGNYEGEeYAwCIBgGQBgiSBwU0LjAuMaAH5hSyBwUyLjAuMbgHkwPCBwUwLjEuNMgHGQ&amp;sclient=gws-wiz-serp">next</a></p>
+<section id="glossary" class="level1">
+<h1>Glossary</h1>
+<table class="table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>AUC</strong></td>
+<td>Area under the curve</td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(AUC_{0-\infty}\)</span></strong></td>
+<td>Area under the curve extrapolated to infinity</td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(AUC_{0-t}\)</span></strong></td>
+<td>Area under the curve from time zero to the last measurable time point</td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(AUC_{0-\tau}\)</span></strong></td>
+<td>Area under the curve for one dosing interval at steady state</td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(C_{avSS}\)</span></strong></td>
+<td>Average plasma concentration at steady state</td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(C_{max}\)</span></strong></td>
+<td>Maximum plasma concentration</td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(C_{maxSS}\)</span></strong></td>
+<td>Maximum plasma concentration during the dosing interval at steady state</td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(C_{minSS}\)</span></strong></td>
+<td>Minimum plasma concentration at steady state</td>
+</tr>
+<tr class="odd">
+<td><strong>Enantiomers</strong></td>
+<td>Two stereoisomers that are mirror images but nonsuperimposable. Same physical properties except: (1) direction of polarized light rotation, (2) interactions with optical isomers of other compounds.</td>
+</tr>
+<tr class="even">
+<td><strong>pAUC</strong></td>
+<td>Area under the curve between two specific time points</td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(\lambda_z\)</span></strong></td>
+<td>Terminal or elimination rate constant</td>
+</tr>
+<tr class="even">
+<td><strong>Racemate</strong></td>
+<td>Mixture of two enantiomers in equal proportion (optically inactive). Different melting point, solubility, or boiling point than pure enantiomers. Pharmaceuticals may be racemates or pure enantiomers with different potency.</td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(T_{max}\)</span></strong></td>
+<td>Time to maximum observed plasma concentration</td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(t_{1/2}\)</span></strong></td>
+<td>Half-life</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iii.-establishing-bioequivalence" class="level1">
+<h1>III. ESTABLISHING BIOEQUIVALENCE</h1>
+<section id="a.-pharmacokinetic-studies" class="level2">
+<h2 class="anchored" data-anchor-id="a.-pharmacokinetic-studies">A. Pharmacokinetic Studies</h2>
+<section id="study-designs" class="level3">
+<h3 class="anchored" data-anchor-id="study-designs">4. Study Designs</h3>
+<ul>
+<li>FDA recommends that applicants use <strong>(1) a two-period, two-sequence, two-treatment, single-dose crossover study design, (2) a single-dose parallel study design, or (3) a single-dose replicate study design for BE studies.</strong></li>
+<li>The BE studies generally should be conducted on the highest strength of the drug product, unless safety considerations preclude the use of that dose in study subjects.</li>
+<li>The general recommendations for study designs provided in Appendix A should be considered in designing studies. FDA recommends that applicants use the average BE method of analysis with these study designs.</li>
+<li>For most dosage forms that release a drug intended to be systemically available, FDA recommends that applicants perform <strong>a two-period, two-sequence, two-treatment, single-dose, crossover study using either healthy subjects or other populations, as appropriate.</strong></li>
+<li>In this design, each subject should receive each treatment (the test and the reference product) in a random order.</li>
+<li>A replicate crossover study design (either partial or fully replicate) is appropriate for drugs whether the reference product is a highly variable drug or not.</li>
+<li>A replicate design can have the advantage of using fewer subjects compared to a non-replicate design, although each subject in a replicate design study would receive more treatments.</li>
+</ul>
+</section>
+<section id="steady-state-studies" class="level3">
+<h3 class="anchored" data-anchor-id="steady-state-studies">6. Steady-State Studies</h3>
+<ul>
+<li>When safety considerations suggest using patients who are already receiving a medication, often the only approach to establish BE without disrupting a patient’s ongoing treatment is in a steady state study.</li>
+<li>If a steady-state study is used, we recommend that applicants carry out appropriate dosage administration and sampling to demonstrate the attainment of steady state.</li>
+</ul>
+</section>
+<section id="pharmacokinetic-measures-of-rate-and-extent-of-absorption" class="level3">
+<h3 class="anchored" data-anchor-id="pharmacokinetic-measures-of-rate-and-extent-of-absorption">9. Pharmacokinetic Measures of Rate and Extent of Absorption</h3>
+<section id="a.-rate-of-absorption-peak-exposure" class="level4">
+<h4 class="anchored" data-anchor-id="a.-rate-of-absorption-peak-exposure">a. Rate of absorption (peak exposure)</h4>
+<ul>
+<li>For both single-dose and steady-state studies, FDA recommends that applicants assess the rate of absorption by measuring the Cmax obtained directly from the data (i.e., without interpolation).</li>
+<li><span class="math inline">\(T_{max}\)</span> can also provide important information regarding the rate of absorption.</li>
+<li>Applicants should evaluate <span class="math inline">\(T_{max}\)</span> differences between their product and the reference product for any clinical implications.</li>
+</ul>
+</section>
+<section id="b.-extent-of-absorption-total-exposure" class="level4">
+<h4 class="anchored" data-anchor-id="b.-extent-of-absorption-total-exposure">b. Extent of absorption (total exposure)</h4>
+<p>For single-dose studies, <strong>FDA recommends that the indicators for the extent of absorption</strong> be both of the following: - Area under the plasma, serum, or blood concentration-time curve from time zero to time t (<span class="math inline">\(AUC_{0-t}\)</span>), where t is the last time point with a measurable concentration - Area under the plasma, serum, or blood concentration-time curve from time zero to time infinity (<span class="math inline">\(AUC_{0-inf}\)</span>), where: - <strong><span class="math inline">\(AUC_{0-inf} = AUC_{0-t} + C_t/λ_z\)</span></strong> - <span class="math inline">\(C_t\)</span> is the last measurable drug concentration - <span class="math inline">\(λ_z\)</span> is the terminal or elimination rate constant calculated according to an appropriate method</p>
+<p>For steady-state studies, FDA recommends that the indicator for the extent of absorption be the area under the plasma, serum, or blood concentration-time curve over a dosing interval at steady state ($AUC_{0-tau}, where tau is the length of the dosing interval).</p>
+</section>
+<section id="c.-partial-exposure" class="level4">
+<h4 class="anchored" data-anchor-id="c.-partial-exposure">c.&nbsp;Partial exposure</h4>
+<p>FDA recommends that sufficient quantifiable samples be collected to allow adequate estimation of the pAUC</p>
+</section>
+</section>
+</section>
+</section>
+<section id="appendix-a-general-design-and-data-handling-of-bioequivalence-studies-with-pharmacokinetic-endpoints" class="level1">
+<h1>APPENDIX A: GENERAL DESIGN AND DATA HANDLING OF BIOEQUIVALENCE STUDIES WITH PHARMACOKINETIC ENDPOINTS</h1>
+<section id="pharmacokinetic-information-in-submissions" class="level2">
+<h2 class="anchored" data-anchor-id="pharmacokinetic-information-in-submissions">Pharmacokinetic information in submissions:</h2>
+<p>We recommend that applicants provide the following PK information in their submissions: - Plasma or other acceptable matrix concentrations and time points (both actual and nominal sampling time points). - Subject, period, sequence, treatment. - Intersubject, intrasubject, and/or total variability, if available. - For single-dose BE studies: <span class="math inline">\(AUC_{0-t}, AUC_{0-inf}\)</span>, AUC truncated or partial AUCs if applicable, and Cmax. In addition, report the following supportive information: <span class="math inline">\(T_{max}, K_{el}\)</span> and <span class="math inline">\(t_{1/2}\)</span>. - For steady-state BE studies: AUC0-tau and CmaxSS. In addition, report CminSS (lowest concentration in a dosing interval), CavSS (average concentration during a dosing interval), degree of fluctuation [<span class="math inline">\((C_{maxSS}-C_{minSS})/C_{avSS}], swing [(C_{maxSS}-C_{minSS})/C_{minSS}\)</span>], and <span class="math inline">\(T_{max}\)</span>. - Additional analysis may be needed in certain cases to ensure that the two products are bioequivalent.</p>
+</section>
+<section id="statistical-information-for-auc_0-t-auc_0-inf-and-c_max" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-information-for-auc_0-t-auc_0-inf-and-c_max">Statistical information for <span class="math inline">\(AUC_{0-t}, AUC_{0-inf}\)</span>, and <span class="math inline">\(C_{max}\)</span>:</h2>
+<p>We recommend that applicants provide the following statistical information for <span class="math inline">\(AUC_{0-t}, AUC_{0-inf}\)</span>, and <span class="math inline">\(C_{max}\)</span>: - Geometric means - Arithmetic means - Geometric mean ratios and their corresponding 90 percent confidence intervals and/or 95 percent upper confidence bound, as applicable</p>
+<p>We also recommend that applicants provide logarithmic transformation for measures used for BE demonstration and consult the guidance for industry Statistical Approaches to Establishing Bioequivalence (February 2001).</p>
+</section>
+<section id="confidence-interval-values-for-unscaled-average-bioequivalence-anaylses" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-interval-values-for-unscaled-average-bioequivalence-anaylses">Confidence interval values for unscaled average bioequivalence anaylses:</h2>
+<p>For unscaled average bioequivalence analyses, to pass a confidence interval limit of 80 to 125 percent, the rounded confidence interval value should be at least 80.00 percent and not more than 125.00.</p>
+<p>We thus recommend that when applicants evaluate the confidence interval to assess bioequivalence using an unscaled average bioequivalence analysis during the development program, applicants round confidence interval values to two digits after the decimal point.</p>
+</section>
+</section>
+<section id="appendix-b-method-for-statistical-analysis-using-the-reference946-scaled-average-bioequivalence-approach-highly-variable-drugs" class="level1">
+<h1>APPENDIX B: METHOD FOR STATISTICAL ANALYSIS USING THE REFERENCE946 SCALED AVERAGE BIOEQUIVALENCE APPROACH: HIGHLY VARIABLE DRUGS</h1>
+<p>For <strong>highly variable drugs</strong>, a mixed scaling approach is used. Namely, the reference-scaled procedure is used for specific PK parameters that have a within subject variability of the reference product ( <span class="math inline">\(s_{WR}\)</span> ) ≥ 0.294, and the two one-sided tests procedure is used for PK parameters with WR s &lt; 0.294. In other words, if AUC (<span class="math inline">\(AUC_{0-t}^{47}\)</span> and <span class="math inline">\(AUC_{0-inf}\)</span>, as applicable) and <span class="math inline">\(C_{max}\)</span> have different WR 952 s values, different BE analysis should be conducted.</p>
+<p>The following are the steps that can be followed to carry out the statistical analysis for the reference-scaled average bioequivalence assessment for highly variable drugs:</p>
+<ul>
+<li>Step 1</li>
+</ul>
+<p>Determine <span class="math inline">\(s_{WR}\)</span>, the within-subject standard deviation of the reference product, for the 958 pharmacokinetic (PK) parameters including AUC and <span class="math inline">\(C_{max}\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(s_{WR} &lt; 0.294\)</span>, use the two one-sided tests procedure to determine bioequivalence (BE) for the individual PK parameter(s).</li>
+<li>If <span class="math inline">\(s_{WR} ≥ 0.294\)</span>, use the reference-scaled procedure to determine BE for the individual PK parameter(s).</li>
+</ul>
+<p><span class="math display">\[s^2_{WR} = \frac{\sum^m_{i=1} \sum^{n_i}_{j=1}(D_{ij} - \bar{D}_i)^2}{2(n-m)}\]</span></p>
+<ul>
+<li><p>i = number of sequences m used in the study</p>
+<ul>
+<li>[m=3 for partially replicate design: TRR, RTR, and RRT;</li>
+<li>m=2 for fully replicate design: TRTR and RTRT]</li>
+</ul></li>
+<li><p>j = number of subjects within each sequence</p></li>
+<li><p>T = Test product</p></li>
+<li><p>R = Reference product</p></li>
+<li><p><span class="math inline">\(D_{ij} = R_{ij1} – R_{ij2}\)</span> (where 1 and 2 represent replicate reference treatments)</p></li>
+<li><p><span class="math inline">\(\bar{D}_i = \frac{\sum^{n_j}_{j=1} D_{ij} }{n_i}\)</span></p></li>
+<li><p><span class="math inline">\(n = \sum^m_{i=1}n_i\)</span>(i.e., total number of subjects used in the study, while ni is number of subjects used in sequence i)</p></li>
+<li><p>Step 2</p></li>
+</ul>
+<p>Determine the 95% upper confidence bound48 for:</p>
+<p><span class="math inline">\(( \bar{Y}_T - \bar{Y}_R )^2 - \theta s^2_{WR}\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\bar{Y}_T\)</span> and <span class="math inline">\(\bar{Y}_R\)</span> are the means of the ln-transformed PK endpoint (AUC and/or <span class="math inline">\(C_{max}\)</span>) obtained from the BE study for the test and reference products, respectively.</p></li>
+<li><p><span class="math inline">\(\theta = (\frac{ln(1.25)}{\sigma_{W0}})^2\)</span> (scaled average BE limit).</p></li>
+<li><p><span class="math inline">\(\sigma_{W0} = 0.25\)</span> (regulatory constant).</p></li>
+<li><p>Step 3.</p></li>
+</ul>
+<p>For the test product to be bioequivalent to the reference product, both of the following conditions must be satisfied for each PK parameter tested:</p>
+<ul>
+<li><p>The 95% upper confidence bound for <span class="math inline">\(( \bar{Y}_T - \bar{Y}_R )^2 - \theta s^2_{WR}\)</span> must be ≤ 0 (numbers should be kept to a minimum of four significant figures for comparsion).</p></li>
+<li><p>The point estimate of the Test/Reference geometric mean ratio must fall within [0.8000, 1.2500].</p></li>
+<li><p><strong>PROC GLM</strong> should be used for partially replicate (3-way) BE studies</p></li>
+<li><p><strong>PROC MIXED</strong> should be used for fully replicate (4-way) BE studies</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

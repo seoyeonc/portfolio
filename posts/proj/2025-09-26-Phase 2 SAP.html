@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.527">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2025-09-26">
+
+<title>Seoyeon’s Portfolio - [SAP] Phase 2 SAP Study</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://seoyeonc.github.io/sy_hub/"> 
+<span class="menu-text">Main_Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/seoyeon-choi-6b3b60231/"> 
+<span class="menu-text">Linkedin</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">[SAP] Phase 2 SAP Study</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">[SAP] Phase 2 SAP Study</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>SEOYEON CHOI </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 26, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>Statistics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_rand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_pkpd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PK/PD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_rwdrwe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RWD/RWE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_pro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_kno.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_proj.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abbreviations" id="toc-abbreviations" class="nav-link active" data-scroll-target="#abbreviations">Abbreviations</a></li>
+  <li><a href="#version" id="toc-version" class="nav-link" data-scroll-target="#version">Version</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#study-objectives" id="toc-study-objectives" class="nav-link" data-scroll-target="#study-objectives">2. Study Objectives</a></li>
+  <li><a href="#endpoints" id="toc-endpoints" class="nav-link" data-scroll-target="#endpoints">3. Endpoints</a>
+  <ul class="collapse">
+  <li><a href="#primary-endpoint" id="toc-primary-endpoint" class="nav-link" data-scroll-target="#primary-endpoint">3.1. Primary Endpoint</a></li>
+  <li><a href="#secondary-endpoints" id="toc-secondary-endpoints" class="nav-link" data-scroll-target="#secondary-endpoints">3.2. Secondary Endpoints</a></li>
+  </ul></li>
+  <li><a href="#sample-size" id="toc-sample-size" class="nav-link" data-scroll-target="#sample-size">4. Sample Size</a></li>
+  <li><a href="#randomization" id="toc-randomization" class="nav-link" data-scroll-target="#randomization">Randomization</a></li>
+  <li><a href="#planned-analyses" id="toc-planned-analyses" class="nav-link" data-scroll-target="#planned-analyses">6. Planned Analyses</a>
+  <ul class="collapse">
+  <li><a href="#analysis-populations" id="toc-analysis-populations" class="nav-link" data-scroll-target="#analysis-populations">6.1. Analysis Populations</a>
+  <ul class="collapse">
+  <li><a href="#safety-population" id="toc-safety-population" class="nav-link" data-scroll-target="#safety-population">6.1.1. Safety Population</a></li>
+  <li><a href="#evaluable-efficacy-population" id="toc-evaluable-efficacy-population" class="nav-link" data-scroll-target="#evaluable-efficacy-population">6.1.2. Evaluable Efficacy Population</a></li>
+  <li><a href="#per-protocol-population" id="toc-per-protocol-population" class="nav-link" data-scroll-target="#per-protocol-population">6.1.3. Per-Protocol Population</a></li>
+  <li><a href="#pharmacokinetics-pk-population" id="toc-pharmacokinetics-pk-population" class="nav-link" data-scroll-target="#pharmacokinetics-pk-population">6.1.4. Pharmacokinetics (PK) Population</a></li>
+  </ul></li>
+  <li><a href="#derived-data-and-clinical-assessments" id="toc-derived-data-and-clinical-assessments" class="nav-link" data-scroll-target="#derived-data-and-clinical-assessments">6.2. Derived Data and Clinical Assessments</a>
+  <ul class="collapse">
+  <li><a href="#screening" id="toc-screening" class="nav-link" data-scroll-target="#screening">6.2.1. Screening</a></li>
+  <li><a href="#baseline-and-change-form-baseline" id="toc-baseline-and-change-form-baseline" class="nav-link" data-scroll-target="#baseline-and-change-form-baseline">6.2.2. Baseline and Change form Baseline</a></li>
+  <li><a href="#durationstudy-daytime" id="toc-durationstudy-daytime" class="nav-link" data-scroll-target="#durationstudy-daytime">6.2.3. Duration/Study Day/Time</a></li>
+  <li><a href="#conventions-for-missing-and-partial-dates" id="toc-conventions-for-missing-and-partial-dates" class="nav-link" data-scroll-target="#conventions-for-missing-and-partial-dates">6.2.4. Conventions for Missing and Partial Dates</a></li>
+  <li><a href="#missingpartial-startstop-date-of-adverse-events-and-concomitant-medications" id="toc-missingpartial-startstop-date-of-adverse-events-and-concomitant-medications" class="nav-link" data-scroll-target="#missingpartial-startstop-date-of-adverse-events-and-concomitant-medications">6.2.5. Missing/Partial Start/Stop Date of Adverse Events and Concomitant Medications</a></li>
+  <li><a href="#missing-last-dates-of-study-drug-dosing" id="toc-missing-last-dates-of-study-drug-dosing" class="nav-link" data-scroll-target="#missing-last-dates-of-study-drug-dosing">6.2.6. Missing Last Dates of Study Drug Dosing</a></li>
+  <li><a href="#missing-diagnosis-dates" id="toc-missing-diagnosis-dates" class="nav-link" data-scroll-target="#missing-diagnosis-dates">6.2.7. Missing Diagnosis Dates</a></li>
+  <li><a href="#exposure-to-study-drug" id="toc-exposure-to-study-drug" class="nav-link" data-scroll-target="#exposure-to-study-drug">6.2.8. Exposure to Study Drug</a></li>
+  <li><a href="#inexact-values" id="toc-inexact-values" class="nav-link" data-scroll-target="#inexact-values">6.2.9. Inexact Values</a></li>
+  <li><a href="#electrocardiogram-data" id="toc-electrocardiogram-data" class="nav-link" data-scroll-target="#electrocardiogram-data">6.2.10. Electrocardiogram Data</a></li>
+  <li><a href="#unschedueled-visits" id="toc-unschedueled-visits" class="nav-link" data-scroll-target="#unschedueled-visits">6.2.17 Unschedueled Visits</a></li>
+  <li><a href="#follow-up-visit" id="toc-follow-up-visit" class="nav-link" data-scroll-target="#follow-up-visit">6.2.18. Follow-Up Visit</a></li>
+  </ul></li>
+  <li><a href="#conventions" id="toc-conventions" class="nav-link" data-scroll-target="#conventions">6.3. Conventions</a>
+  <ul class="collapse">
+  <li><a href="#decimal-places" id="toc-decimal-places" class="nav-link" data-scroll-target="#decimal-places">6.3.1. Decimal Places</a></li>
+  </ul></li>
+  <li><a href="#subject-disposition" id="toc-subject-disposition" class="nav-link" data-scroll-target="#subject-disposition">6.4. Subject Disposition</a></li>
+  <li><a href="#prior-and-concomitant-medications" id="toc-prior-and-concomitant-medications" class="nav-link" data-scroll-target="#prior-and-concomitant-medications">6.8. Prior and Concomitant Medications</a></li>
+  <li><a href="#efficacy-analyses" id="toc-efficacy-analyses" class="nav-link" data-scroll-target="#efficacy-analyses">6.10. Efficacy Analyses</a>
+  <ul class="collapse">
+  <li><a href="#primary-endpoint-1" id="toc-primary-endpoint-1" class="nav-link" data-scroll-target="#primary-endpoint-1">6.10.1. Primary Endpoint</a></li>
+  <li><a href="#primary-efficacy-analysis" id="toc-primary-efficacy-analysis" class="nav-link" data-scroll-target="#primary-efficacy-analysis">6.10.2. Primary Efficacy Analysis</a></li>
+  <li><a href="#sencitivity-analyses" id="toc-sencitivity-analyses" class="nav-link" data-scroll-target="#sencitivity-analyses">6.10.3. Sencitivity Analyses</a></li>
+  <li><a href="#secondary-analyses" id="toc-secondary-analyses" class="nav-link" data-scroll-target="#secondary-analyses">6.10.4. Secondary Analyses</a></li>
+  <li><a href="#exploratory-analyses" id="toc-exploratory-analyses" class="nav-link" data-scroll-target="#exploratory-analyses">6.10.5. Exploratory Analyses</a></li>
+  <li><a href="#subgroup-analyses" id="toc-subgroup-analyses" class="nav-link" data-scroll-target="#subgroup-analyses">6.10.6. Subgroup Analyses</a></li>
+  </ul></li>
+  <li><a href="#pharmacokenetic-analysis" id="toc-pharmacokenetic-analysis" class="nav-link" data-scroll-target="#pharmacokenetic-analysis">6.11. Pharmacokenetic Analysis</a></li>
+  <li><a href="#pharmacokinetic-pharmacodynamic-analyses" id="toc-pharmacokinetic-pharmacodynamic-analyses" class="nav-link" data-scroll-target="#pharmacokinetic-pharmacodynamic-analyses">6.12. Pharmacokinetic-Pharmacodynamic Analyses</a></li>
+  <li><a href="#safety-analyses" id="toc-safety-analyses" class="nav-link" data-scroll-target="#safety-analyses">6.13. Safety Analyses</a>
+  <ul class="collapse">
+  <li><a href="#adverse-events" id="toc-adverse-events" class="nav-link" data-scroll-target="#adverse-events">6.13.1. Adverse Events</a></li>
+  <li><a href="#laboratory-data" id="toc-laboratory-data" class="nav-link" data-scroll-target="#laboratory-data">6.13.2. Laboratory Data</a></li>
+  <li><a href="#vital-signs" id="toc-vital-signs" class="nav-link" data-scroll-target="#vital-signs">6.13.3. Vital Signs</a></li>
+  <li><a href="#electrocardiogram-data-1" id="toc-electrocardiogram-data-1" class="nav-link" data-scroll-target="#electrocardiogram-data-1">6.13.4. Electrocardiogram Data</a></li>
+  <li><a href="#physical-examination" id="toc-physical-examination" class="nav-link" data-scroll-target="#physical-examination">6.13.5. Physical Examination</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<ul>
+<li><a href="https://cdn.clinicaltrials.gov/large-docs/59/NCT03402659/SAP_001.pdf">link</a>
+<ul>
+<li>google 검색에서 오픈된 자료를 활용하여 phase 2 sap study</li>
+</ul></li>
+</ul>
+<p>A Double-Blind, Placebo-Controlled Proof-of-Concept Study of a Selective p38 MAP Kinase Alpha Inhibitor, Neflamapimod, Administered for 24 Weeks in Subjects with Mild Alzheimer’s Disease</p>
+<ul>
+<li>A Double-Blind, 이중 눈가림</li>
+<li>Placebo-Controlled 위약 대조</li>
+<li>Proof-of-Concept Study 신약이 효과 있는지 증명하기위함</li>
+<li>of a Selective p38 MAP Kinase Alpha Inhibitor, 선택적 p38 MAPK 알파 억제제</li>
+<li>Neflamapimod, 약 이름</li>
+<li>Administered for 24 Weeks in 24주간 시행</li>
+<li>Subjects with Mild Alzheimer’s Disease 경증의 알츠하이머 병을 가진 사람들 대상</li>
+</ul>
+<section id="abbreviations" class="level1">
+<h1>Abbreviations</h1>
+<table class="table">
+<colgroup>
+<col style="width: 56%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Abbreviation</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AD</td>
+<td>Alzheimer’s disease</td>
+</tr>
+<tr class="even">
+<td>ADR</td>
+<td>Adverse drug reaction</td>
+</tr>
+<tr class="odd">
+<td>AE</td>
+<td>Adverse event</td>
+</tr>
+<tr class="even">
+<td>ALT</td>
+<td>Alanine aminotransferase</td>
+</tr>
+<tr class="odd">
+<td>APP</td>
+<td>Amyloid-Precursor-Protein 아밀로이드 전구 단백질, 알츠하이머 병의 핵심 단백질</td>
+</tr>
+<tr class="even">
+<td>AST</td>
+<td>Aspartate aminotransferase</td>
+</tr>
+<tr class="odd">
+<td>AUC</td>
+<td>Area under the time concentration curve</td>
+</tr>
+<tr class="even">
+<td>BID</td>
+<td>bis in die (twice a day)</td>
+</tr>
+<tr class="odd">
+<td>CDR</td>
+<td>Clinical Dementia Rating Scale</td>
+</tr>
+<tr class="even">
+<td>CRmax</td>
+<td>Maximum concentration</td>
+</tr>
+<tr class="odd">
+<td>CNS</td>
+<td>Central Nervous System</td>
+</tr>
+<tr class="even">
+<td>CT</td>
+<td>Computed tomography</td>
+</tr>
+<tr class="odd">
+<td>CRTrough</td>
+<td>Trough concentration</td>
+</tr>
+<tr class="even">
+<td>CYP</td>
+<td>Cytochrome P450</td>
+</tr>
+<tr class="odd">
+<td>ECG</td>
+<td>Electrocardiogram</td>
+</tr>
+<tr class="even">
+<td>eCRF</td>
+<td>Electronic case report form</td>
+</tr>
+<tr class="odd">
+<td>ES</td>
+<td>Effect sizes</td>
+</tr>
+<tr class="even">
+<td>FDA</td>
+<td>Food and Drug Administration</td>
+</tr>
+<tr class="odd">
+<td>HVLT-R</td>
+<td>Hopkins Verbal Learning Test – Revised</td>
+</tr>
+<tr class="even">
+<td>ICF</td>
+<td>Informed Consent Form</td>
+</tr>
+<tr class="odd">
+<td>ICH</td>
+<td>International Council on Harmonization</td>
+</tr>
+<tr class="even">
+<td>IEC</td>
+<td>Independent Ethics Committee</td>
+</tr>
+<tr class="odd">
+<td>IL-1beta</td>
+<td>Interleukin-1 beta</td>
+</tr>
+<tr class="even">
+<td>IND</td>
+<td>Investigational New Drug</td>
+</tr>
+<tr class="odd">
+<td>INR</td>
+<td>International normalized ratio</td>
+</tr>
+<tr class="even">
+<td>IRB</td>
+<td>Institutional Review Board</td>
+</tr>
+<tr class="odd">
+<td>IWRS</td>
+<td>Interactive Web Response System</td>
+</tr>
+<tr class="even">
+<td>LFT</td>
+<td>Liver function test</td>
+</tr>
+<tr class="odd">
+<td>LM</td>
+<td>Logical Memory</td>
+</tr>
+<tr class="even">
+<td>MAP</td>
+<td>Mitogen activated protein</td>
+</tr>
+<tr class="odd">
+<td>MCI</td>
+<td>Mild cognitive impairment 경도 인지 장애, 정상 노화와 치매 사이 단계</td>
+</tr>
+<tr class="even">
+<td>MedDRA</td>
+<td>Medical Dictionary for Regulatory Activities</td>
+</tr>
+<tr class="odd">
+<td>MMSE</td>
+<td>Mini-Mental State Examination 간이 정신 상태 검사</td>
+</tr>
+<tr class="even">
+<td>MRI</td>
+<td>Magnetic Resonance Imaging</td>
+</tr>
+<tr class="odd">
+<td>NFT</td>
+<td>Neurofibrillary Tangle</td>
+</tr>
+<tr class="even">
+<td>p38 alpha</td>
+<td>p38 mitogen activated protein kinase alpha</td>
+</tr>
+<tr class="odd">
+<td>PD</td>
+<td>Pharmacodynamic</td>
+</tr>
+<tr class="even">
+<td>PET</td>
+<td>Positron emission tomography 양전자 방출 단층 촬영</td>
+</tr>
+<tr class="odd">
+<td>PK</td>
+<td>Pharmacokinetic</td>
+</tr>
+<tr class="even">
+<td>PT</td>
+<td>Prothrombin time</td>
+</tr>
+<tr class="odd">
+<td>PTT</td>
+<td>Partial thromboplastin time</td>
+</tr>
+<tr class="even">
+<td>RA</td>
+<td>Rheumatoid arthritis 류머티즘 관절염</td>
+</tr>
+<tr class="odd">
+<td>SAE</td>
+<td>Serious adverse event</td>
+</tr>
+<tr class="even">
+<td>ULN</td>
+<td>Upper limit of normal</td>
+</tr>
+<tr class="odd">
+<td>VPA</td>
+<td>Verbal Paired Associates 언어쌍 연합 검사</td>
+</tr>
+<tr class="even">
+<td>VR</td>
+<td>Visual Reproduction</td>
+</tr>
+<tr class="odd">
+<td>WMS</td>
+<td>Wechsler Memory Scale 웩슬러 기억 척도</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="version" class="level1">
+<h1>Version</h1>
+<p>버전 관리, 표로</p>
+<ul>
+<li>SAP Amendments before database lock
+<ul>
+<li>Version 버전</li>
+<li>Issue Date 발행 날짜</li>
+<li>Section 수정된 곳</li>
+<li>Revision/Addition 수정 내용</li>
+<li>Rationale 수정 이유</li>
+</ul></li>
+</ul>
+</section>
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<ul>
+<li>This document details the planned statistical analyses for the EIP Pharma, LLC, protocol “EIPVX17-745-304” study titled “A Double-Blind, Placebo-Controlled Proof-of-Concept Study of a Selective p38 MAP Kinase Alpha Inhibitor, Neflamapimod, Administered for 24 Weeks in Subjects with Mild Alzheimer’s Disease”.
+<ul>
+<li>클라이언트, 계획서 주최, 연구 내용</li>
+</ul></li>
+<li>The proposed analyses are based on the contents of the final version 3.0 of the protocol (dated27- AUG-2018).
+<ul>
+<li>연구계획서 참고</li>
+</ul></li>
+<li>This is a Phase 2, multicenter, randomized, double-blind, placebo-controlled, proof-of-concept study of neflamapimod 40 mg or matching placebo administered twice daily for 24 weeks in subjects aged 55 to 85 years with CSF biomarker-confirmed AD; with CDR-Global score of 0.5 or 1.0, with CDR memory subscore of at least 0.5, and MMSE scores between 20 and 28, inclusive.
+<ul>
+<li>연구 목적 자세히</li>
+</ul></li>
+<li>All screening assessments should be conducted within 42 days of Day 1 (first dose of study drug).</li>
+<li>Once eligibility is confirmed and before the first dose of study drug, subjects are randomly assigned (1:1 basis) to receive placebo or neflamapimod treatment.</li>
+<li>Randomization is stratified by 1) background AD-specific therapy (cholinesterase inhibitor or memantine versus no cholinesterase inhibitor or memantine); and 2) CDR 0.5 versus 1.0. Dosing will start on Day 1 following completion of all Baseline procedures.</li>
+<li>Subjects will return to the clinic on Days 21, 42, 84, 126, and 168.</li>
+<li>A Follow-up Visit will be conducted 14 (±3) days following the last dose of study drug.</li>
+<li>Trough and maximum concentrations for PK analysis will be collected for each patient and summarized.</li>
+<li>An integrated population PK analysis including other study PK parameters will be completed and reported on outside of the standard reporting.
+<ul>
+<li>시험 내용 설명</li>
+</ul></li>
+</ul>
+</section>
+<section id="study-objectives" class="level1">
+<h1>2. Study Objectives</h1>
+<p>연구 대상자들</p>
+<ul>
+<li>Primary Objective
+<ul>
+<li>To evaluate the effect of administration of neflamapimod (VX-745) for 24-weeks on immediate and delayed recall aspects of episodic memory, as assessed by the Hopkins Verbal Learning Test – Revised (HVLT-R) in subjects with mild Alzheimer’s disease (AD).</li>
+<li>To evaluate effects of neflamapimod on immediate and delayed recall of Logical Memory (LM), Verbal Paired Associates (VPA) and Visual Reproduction (VR) components of the Wechsler Memory Scale® (WMS).</li>
+<li>To evaluate effects of neflamapimod on the Clinical Dementia Rating Scale-Sum of Boxes (CDR-SB) and (Mini-Mental State Examination) MMSE.</li>
+<li>To evaluate the effects of neflamapimod on AD-related cerebrospinal fluid (CSF) biomarkers (total tau, phospho-tau, amyloid-beta peptides, neurogranin, and neurofilament light chain).</li>
+</ul></li>
+</ul>
+</section>
+<section id="endpoints" class="level1">
+<h1>3. Endpoints</h1>
+<section id="primary-endpoint" class="level2">
+<h2 class="anchored" data-anchor-id="primary-endpoint">3.1. Primary Endpoint</h2>
+<p>1차 평가 변수</p>
+<ul>
+<li>The primary efficacy variable is:
+<ul>
+<li>Combined change in z-scores of total recall and delayed recall on the HVLT-R in neflamapimod-treated subjects compared to placebo-recipients at Week 24.</li>
+<li>The detailed calculation of combined change in z-scores is described in section 6.2.12.</li>
+</ul></li>
+</ul>
+<p>치료받은 대상자들과 위약 받은 대상자들을 24주간의 비교하는데 전체 리콜값과 지연된 리콜값의 zscore 표준화하여 변화를 비교</p>
+</section>
+<section id="secondary-endpoints" class="level2">
+<h2 class="anchored" data-anchor-id="secondary-endpoints">3.2. Secondary Endpoints</h2>
+<ul>
+<li>The secondary efficacy variables at Week 24 and follow-up when applicable are:
+<ul>
+<li>Change in WMS immediate and delayed recall composites in neflamapimod-treated subjects compared to placebo-recipients.</li>
+<li>Change in CDR-SB in neflamapimod-treated subjects compared to placebo-recipients.</li>
+<li>Change in MMSE in neflamapimod-treated subjects compared to placebo-recipients</li>
+<li>Change in CSF biomarkers [total tau (T-tau), <span class="math inline">\(P-tau_{181}\)</span>, <span class="math inline">\(Aβ_{1-40}\)</span>, <span class="math inline">\(Aβ_{1-42}\)</span>, neurogranin, neurofilament light chain] in neflamapimod-treated subjects compared to placeborecipients at the end of treatment.</li>
+</ul></li>
+</ul>
+<p>투약군과 위약군 간의 값 비교</p>
+</section>
+</section>
+<section id="sample-size" class="level1">
+<h1>4. Sample Size</h1>
+<p>Up to 76 subjects per treatment arm (152 total) provides 90% power to detect ES of 0.53 and 80% power to detect ES of 0.46. This level of ES is the minimum treatment effect amount considered clinically relevant and is less than the effect size seen in the Phase 2a studies.</p>
+<ul>
+<li>ES; Effect Size 효과 크기</li>
+<li>152명일때 76명씩
+<ul>
+<li>es 0.53을 검출할 수 있는 확률이 90%이고</li>
+<li>es 0.46을 검출할 수 있는 확률이 80%이고</li>
+</ul></li>
+</ul>
+</section>
+<section id="randomization" class="level1">
+<h1>Randomization</h1>
+<ul>
+<li>Randomization was stratified by 1) background AD-specific therapy (cholinesterase inhibitor or memantine versus no cholinesterase inhibitor or memantine); and 2) CDR-Global Score of 0.5 versus 1.0.</li>
+<li>Eligible subjects were randomized 1:1 to two treatment arms: Neflamapimod 40mg or placebo utilizing a central Interactive Web Response System (IWRS).</li>
+</ul>
+<p>조건을 만족한 대상자들이 투약군과 위약군 1대1로 나뉘어 배정</p>
+</section>
+<section id="planned-analyses" class="level1">
+<h1>6. Planned Analyses</h1>
+<ul>
+<li>No statistical analysis plan (SAP) prepared in advance of the data can be absolutely definitive and the final clinical study report (CSR) may contain additional tables or statistical tests if warranted by the data obtained.</li>
+<li>The justification for any such additional analyses will be fully documented in the final CSR.</li>
+</ul>
+<section id="analysis-populations" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-populations">6.1. Analysis Populations</h2>
+<section id="safety-population" class="level3">
+<h3 class="anchored" data-anchor-id="safety-population">6.1.1. Safety Population</h3>
+<ul>
+<li>The Safety Population is defined as all randomized subjects who receive at least one dose of study drug (neflamapimod or placebo).</li>
+</ul>
+<p>안전성 평가군은 최소한 한 번이라도 시험약이든 위약이든 투약한 랜덤화된 대상자로 정의</p>
+</section>
+<section id="evaluable-efficacy-population" class="level3">
+<h3 class="anchored" data-anchor-id="evaluable-efficacy-population">6.1.2. Evaluable Efficacy Population</h3>
+<ul>
+<li>The Efficacy Population used for efficacy analyses, consistent with the intent-to-treat (ITT) principles includes all subjects who received at least one dose of study drug and had at least one post-dose efficacy assessment.</li>
+</ul>
+<p>평가 효능 대상군은 시험약, 위약 둘 다를 최소한 한 번씩 모두 투약한 랜덤 배정된 대상자를 대상으로 함</p>
+</section>
+<section id="per-protocol-population" class="level3">
+<h3 class="anchored" data-anchor-id="per-protocol-population">6.1.3. Per-Protocol Population</h3>
+<ul>
+<li>The Per-Protocol Population (PP) will be a subset of the Efficacy Population.</li>
+<li>All protocol deviations will be assessed and documented on a case-by-case basis before the database lock, and deviations considered to have a significant impact on the efficacy results will lead to the relevant subject being excluded from the PP.</li>
+<li>Before database lock, potential subject exclusions from the PP will be reviewed by the Sponsor and documented in a subject evaluability document (WCT-TP-ST-016).</li>
+</ul>
+<p>pp분석군은 평가 효능 대상군에서 분류됨, db lock 전에 사례별로 기록되어야 하고, 효능 결과에 상당한 영향을 줄 것 같은 위반이 있다면 pp분석군에서 제외되어야 함. db lock 전에 pp분석군에서 제외된 대상자들은 스폰서의 검토가 이루어져야 하고, 기록화되어야 함</p>
+</section>
+<section id="pharmacokinetics-pk-population" class="level3">
+<h3 class="anchored" data-anchor-id="pharmacokinetics-pk-population">6.1.4. Pharmacokinetics (PK) Population</h3>
+<ul>
+<li>The Pharmakinetics (PK) Population includes all randomized subjects who received at least one dose of study drug in neflamapimod treatment group and had at least one post-dose PK data assessment.</li>
+</ul>
+<p>약동학 분석군은 모두 랜덤배정된 대상자이고 최소한 한 번이라도 시험약이든 위약이든 투약 받은 사람이어야 하며, 투약 후 최소 한 번이라도 pk 대이터 평가 진행한 대상자</p>
+</section>
+</section>
+<section id="derived-data-and-clinical-assessments" class="level2">
+<h2 class="anchored" data-anchor-id="derived-data-and-clinical-assessments">6.2. Derived Data and Clinical Assessments</h2>
+<ul>
+<li>This section describes the derivations required for statistical analysis.</li>
+<li>Unless otherwise stated, variables derived in the source data will not be re-calculated.</li>
+</ul>
+<section id="screening" class="level3">
+<h3 class="anchored" data-anchor-id="screening">6.2.1. Screening</h3>
+<ul>
+<li>For each variable where a subject is re-screened, his/her latest non-missing value from the original or re-screening assessment will be taken for tabulation purposes.</li>
+</ul>
+<p>평가 대상자가 재스크린될 경우 그들의 값은 최신화되어야 한다.</p>
+</section>
+<section id="baseline-and-change-form-baseline" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-and-change-form-baseline">6.2.2. Baseline and Change form Baseline</h3>
+<ul>
+<li>Baseline is defined as the last non-missing value (either scheduled, unscheduled or repeat) before the subject receives first dose of study drug (Day 1).</li>
+<li>Visit 3 (Day 1) date is definded as the date of the first dose.</li>
+<li>Baseline score of MMSE for each subject is calculated using the average of Screen and Day 1 measurements.</li>
+<li>Change from baseline <strong>CHG=AVAL-BASE</strong> where AVAL is the post-baseline value, BASE is the baseline value.</li>
+<li>Baseline z-score will be used as a covariate in the MMRM and ANCOVA analysis.</li>
+<li>It will be calculated as below:
+<ul>
+<li>For baseline total recall, a z-score for each subject is defined by z=(x-m)/s where x is the subject’s total recall at baseline, and <strong>m</strong> and <strong>s</strong> are the overall mean and overall standard deviation of total recall at baseline across all subjects.</li>
+<li>Similarly, a baseline z-score for each subject for delayed recall can be calculated.</li>
+</ul></li>
+<li>A composite baseline z-score for each subject is calculated using equal weighting in the following way:
+<ul>
+<li><span class="math inline">\(Z=0.5*z-score\)</span> for total recall at <span class="math inline">\(baseline + 0.5*z-score\)</span> for delayed recall at baseline.</li>
+</ul></li>
+<li>The calculation method can be referenced to Section 6.2.12.</li>
+</ul>
+<p>mmse 간이 상태 정신 검사의 baseline은 첫째날 측정치의 평균</p>
+</section>
+<section id="durationstudy-daytime" class="level3">
+<h3 class="anchored" data-anchor-id="durationstudy-daytime">6.2.3. Duration/Study Day/Time</h3>
+<ul>
+<li>Study day will be calculated as the number of days from first dose of study drug.
+<ul>
+<li>date of event – date of first dose of study drug + 1, for events on or after first dose</li>
+<li>date of event – date of first dose of study drug, for events before first dose.</li>
+<li>Duration (e.g., event duration/medication usage) = stop date-start date +1.</li>
+</ul></li>
+</ul>
+</section>
+<section id="conventions-for-missing-and-partial-dates" class="level3">
+<h3 class="anchored" data-anchor-id="conventions-for-missing-and-partial-dates">6.2.4. Conventions for Missing and Partial Dates</h3>
+<ul>
+<li>All rules explained below for partial/missing dates will be followed unless contradicted by any other data recorded on the electronic Case Report Form (eCRF).</li>
+<li>All dates presented in the individual subject listings will be as recorded on the eCRF (i.e., not completed as per the below rules).</li>
+</ul>
+</section>
+<section id="missingpartial-startstop-date-of-adverse-events-and-concomitant-medications" class="level3">
+<h3 class="anchored" data-anchor-id="missingpartial-startstop-date-of-adverse-events-and-concomitant-medications">6.2.5. Missing/Partial Start/Stop Date of Adverse Events and Concomitant Medications</h3>
+<ul>
+<li>Missing and partial start and stop date will be imputed for analysis purposes as follows:
+<ul>
+<li>Partial or missing stop date will be imputed as follows:
+<ul>
+<li>If the stop date is completely missing and the event has resolved or the subject has stopped taking the concomitant medication, the stop date will be imputed as the date of the subject’s last clinic visit in the study.
+<ul>
+<li>If only the year is known, the stop date will be imputed as “31-Dec” of that year or as the date of the subject’s last clinic visit in the study if in the same year.</li>
+<li>If the month and year are known, the stop date will be imputed as the last day of that month unless the stop date corresponds to the same month as the subject’s last clinic visit in which case the date of subject’s last clinic visit in the study will be used instead.</li>
+</ul></li>
+</ul></li>
+<li>Missing start date will be imputed as follows:
+<ul>
+<li>If the stop date occurs on or after the start of study drug or the event/concomitant medication is ongoing, the start date will be imputed as the date of the first dose of study drug.</li>
+<li>If the stop date occurs before the start of study drug, the start date of the event/concomitant medication will be imputed as the subject’s screening date or the stop date of the event/concomitant medication whichever the earlier.</li>
+</ul></li>
+<li>Partial start date (year present, but month and day missing)
+<ul>
+<li>If the stop date occurs on or after the start of study drug or the event/concomitant medication is ongoing, and the year is the same as the year of first dosing the start date will be imputed as “01-Jan” of the same year or the date of the first dose of study drug whichever is latest. If the year is different from the year of first dosing “01-Jan” will be used.</li>
+<li>If the stop date occurs before the start of study drug, the start date of the event/concomitant medication will be imputed as the “01-Jan” of the same year.</li>
+</ul></li>
+<li>Partial start date (month and year present, but day missing)
+<ul>
+<li>If the stop date occurs on or after the start of study drug or the event/concomitant medication is ongoing, the start date will be imputed as the first day of the same month and year unless this partial start date is in same month as the first dose of study drug in which case the date of first dose of study drug will be used.</li>
+<li>If the stop date occurs before the start of study drug, the start date will be imputed as the first day of the month and year of the partial stop date.</li>
+</ul></li>
+<li>Missing start/stop time of adverse events:
+<ul>
+<li>If the start time of the adverse event (AE) is missing, it will imputed only in the case where the start date of the AE corresponds to the date of the first dose of study drug. The time will be imputed as the same time as the first dose of study drug. In all other cases the time will not be imputed.</li>
+<li>If the stop time of the adverse event is missing, it will be imputed as 23:59 for stop time.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>날짜 imputation 방법 정의, 결측이거나 부분 결측인 날짜가 있을때, 이상반응과 병용약물에서</p>
+</section>
+<section id="missing-last-dates-of-study-drug-dosing" class="level3">
+<h3 class="anchored" data-anchor-id="missing-last-dates-of-study-drug-dosing">6.2.6. Missing Last Dates of Study Drug Dosing</h3>
+<ul>
+<li>If the date of last dose of study drug is completely missing then the date of last dose of study drug will be taken for analysis purposes as the date when the subject would have run out of study drug assuming full compliance from the date the study drug was last dispensed or the date of subject’s last clinic visit in the study or early withdrawal or death whichever the earlier</li>
+<li>If only the month and year of the last dose was recorded, then the date of last dosing will be taken for analysis purposes as the date the subject would have run out of study drug assuming full compliance from the date the study drug was last dispensed, the last day of the month of the recorded last dose or the date of subject’s last clinic visit in the study or early withdrawal or death whichever the earlier.</li>
+</ul>
+<p>시험 약물 복용에서 마지막 날짜가 결측일 경우 처리 방법</p>
+</section>
+<section id="missing-diagnosis-dates" class="level3">
+<h3 class="anchored" data-anchor-id="missing-diagnosis-dates">6.2.7. Missing Diagnosis Dates</h3>
+<ul>
+<li>If the month and year are present but the day is missing, the diagnosis date will be set to the first day of the relevant month. If only the year is recorded the diagnosis date will be set as “01-Jan” for that year.</li>
+</ul>
+<p>진단 날짜가 결측일 경우</p>
+</section>
+<section id="exposure-to-study-drug" class="level3">
+<h3 class="anchored" data-anchor-id="exposure-to-study-drug">6.2.8. Exposure to Study Drug</h3>
+<ul>
+<li>Exposure to study drug will be calculated as follows from the date of last dosing minus the first day of dosing + 1.</li>
+<li>The exposure calculation will not take into account breaks in therapy.</li>
+</ul>
+<p>break 있어도 노출 날짜에 포함 된다.</p>
+</section>
+<section id="inexact-values" class="level3">
+<h3 class="anchored" data-anchor-id="inexact-values">6.2.9. Inexact Values</h3>
+<ul>
+<li>In the case where a variable is recorded as “&gt; x”, “≥ x”, “&lt; x” or “≤ x”, a value of x will be taken for analysis purposes, Where a range of values is quoted the midpoint of the range will be taken.</li>
+</ul>
+<p>정확하지 않은 값들 처리 방법, 부등호 있으면 숫자만 사용 범위로 기록되면 midpoint중앙값 이용</p>
+</section>
+<section id="electrocardiogram-data" class="level3">
+<h3 class="anchored" data-anchor-id="electrocardiogram-data">6.2.10. Electrocardiogram Data</h3>
+<ul>
+<li>For 12-lead ECG data recorded on continuous scales, if more than one value is recorded at a visit, the mean value rounded to the integer will be presented.</li>
+<li>For overall interpretation if more than one value is recorded, the most severe (worst case) of the respective readings will be taken.</li>
+</ul>
+<p>심전도에서 한 개 이상의 값이 입력될 경우 처리 방법</p>
+<hr>
+<p>중략, 통계랑 관련 없다 판단, 단순 인지검사 소개 및 정의라서</p>
+<hr>
+</section>
+<section id="unschedueled-visits" class="level3">
+<h3 class="anchored" data-anchor-id="unschedueled-visits">6.2.17 Unschedueled Visits</h3>
+<ul>
+<li>In general, only scheduled post-baseline laboratory, ECG, and vital signs values will be tabulated. Post-baseline repeat/unscheduled assessments will be disregarded from table, although these post-baseline assessments will be listed in the relevant appendices to the CSR.</li>
+</ul>
+<p>예정되지 않은 방문을 한 대상자가 있다면 csr에 기록되어야 함</p>
+</section>
+<section id="follow-up-visit" class="level3">
+<h3 class="anchored" data-anchor-id="follow-up-visit">6.2.18. Follow-Up Visit</h3>
+<ul>
+<li>A follow-up visit should be scheduled 14 (+/- 3) days after the last dose of study drug for all subjects that complete or are withdrawn from the study.</li>
+</ul>
+</section>
+</section>
+<section id="conventions" class="level2">
+<h2 class="anchored" data-anchor-id="conventions">6.3. Conventions</h2>
+<ul>
+<li>All data listings, summaries, figures and statistical analyses will be generated using SAS version 9.3 or higher.</li>
+<li>Summaries will be presented by treatment group or overall.</li>
+<li>Treatment group labels will be displayed as follows:
+<ul>
+<li>Neflamapimod(40 mg)</li>
+<li>Placebo</li>
+</ul></li>
+<li>Listings will be sorted in the following order treatment group, subject, parameter, and visit unless otherwise stated.</li>
+<li>All data will be listed, subjects who were not randomized will be displayed after the randomized treatment groups.</li>
+<li>Continuous variables will be summarized by the number of non-missing observations, mean, median, standard deviation, and minimum and maximum.</li>
+<li>For all tabulations of changes from baseline data, the lower and upper 95% confidence limits for the mean for the individual treatments will be given.</li>
+<li>Categorical variables will be summarized by presenting the frequency and percent.</li>
+<li>Percentages will be based on the number of non-missing observations or the subject population unless otherwise specified.</li>
+<li>For each variable, all categories will be shown. Zero frequencies (but not the percent) within a category will be presented.</li>
+</ul>
+<p>SAS 버전 명시, table에 뭐 포함되는지. 모든 값은 리스팅으로 표현되어야 함. 기초통계량 제시해야함. 베이스라인 대비 변화량은 95%신뢰구간 하한 상한의 평균을 각 치료군당 제시해야 함, 문자형 값들은 빈도와 비율로 표시</p>
+<section id="decimal-places" class="level3">
+<h3 class="anchored" data-anchor-id="decimal-places">6.3.1. Decimal Places</h3>
+<ul>
+<li>Decimal places for derived data described in section 6.2 will be determined by the scale of measurement unless otherwise stated.</li>
+<li>No decimal places will be displayed if the smallest calculated value is ≥ 100; 1 decimal place will be displayed when the smallest value is within the interval (10, 100), with 10 being inclusive; 2 decimal places will be displayed when the smallest value is within (1, 10), with 1 being inclusive; and so on for even smaller scales of measurement.</li>
+<li>Derived data where it is known in advance the result will be an integer for example day, month, year, number of days and total scores (for rating scales) will be presented with zero decimal places.</li>
+<li>Means, medians and percentiles will be displayed to one more decimal place than the data, dispersion statistics (e.g.&nbsp;standard deviation) will have two more decimal places, and the minimum and maximum will be displayed to the same number of decimal places as reported in the raw data.</li>
+<li>Percentages will be displayed with one decimal place.</li>
+<li>P- Values will be quoted to 3 decimal places.</li>
+<li>P-values &lt; 0.001 will be presented as p&lt;0.001.</li>
+<li>Where this value is less than 0.05, 0.01 or 0.001, attention will be drawn to this fact using the conventional “<em>”, “<strong>” or “</strong></em>” annotation, respectively.</li>
+</ul>
+<p>값 표현하는 법 명시</p>
+</section>
+</section>
+<section id="subject-disposition" class="level2">
+<h2 class="anchored" data-anchor-id="subject-disposition">6.4. Subject Disposition</h2>
+<ul>
+<li>Subject disposition will be summarized as follows:
+<ul>
+<li>The number of subjects, who entered in the study, were randomized and are in each population will be summarized by treatment group and overall for Enrolled Subjects.</li>
+<li>The number of subjects who failed screening and the reasons for failure will be tabulated for Enrolled Subjects.</li>
+<li>The number of study completers, early withdrawals and the reasons for withdrawals will be tabulated by treatment group and overall for the Safety and Efficacy Analysis Population.</li>
+</ul></li>
+</ul>
+<p>대상자 요약 기준 작성</p>
+<hr>
+<p>중략, 문서에서 삭제 됌</p>
+<hr>
+<p>이 전은 병력으로 추정</p>
+</section>
+<section id="prior-and-concomitant-medications" class="level2">
+<h2 class="anchored" data-anchor-id="prior-and-concomitant-medications">6.8. Prior and Concomitant Medications</h2>
+<ul>
+<li>Separate tabulations will be produced for prior and concomitant medications presented by treatment group and overall for the Safety Population.</li>
+<li>Prior medications are defined as all medications starting before the date of first dose of study drug.</li>
+<li>Concomitant medications are defined as medications taken on or after the date of first dose of study drug.</li>
+<li>Concomitant medications will be summarized by Anatomical Therapeutic Chemical (ATC) level 2 and Preferred Name using the World Health Organization (WHO) dictionary (Version WHODrug Global B3 March 2018).</li>
+<li>In addition, CNS medications will be summarized similarly.</li>
+</ul>
+<p>이전약물, 병용약물 정의와 사전 정의</p>
+</section>
+<section id="efficacy-analyses" class="level2">
+<h2 class="anchored" data-anchor-id="efficacy-analyses">6.10. Efficacy Analyses</h2>
+<ul>
+<li>All efficacy analyses will be based on the Evaluable Efficacy Population by randomized treatment regardless of the treatment actually received.</li>
+<li>Descriptive statistics by treatment group and visit will be reported for all efficacy endpoints.</li>
+<li>All statistical tests will be performed using a two-tailed 5% overall significance level, unless otherwise stated.</li>
+<li>All comparisons between treatments will be reported with 95% confidence intervals for the difference.</li>
+<li>There will be no imputation of missing efficacy data.</li>
+</ul>
+<p>효과 분석은 치료군 사이에 이뤄져야 함. 통계 분석은 양측검정 5% 의 신뢰구간으로 확인</p>
+<section id="primary-endpoint-1" class="level3">
+<h3 class="anchored" data-anchor-id="primary-endpoint-1">6.10.1. Primary Endpoint</h3>
+<ul>
+<li>The primary efficacy endpoint is:
+<ul>
+<li>Combined change in z-scores of total recall and delayed recall on the HVLT-R in neflamapimodtreated subjects compared to placebo-recipients at Week 24.</li>
+<li>Neflamapimod 40 mg group will be compared to the placebo group.</li>
+</ul></li>
+<li>The hypothesis test is as follows:
+<ul>
+<li><span class="math inline">\(H_o: µ_{neflamapimod} = µ_{placebo}\)</span></li>
+<li><span class="math inline">\(H_1: µ_{neflamapimod} ≠ µ_{placebo}\)</span></li>
+</ul></li>
+<li>The null hypothesis will be rejected at a significance level of α (two-sided) = 0.05. There will be no p-value adjustment for multiplicity.</li>
+</ul>
+</section>
+<section id="primary-efficacy-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="primary-efficacy-analysis">6.10.2. Primary Efficacy Analysis</h3>
+<ul>
+<li>The primary endpoint will be analyzed using <strong>Mixed Model</strong> for Repeated Measures (MMRM) with <strong>fixed effects for treatment</strong>, background AD-specific therapy (cholinesterase inhibitor or memantine versus no cholinesterase inhibitor or memantine),</li>
+<li>CDR-Global Score of 0.5 versus 1.0, scheduled visit (nominal) and scheduled visit <strong>by treatment interaction, random effect for subject and baseline z-score as a covariate</strong>.</li>
+<li>Least-square means (LSM) and 2-sided 95% confidence intervals (CI) will be provided for treatment group differences and estimated endpoint values by visit.</li>
+<li>The normally-distributed assumption for the combined change in z-scores of total recall and delayed recall on the HVLT-R will be examined (at 0.05 alpha level).</li>
+<li>In case the assumption is violated, rank transformed data will be applied to the MMRM model.</li>
+<li>Ranks will be determined separately within each time point, based on observed data only.</li>
+<li>In addition, Scale plot will be provided for combined change in z-scores of total recall and delayed recall on the HVLT-R at each post-baseline visit by treatment group.</li>
+</ul>
+<p>모델 설명, mixed model, random or fixed effects 설명</p>
+</section>
+<section id="sencitivity-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="sencitivity-analyses">6.10.3. Sencitivity Analyses</h3>
+<ul>
+<li>Repeat the primary efficacy analysis with the Per Protocol Population</li>
+<li>Use an analysis of covariance (ANCOVA) with treatment group, background ADspecific therapy, CDR-Global Score as main effects and the baseline z-score as the covariate to compare Z-scores of total recall and delayed recall on the HVLT-R at Week 24 in the neflamapimod and placebo groups</li>
+<li>The results of the ANCOVA will be summarized using the treatment groups’ least square means the difference between the treatment groups’ least square means, the 95% confidence interval for the treatment group difference and the p-value.</li>
+</ul>
+<p>ppset에 대해 1차 효과 분석 반봅, ancova 사용(분산분석, 공변량 조정 방법 합쳐서), main effect는 치료 그룹, 공변량은 baseline z-xcore, 종속변수를 hvlt-r 총 회상과 지연 회상의 z-score 활용</p>
+</section>
+<section id="secondary-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="secondary-analyses">6.10.4. Secondary Analyses</h3>
+<ul>
+<li>The secondary efficacy endpoints at Week 24 and follow-up when applicable are:
+<ul>
+<li>Change in WMS immediate and delayed recall composites in neflamapimod-treated subjects compared to placebo-recipients.</li>
+<li>Change in CDR-SB in neflamapimod-treated subjects compared to placebo-recipients.</li>
+<li>Change in MMSE in neflamapimod-treated subjects compared to placebo-recipients.</li>
+<li>Change in CSF biomarkers (T-tau, P-tau181, Aβ1-40, Aβ1-42, neurogranin, neurofilament light chain) in neflamapimod-treated subjects compared to placebo-recipients at the end of treatment.</li>
+</ul></li>
+<li>The same method used for the primary efficacy analysis will be applied for the analyses of the change in WMS and change in CDR-SB.</li>
+<li>Changes in MMSE and CSF biomarkers will be compared using an analysis of covariance (ANCOVA) with treatment group, background AD-specific therapy, CDR-Global Score as main effects and the baseline assessment as the covariate.</li>
+<li>The results of the ANCOVA will be summarized using the treatment groups’ least square means, the difference between the treatment groups’ least square means, the 95% confidence interval for the treatment group difference and the p-value.</li>
+<li>Scale Plots of Mini-Mental State Examination (MMSE) Score by Visit and by Treatment; and Baseline and Change from Baseline to Day 84 MMSE Score.</li>
+</ul>
+<p>wms와 cdr-sb는 pimary랑 동일한 방법을 사용하고(MMRM), ancova 사용할건데, main effect는 치료군, background AD-specific therapy, cdr-global score이고 covariate은 baseline biomarker 값 사용, 결과는 치료군별 lsmean, lsmean different, 95%ci, p-value 제시</p>
+</section>
+<section id="exploratory-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-analyses">6.10.5. Exploratory Analyses</h3>
+<ul>
+<li>Additional exploratory analyses may be performed to further study the effects of treatment as data warranted.</li>
+<li>Numerical exploratory endpoints will be analyzed using analysis of covariance, t-tests, or Wilcoxon sign rank test. Analysis of categorical exploratory endpoints will be performed using chi-square test.</li>
+<li>Exploratory endpoints include ..다양한 항목들</li>
+</ul>
+<p>숫자형 탐색형 변수는 ttest, wilcoxon등 시행될 수 있고, 문자형 탐색형 변수는 카이제곱 검정이 시행될 수 있음</p>
+</section>
+<section id="subgroup-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="subgroup-analyses">6.10.6. Subgroup Analyses</h3>
+<ul>
+<li>The results for the primary and secondary endpoints will be further analyzed on the patients with a background AD-specific therapy, and those not on a background AD-specific therapy as well as for disease severity (patients who have a CDR score of 0.5 versus 1.0).</li>
+<li>Another subgroup analysis will be performed base on patient baseline body weight (&lt;80 kg and ≥80kg).</li>
+</ul>
+<p>1,2차 평가 변수에 대한 추가 분석 수행 가능성 여지</p>
+</section>
+</section>
+<section id="pharmacokenetic-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="pharmacokenetic-analysis">6.11. Pharmacokenetic Analysis</h2>
+<ul>
+<li>Neflamapimod concentration values will be reported for the PK population.</li>
+<li>All PK data collected will be included in data listings sorted by treatment, patient and time point, as appropriate.</li>
+<li>Individual values and descriptive statistics for the plasma concentrations of neflamapimod will be summarized by neflamapimod treatment and by visit.</li>
+<li>Boxplots of the distributions of neflamapimod concentrations by visit will be used to present graphical summaries of neflamapimod concentration data.</li>
+<li>Trough and maximum concentrations (<span class="math inline">\(C_{Trough}\)</span> and <span class="math inline">\(C_{max}\)</span>, respectively) will be obtained on Day 21 (i.e., at steady-state) for each subject by observation and descriptive statistics for the neflamapimod treatment group will be presented.</li>
+<li>In addition, the effect of CYP2C19 genotype status on PK parameters will be investigated.</li>
+<li>The robust PK parameters (i.e.&nbsp;PPK model derived CTrough and Cmax, AUC and etc.) will be derived by an integrated population pharmacokinetic (PPK) analysis.</li>
+<li>PPK analysis plan will be detailed in a separate Pharmacometrics Analysis Plan and reported separately from the study results.</li>
+</ul>
+<p>분석군은 pk분석군을 사용하고, 치료군, 명목 시간(실제 시각)에 따라 적절히 분리되어 리스팅에 기록되어야 한다. boxplot을 제시해야 하고 주요 pK 지표 최저 농도, 최고 농도, 21일차에서 측정 시점 목적이 제시되어야 하고, 유전형에 따라 pk parameter를 조사하도록 해야한다. 자세한 분석 내용은 pk analysis plan에 분리해서 자세히 기록해야 함.ppk 분석에 대해서</p>
+</section>
+<section id="pharmacokinetic-pharmacodynamic-analyses" class="level2">
+<h2 class="anchored" data-anchor-id="pharmacokinetic-pharmacodynamic-analyses">6.12. Pharmacokinetic-Pharmacodynamic Analyses</h2>
+<ul>
+<li>Analyses of CSF biomarkers (T-tau, P-tau181, Aβ1-40, Aβ1-42, neurogranin, neurofilament light chain) will use observational Trough and maximum concentrations (<span class="math inline">\(C_{Trough}\)</span> and <span class="math inline">\(C_{max}\)</span>, respectively) on Day 21 as exposure parameters in the initial PK-PD analysis.</li>
+<li>For numerical PD endpoints, both absolute and percent change from pre-treatment assessments will be performed, as appropriate.</li>
+<li>Number and percent will be provided for categorical PD parameters (e.g.&nbsp;CYP2C19).</li>
+<li>Overall, summary statistics and for each treatment group for biomarkers will be presented and a by-subject listing of plasma biomarker results will be provided as an appendix.</li>
+<li>Additional PK-PD exploratory analyses may be performed to further study the effects of the treatment via PK parameters (i.e.&nbsp;CTrough and Cmax) on HVLT-R, WMS, CDR, and/or CSF biomarkers, as warranted by data. Nominal <span class="math inline">\(C_{Trough]\)</span> and <span class="math inline">\(C_{max}\)</span> will be summarized based on concentration values by nominal hour at Day 21 (i.e.&nbsp;2.5 hour for Cmax and 0 hour for CTrough).</li>
+<li>For many endpoints, both absolute and percent change from pre-treatment assessments will be performed.</li>
+<li>All data collected and captured in the CRF will be included in data listings sorted by treatment, patient and time point, as appropriate.</li>
+</ul>
+<p>pp 분석 어떻게 진행할지, 분석 대상은 csf biomarkers이고 pk지표는 21일차 기준 최소 농도와 최대 농도, 수치형 변수는 절대와 사전 치료대비 퍼센트 변화를 확인, 범주형 변수는 수치와 비율 제시, pkpd탐색분석은 필요하면 추가 분석 가능, 모든 데이터는 crf 기반으로 치료, 환자, 시간 순으로 정렬되어 리스팅에 포함되어야 함</p>
+</section>
+<section id="safety-analyses" class="level2">
+<h2 class="anchored" data-anchor-id="safety-analyses">6.13. Safety Analyses</h2>
+<p>안전성 분석군을 기준으로</p>
+<section id="adverse-events" class="level3">
+<h3 class="anchored" data-anchor-id="adverse-events">6.13.1. Adverse Events</h3>
+<ul>
+<li>A treatment emergent adverse event (TEAE) is defined as:
+<ul>
+<li>Any AE with an onset on or after the first dose of study drug and through 30 days after the last dose of study drug in the double blind treatment period.</li>
+<li>Any pre-existing AE that has worsened in severity on or after the first dose of study drug and through 30 days after the last dose of study drug in the double blind treatment period.</li>
+</ul></li>
+<li>A treatment-related AE is defined as an AE as being possibly related to the study drug.</li>
+<li>If an AE has a missing relationship, it is assumed to be related to the study drug for analysis purposes.</li>
+<li>Maximum severity will be assumed for an AE with missing severity.</li>
+<li>The following tables will be presented for AEs:
+<ul>
+<li>Overall incidence and the number of AEs, SAEs, Treatment related TEAEs, TEAEs leading to withdrawal of study/study drug</li>
+<li>TEAE by system organ class and preferred term, incidence and number of events</li>
+<li>Treatment related TEAE by system organ class and preferred term, incidence and number of events</li>
+<li>Serious TEAE by system organ class and preferred term, incidence and number of events</li>
+<li>TEAEs leading to withdrawal of study drug by system organ class and preferred term, incidence and number of events</li>
+<li>TEAE by system organ class, preferred term and maximum severity, incidence</li>
+<li>Listing of serious TEAEs (presented in the Table section of the appendices)</li>
+<li>Listing of deaths (presented in the Table section of the appendices)</li>
+</ul></li>
+<li>Adverse events will be coded using MedDRA version 21.0.</li>
+<li>A complete subject listing of all AEs will be provided.</li>
+<li>This listing will include treatment, AE verbatim term, primary system organ class and preferred term, the time of onset and cessation of event relative to the first dose of study drug, duration of AE (for ongoing AEs, no duration will be calculated), whether serious, severity, relationship to study drug, action taken and outcome.</li>
+<li>In counting the number of AEs reported, a continuous event (i.e.&nbsp;reported more than once and which did not cease), will be counted only once; non-continuous AE reported several times by the same subject will be counted as multiple events.</li>
+</ul>
+<p>이상반응 정의, treatment emergent ae, teae 정의, 시점은 첫 투여 이후부터 마지막 투여 후 30일까지, 새로운 ae거 벌샥허고너 ar가 악화되면 포함. 관계 정보가 없으면 연구 약물 관련된 것으로 간주, 중증도는 최대 중증도로 정의. ae 테이블은 이상반응 전체를 아우르고, ae,sae,teaes,teae약물중단을 포함해야 함. soc,pt별로 요약해야 하고 severity 최대의 테이블도 포함. 죽음이나 심각한 거도 리스팅으로 무조건, 사전은 meddra version21</p>
+</section>
+<section id="laboratory-data" class="level3">
+<h3 class="anchored" data-anchor-id="laboratory-data">6.13.2. Laboratory Data</h3>
+<ul>
+<li>Descriptive statistics of the observed values and change from baseline (continuous data) will be presented by treatment group and visit for each hematology, serum chemistry, and coagulation parameter.</li>
+<li>Each measurement (continuous data) will be classed as below, within, or above normal range, based on ranges supplied by the laboratory used. Shift tables in relation to the normal range from baseline to each follow-up visit will be presented.</li>
+<li>A listing of any clinically significant laboratory measurements recorded throughout the study will be presented</li>
+</ul>
+<p>임상적 유의성 나타내야함. 방문별 치료군별 구분해서 chg 표시하기</p>
+</section>
+<section id="vital-signs" class="level3">
+<h3 class="anchored" data-anchor-id="vital-signs">6.13.3. Vital Signs</h3>
+<ul>
+<li>Descriptive statistics for observed values and changes from baseline in the following vital signs will be presented by treatment group and visit:
+<ul>
+<li>Systolic blood pressure (mmHg)</li>
+<li>Diastolic blood pressure (mmHg)</li>
+<li>Pulse rate (bpm)</li>
+<li>Respiration rate (breath/min)</li>
+<li>Body temperature (degrees Celsius)</li>
+<li>Body weight (kg)</li>
+</ul></li>
+<li>Box plots for the above vital signs will be provided for changes from Baseline by visit and maximal change.</li>
+</ul>
+<p>활력 징후 항목들, 그림도 포함해야함</p>
+</section>
+<section id="electrocardiogram-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="electrocardiogram-data-1">6.13.4. Electrocardiogram Data</h3>
+<ul>
+<li>Descriptive statistics for observed values and changes from baseline in the following 12-lead ECG variables will be tabulated at each follow-up visit:
+<ul>
+<li>Heart rate (beats/min)</li>
+<li>PR interval (msec)</li>
+<li>RR interval (msec)</li>
+<li>QRS complex (msec)</li>
+<li>QT interval (msec)</li>
+<li>QTc interval (msec)</li>
+<li>QTcF interval (msec) [Fridericia’s formula - QTcF]</li>
+</ul></li>
+<li>ECG Result Interpretation (Normal, Abnormal Not Clinically Significant [NCS], and Abnormal Clinically Significant [CS]) will be summarized by treatment group and visit.</li>
+<li>The incidence of ECG abnormalities for subjects with any abnormal CS ECG result will be presented by treatment group and visit.</li>
+<li>Additionally, the number and percentage of subjects in each treatment group who meet any of the following criteria for QT or QTcF will be tabulated by treatment group and visit.
+<ul>
+<li>Maximum value &gt;450 to 480 msec</li>
+<li>Maximum value &gt;480 to 500 msec</li>
+<li>Maximum value &gt;500 msec</li>
+<li>Maximum increase from baseline &gt;30 to 60 msec</li>
+<li>Maximum increase from baseline &gt;60 msec</li>
+</ul></li>
+<li>Shift tables in relation to the overall interpretation (Normal, Abnormal NCS, and Abnormal CS) from baseline to each follow-up visit will be presented.</li>
+<li>Box plots for ECG data will be provided for changes from baseline by visit and maximal change.</li>
+</ul>
+<p>심전도 분석방법 연속형 모두 요약하고 결과 임상적 유의성 기준 해석, 위험 구간도 정의되었다. 시각화도</p>
+</section>
+<section id="physical-examination" class="level3">
+<h3 class="anchored" data-anchor-id="physical-examination">6.13.5. Physical Examination</h3>
+<ul>
+<li>The body systems within the physical examination data will be summarized by treatment group and visit (Abnormal NCS and Abnormal CS).</li>
+<li>Changes from baseline will also be tabulated.</li>
+<li>Details of clinically significant findings will be listed.</li>
+<li>Descriptive statistics for observed values and changes from baseline in weight will be presented by treatment group and visit.</li>
+</ul>
+<p>신체검사도 임상적 유의성확인해서 변화량도 확인하고 임상적유의변화도 확인하고</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
