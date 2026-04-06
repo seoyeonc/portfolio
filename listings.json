@@ -2,30 +2,20 @@
   {
     "listing": "/2_proj.html",
     "items": [
-      "/posts/proj/2026-04-06.html"
+      "/posts/proj/2026-03-19-insurance.html",
+      "/posts/proj/2026-03-19-diabetes.html",
+      "/posts/proj/2026-03-16-medicaldataml.html",
+      "/posts/proj/2026-03-03-cdisc.html",
+      "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_3.html",
+      "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_2.html",
+      "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_4.html",
+      "/posts/proj/2025-06-04-Python Data Analysis for Healthcare_Note_1.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/2_rand.html",
     "items": [
-      "/posts/proj/2026-04-06.html",
-      "/posts/pkpd/2026-04-04-randomization.html",
-      "/posts/rwdrwe/2026-03-09-examplershiny.html",
-      "/posts/rwdrwe/2026-03-09-rshiny.html",
-      "/posts/kno/2025-06-18-SAP_eng.html",
-      "/posts/pro/2025-06-17-saspythonr.html",
-      "/posts/rwdrwe/2025-04-18-rwdrwe_table.html",
-      "/posts/pro/2025-04-09-mixedmodel.html",
-      "/posts/rand/2025-04-09-randomization.html",
-      "/posts/pkpd/2025-04-09-pkparameters.html",
-      "/posts/rwdrwe/2025-04-09-rwdrwe_figure.html"
-    ]
-  },
-  {
-    "listing": "/2_pro.html",
-    "items": [
-      "/posts/pro/2025-06-17-saspythonr.html",
-      "/posts/pro/2025-04-09-mixedmodel.html"
+      "/posts/rand/2025-04-09-randomization.html"
     ]
   },
   {
@@ -38,9 +28,33 @@
     ]
   },
   {
-    "listing": "/2_rand.html",
+    "listing": "/2_pro.html",
     "items": [
-      "/posts/rand/2025-04-09-randomization.html"
+      "/posts/pro/2025-06-17-saspythonr.html",
+      "/posts/pro/2025-04-09-mixedmodel.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/proj/2026-03-19-insurance.html",
+      "/posts/pkpd/2026-04-04-randomization.html",
+      "/posts/proj/2026-03-19-diabetes.html",
+      "/posts/proj/2026-03-16-medicaldataml.html",
+      "/posts/rwdrwe/2026-03-09-examplershiny.html",
+      "/posts/rwdrwe/2026-03-09-rshiny.html",
+      "/posts/proj/2026-03-03-cdisc.html",
+      "/posts/kno/2025-06-18-SAP_eng.html",
+      "/posts/pro/2025-06-17-saspythonr.html",
+      "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_3.html",
+      "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_2.html",
+      "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_4.html",
+      "/posts/proj/2025-06-04-Python Data Analysis for Healthcare_Note_1.html",
+      "/posts/rwdrwe/2025-04-18-rwdrwe_table.html",
+      "/posts/pro/2025-04-09-mixedmodel.html",
+      "/posts/rand/2025-04-09-randomization.html",
+      "/posts/pkpd/2025-04-09-pkparameters.html",
+      "/posts/rwdrwe/2025-04-09-rwdrwe_figure.html"
     ]
   },
   {
