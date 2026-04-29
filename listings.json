@@ -26,7 +26,6 @@
       "/posts/proj/2025-09-03-perfumes.html",
       "/posts/proj/2025-08-29-medicalknowledge.html",
       "/posts/proj/2025-08-21-rpackage.html",
-      "/posts/proj/2025-08-19-SAS1.html",
       "/posts/proj/2025-08-18-supervised_learning.html",
       "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_3.html",
       "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_2.html",
@@ -59,6 +58,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/kno/2026-04-29-SAS2.html",
       "/posts/proj/2026-03-19-insurance.html",
       "/posts/pkpd/2026-04-04-randomization.html",
       "/posts/proj/2026-03-19-diabetes.html",
@@ -86,9 +86,8 @@
       "/posts/proj/2025-09-03-perfumes.html",
       "/posts/proj/2025-08-29-medicalknowledge.html",
       "/posts/proj/2025-08-21-rpackage.html",
-      "/posts/proj/2025-08-19-SAS1.html",
+      "/posts/kno/2025-08-19-SAS1.html",
       "/posts/proj/2025-08-18-supervised_learning.html",
-      "/posts/kno/2025-06-18-SAP_eng.html",
       "/posts/pro/2025-06-17-saspythonr.html",
       "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_3.html",
       "/posts/proj/2025-06-05-Python Data Analysis for Healthcare_Note_2.html",
@@ -104,7 +103,8 @@
   {
     "listing": "/2_kno.html",
     "items": [
-      "/posts/kno/2025-06-18-SAP_eng.html"
+      "/posts/kno/2026-04-29-SAS2.html",
+      "/posts/kno/2025-08-19-SAS1.html"
     ]
   },
   {

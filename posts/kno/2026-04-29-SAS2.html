@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="SEOYEON CHOI">
-<meta name="dcterms.date" content="2025-06-18">
+<meta name="dcterms.date" content="2026-04-29">
 
-<title>Seoyeon’s Portfolio - [Knowledge] SAP Eng</title>
+<title>Seoyeon’s Portfolio - SAS Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">[Knowledge] SAP Eng</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">SAS Programming</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">[Knowledge] SAP Eng</h1>
+      <h1 class="title">SAS Programming</h1>
                       </div>
   </div>
     
@@ -150,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">June 18, 2025</p>
+        <p class="date">April 29, 2026</p>
       </div>
     </div>
     
@@ -230,7 +230,214 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>dd</p>
+<ul>
+<li>function</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>함수</th>
+<th>변환 전</th>
+<th>변환 후</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input</td>
+<td>문자형</td>
+<td>숫자형</td>
+</tr>
+<tr class="even">
+<td>Put</td>
+<td>숫자형</td>
+<td>문자형</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>PROC IMPORT</code></li>
+</ul>
+<pre class="sas"><code>proc import                                /* 외부 파일 → SAS로 불러오는 프로시저 */
+
+    datafile="&amp;Path\data.xlsx"   /* 불러올 파일 경로 (매크로 변수 사용) */
+                                           /* 예: C:\project\data.xlsx */
+
+    dbms=xlsx                              /* 파일 형식 지정 (Excel .xlsx) */
+
+    replace                                /* 같은 이름의 dataset 있으면 덮어쓰기 */
+
+    out=data1;                            /* 결과를 data1으로 저장 */
+
+    sheet="sheet1";                        /* Excel의 특정 시트 선택 */
+
+run;</code></pre>
+<ul>
+<li><code>PROC MEANS</code></li>
+</ul>
+<pre class="sas"><code>proc means data=advs n mean std median min max;
+    var aval;
+    output out=stat
+        n=n
+        mean=mean
+        std=std;
+run;</code></pre>
+<ul>
+<li><p>ttest</p></li>
+<li><p>one-sample ttest</p></li>
+</ul>
+<pre class="sas"><code>proc ttest data=advs h0=0;
+    var aval;
+run;</code></pre>
+<ul>
+<li>two-sample ttest</li>
+</ul>
+<pre class="sas"><code>proc ttest data=advs;
+    class trta;
+    var aval;
+run;</code></pre>
+<ul>
+<li>paired ttest</li>
+</ul>
+<pre class="sas"><code>proc ttest data=advs;
+    paired base*week4;
+run;</code></pre>
+<ul>
+<li>Wilcoxon</li>
+</ul>
+<pre class="sas"><code>proc npar1way data=advs wilcoxon;
+    class trta;
+    var aval;
+run;</code></pre>
+<ul>
+<li>ANOVA</li>
+</ul>
+<pre class="sas"><code>proc anova data=advs;
+    class trta;
+    model aval = trta;
+run;</code></pre>
+<pre class="sas"><code>proc glm data=advs;
+    class trta;
+    model aval = trta;
+run;</code></pre>
+<ul>
+<li>Kruskal-Wallis</li>
+</ul>
+<pre class="sas"><code>proc npar1way data=advs;
+    class trta;
+    var aval;
+run;</code></pre>
+<ul>
+<li>chi square</li>
+</ul>
+<pre class="sas"><code>proc freq data=adae;
+    tables trta*aeflag / chisq;
+run;</code></pre>
+<ul>
+<li>Fisher’s exact Test</li>
+</ul>
+<pre class="sas"><code>proc freq data=adae;
+    tables trta*aeflag / fisher;
+run;</code></pre>
+<ul>
+<li><code>BE guidance</code></li>
+</ul>
+<p><strong>2 by 2</strong></p>
+<pre class="sas"><code>proc mixed data=&amp;data ;                         /* &amp;data 데이터셋으로 mixed model 실행 */
+
+    class TRTA(ref="&amp;ref")                      /* 처리군 변수. &amp;ref를 기준군(reference)으로 설정 */
+          USUBJID                               /* 대상자 ID */
+          APERIOD                               /* period 변수 */
+          TRTSEQA;                              /* treatment sequence 변수 */
+
+    model &amp;para = TRTSEQA APERIOD TRTA;         /* 종속변수 &amp;para를 sequence, period, treatment로 설명 */
+                                                /* 보통 &amp;para는 log-transformed PK parameter일 수 있음 */
+
+    random USUBJID(TRTSEQA);                    /* sequence 내 subject를 random effect로 지정 */
+                                                /* 같은 sequence 안의 대상자 간 변동 고려 */
+
+    estimate "&amp;TRT2header/&amp;TRT1header"          /* treatment contrast 이름 */
+             TRTA 1 -1                          /* TRTA 두 수준 간 차이 추정 */
+             / cl alpha=0.1;                    /* 신뢰구간 출력, alpha=0.1 → 90% CI */
+
+    lsmeans TRTA;                               /* treatment별 least squares mean 산출 */
+
+run;</code></pre>
+<p><strong>2 by 4</strong></p>
+<p>Method A - <code>PROC GLM</code> (Recommended)</p>
+<pre class="sas"><code>proc glm data=replicate;                              /* replicate design dataset 사용 */
+
+    class formulation subject period sequence;        /* 범주형 변수 선언 */
+                                                       /* formulation = T/R */
+                                                       /* subject = 대상자 */
+                                                       /* period = 투여 period */
+                                                       /* sequence = 투여 순서 */
+
+    model logDATA = sequence 
+                    subject(sequence) 
+                    period 
+                    formulation;                       /* log PK parameter를 분석 */
+                                                       /* sequence, period, formulation 효과 포함 */
+                                                       /* subject(sequence)를 fixed effect처럼 포함 */
+
+    estimate "test-ref" formulation -1 1;              /* Test - Reference 차이 추정 */
+                                                       /* level 순서에 따라 부호 확인 필요 */
+
+    test h=sequence e=subject(sequence);               /* sequence effect 검정 시 */
+                                                       /* subject(sequence)를 error term으로 사용 */
+
+    lsmeans formulation / adjust=t 
+                          pdiff=control("R") 
+                          CL alpha=0.10;               /* formulation별 LS mean */
+                                                       /* Reference("R") 대비 비교 */
+                                                       /* alpha=0.10 → 90% CI */
+
+run;</code></pre>
+<p><strong>2 by 4</strong></p>
+<p>Method B - <code>PROC MISED</code></p>
+<pre class="sas"><code>proc mixed data=replicate;                            /* mixed model 사용 */
+
+    class formulation subject period sequence;         /* 범주형 변수 선언 */
+
+    model logDATA = sequence 
+                    period 
+                    formulation;                       /* fixed effect */
+                                                       /* sequence, period, formulation 포함 */
+
+    random subject(sequence);                          /* subject(sequence)를 random effect로 지정 */
+                                                       /* sequence 내 subject variability 반영 */
+
+    estimate "test-ref" formulation -1 1 
+             / CL alpha=0.10;                          /* Test - Reference 차이 */
+                                                       /* 90% CI 출력 */
+
+run;</code></pre>
+<p><strong>2 by 4</strong></p>
+<p>Method C - <code>PROC MIXED</code> (FDA style)</p>
+<pre class="sas"><code>proc mixed data=replicate;                            /* FDA-style replicate design mixed model */
+
+    classes sequence subject period formulation;       /* 범주형 변수 선언 */
+
+    model logDATA = sequence 
+                    period 
+                    formulation 
+                    / ddfm=satterth;                   /* fixed effect */
+                                                       /* ddfm=satterth = Satterthwaite 자유도 보정 */
+
+    random formulation / type=FA0(2) 
+                         sub=subject 
+                         G;                            /* subject별 formulation random effect */
+                                                       /* subject × formulation interaction 반영 */
+                                                       /* G = covariance matrix 출력 */
+
+    repeated / grp=formulation 
+               sub=subject;                            /* formulation별 residual variance 허용 */
+                                                       /* Test와 Reference의 within-subject variance 분리 */
+
+    estimate 'test-ref' formulation -1 1 
+             / CL alpha=0.10;                          /* Test - Reference 차이 */
+                                                       /* 90% CI 출력 */
+
+run;</code></pre>
 
 
 
