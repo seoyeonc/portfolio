@@ -255,6 +255,33 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <ul>
+<li><code>PROC FORMAT</code></li>
+</ul>
+<pre class="sas"><code>proc format;
+    valye agefmt; /* format name */
+        1 = 'Young' /* 값 = 라벨 */
+        2 = 'Old';</code></pre>
+<pre class="sas"><code>proc format;
+    value agegrp;
+        low - &lt;65 = 'Under 65'
+        65 - high = '65+';
+run;</code></pre>
+<p>적용</p>
+<pre class="sas"><code>proc freq data = data1;
+    tables age;
+    format age agegrp.;
+run;</code></pre>
+<pre class="sas"><code>proc format;
+    valye sexfmt; /* format name */
+        'M' = 'Male' /* 값 = 라벨 */
+        'F' = 'Female';</code></pre>
+<p>적용</p>
+<pre class="sas"><code>proc freq data = data1;
+    tables sex;
+    format sex $sexfmt.;
+run;</code></pre>
+<p><strong>숫자형과 달리 문자형 포맷에는 <code>$</code> 기호 존재</strong></p>
+<ul>
 <li><code>PROC SORT</code></li>
 </ul>
 <pre class="sas"><code>proc sort data=data1;
@@ -274,6 +301,18 @@ run;</code></pre>
 </ul>
 <pre class="sas"><code>proc sort data = data1; nodupkey;
     by usubjid;
+run;</code></pre>
+<ul>
+<li><code>PROC SORT</code>-&gt; Maximum</li>
+</ul>
+<pre class="sas"><code>proc sort data = datal
+    by usubjid descending aval;
+run;
+
+data max;
+    set data1;
+    by usubjid;
+    if first.usubjid;
 run;</code></pre>
 <ul>
 <li>merge</li>
@@ -342,6 +381,14 @@ run;</code></pre>
 </tr>
 </tbody>
 </table>
+<ul>
+<li><code>PROC REPORT</code></li>
+</ul>
+<pre class="sas"><code>proc report data = data1 nowd;
+    column trtp age;
+    define trtp / group;
+    define age / analysis mean;
+run;</code></pre>
 <hr>
 <ul>
 <li><code>PROC IMPORT</code></li>
@@ -371,6 +418,12 @@ run;</code></pre>
         mean=mean
         std=std;
 run;</code></pre>
+<pre class="sas"><code>proc means data = data1 nway;
+    class trtp;
+    var aval;
+    output out=summary mean=;
+run;</code></pre>
+<p>-&gt; <code>mean=</code> 의미: sas의 기본 이름 쓰라는 명령</p>
 <ul>
 <li><p>ttest</p></li>
 <li><p>one-sample ttest</p></li>
