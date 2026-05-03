@@ -255,6 +255,95 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <ul>
+<li><code>PROC SORT</code></li>
+</ul>
+<pre class="sas"><code>proc sort data=data1;
+    by usubjid;
+run;</code></pre>
+<ul>
+<li>by group</li>
+</ul>
+<pre class="sas"><code>data want;
+    set data;
+    by usubjid visit;
+    if first.usubjid;
+    /* if last.usubjid;*/
+run;</code></pre>
+<ul>
+<li>nodupkey</li>
+</ul>
+<pre class="sas"><code>proc sort data = data1; nodupkey;
+    by usubjid;
+run;</code></pre>
+<ul>
+<li>merge</li>
+</ul>
+<pre class="sas"><code>data data1;
+    merge a(in=inA where flag='Y') b(in=inB);
+    by key;
+    if inA and inB; /* inner join */
+    /* if inA; left join */
+    /* if inB; right join */
+run;</code></pre>
+<ul>
+<li><code>PROC TRANSPOSE</code></li>
+</ul>
+<p>long data -&gt; wide data / wide data -&gt; long data</p>
+<pre class="sas"><code>proc sort data = data1; by usubjid; run;
+
+proc transpose data=data1 out=data2;
+    by usubjid; /* 그룹 변수 */ 
+    id visit; /* 열의 이름이 될 변수 */
+    var aval; /* 값 변수*/
+run;</code></pre>
+<p>data1</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>USUBJID</th>
+<th>VISIT</th>
+<th>AVAL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>Week1</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>01</td>
+<td>Week2</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>01</td>
+<td>Week3</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<p>data2</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>USUBJID</th>
+<th>Week1</th>
+<th>Week2</th>
+<th>Week3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>10</td>
+<td>15</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
 <li><code>PROC IMPORT</code></li>
 </ul>
 <pre class="sas"><code>proc import                                /* 외부 파일 → SAS로 불러오는 프로시저 */
@@ -271,6 +360,7 @@ ul.task-list li input[type="checkbox"] {
     sheet="sheet1";                        /* Excel의 특정 시트 선택 */
 
 run;</code></pre>
+<hr>
 <ul>
 <li><code>PROC MEANS</code></li>
 </ul>
@@ -315,9 +405,15 @@ run;</code></pre>
     class trta;
     model aval = trta;
 run;</code></pre>
+<p>fixed, random effect</p>
 <pre class="sas"><code>proc glm data=advs;
     class trta;
     model aval = trta;
+run;</code></pre>
+<p>모두 fixed</p>
+<pre class="sas"><code>proc mixed data = data1;
+class trta;
+model aval = trta;
 run;</code></pre>
 <ul>
 <li>Kruskal-Wallis</li>
