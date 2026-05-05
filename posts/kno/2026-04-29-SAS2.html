@@ -258,9 +258,10 @@ ul.task-list li input[type="checkbox"] {
 <li><code>PROC FORMAT</code></li>
 </ul>
 <pre class="sas"><code>proc format;
-    valye agefmt; /* format name */
+    value agefmt; /* format name */
         1 = 'Young' /* 값 = 라벨 */
-        2 = 'Old';</code></pre>
+        2 = 'Old';
+run;</code></pre>
 <pre class="sas"><code>proc format;
     value agegrp;
         low - &lt;65 = 'Under 65'
@@ -272,9 +273,10 @@ run;</code></pre>
     format age agegrp.;
 run;</code></pre>
 <pre class="sas"><code>proc format;
-    valye sexfmt; /* format name */
+    value sexfmt; /* format name */
         'M' = 'Male' /* 값 = 라벨 */
-        'F' = 'Female';</code></pre>
+        'F' = 'Female';
+run;</code></pre>
 <p>적용</p>
 <pre class="sas"><code>proc freq data = data1;
     tables sex;
