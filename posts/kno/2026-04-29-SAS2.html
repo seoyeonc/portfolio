@@ -386,10 +386,35 @@ run;</code></pre>
 <ul>
 <li><code>PROC REPORT</code></li>
 </ul>
-<pre class="sas"><code>proc report data = data1 nowd;
-    column trtp age;
-    define trtp / group;
-    define age / analysis mean;
+<pre class="sas"><code>proc report data = data1 nowd;   /* data1 데이터를 사용해서 report 생성, nowd = interactive 창 없이 바로 실행 */
+
+    column trtp age;             /* 출력할 컬럼 순서 지정: trtp 먼저, age 다음 */
+
+    define trtp / group;         /* trtp를 그룹 변수로 설정 → 같은 값끼리 묶어서 한 줄로 요약 */
+
+    define age / analysis mean;  /* age를 분석 변수로 설정 → 각 trtp 그룹별로 평균(mean) 계산 */
+
+run;                             /* 프로시저 실행 */</code></pre>
+<pre class="sas"><code>proc report data=data1 nowd;
+    column trtp sex age height weight;
+
+    define trtp   / group "Treatment";       /* trtp 기준으로 그룹화: 치료군별 한 줄씩 요약 */
+    define sex    / group "Sex";             /* trtp 안에서 sex별로 한 번 더 그룹화 */
+
+    define age    / analysis mean "Mean Age";     /* 각 trtp-sex 그룹별 age 평균 계산 */
+    define height / analysis mean "Mean Height";  /* 각 trtp-sex 그룹별 height 평균 계산 */
+    define weight / analysis mean "Mean Weight";  /* 각 trtp-sex 그룹별 weight 평균 계산 */
+
+    break after trtp / summarize;            /* 각 trtp 그룹이 끝날 때 소계 행 생성 */
+    rbreak after / summarize;                /* 전체 마지막에 전체 요약 행 생성 */
+
+    compute after trtp;                      /* trtp별 소계 행에 표시할 내용 지정 */
+        sex = "Subtotal";                    /* 소계 행의 sex 칸에 Subtotal 표시 */
+    endcomp;
+
+    compute after;                           /* 전체 요약 행에 표시할 내용 지정 */
+        trtp = "Total";                      /* 전체 요약 행의 trtp 칸에 Total 표시 */
+    endcomp;
 run;</code></pre>
 <hr>
 <ul>
