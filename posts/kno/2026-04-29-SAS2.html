@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -221,7 +250,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#코드" id="toc-코드" class="nav-link active" data-scroll-target="#코드">코드</a></li>
+  <li><a href="#문제" id="toc-문제" class="nav-link" data-scroll-target="#문제">문제</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -230,6 +266,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="코드" class="level2">
+<h2 class="anchored" data-anchor-id="코드">코드</h2>
 <ul>
 <li>function</li>
 </ul>
@@ -254,6 +292,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<hr>
 <ul>
 <li><code>PROC FORMAT</code></li>
 </ul>
@@ -283,12 +322,14 @@ run;</code></pre>
     format sex $sexfmt.;
 run;</code></pre>
 <p><strong>숫자형과 달리 문자형 포맷에는 <code>$</code> 기호 존재</strong></p>
+<hr>
 <ul>
 <li><code>PROC SORT</code></li>
 </ul>
 <pre class="sas"><code>proc sort data=data1;
     by usubjid;
 run;</code></pre>
+<hr>
 <ul>
 <li>by group</li>
 </ul>
@@ -298,6 +339,7 @@ run;</code></pre>
     if first.usubjid;
     /* if last.usubjid;*/
 run;</code></pre>
+<hr>
 <ul>
 <li>nodupkey</li>
 </ul>
@@ -316,6 +358,7 @@ data max;
     by usubjid;
     if first.usubjid;
 run;</code></pre>
+<hr>
 <ul>
 <li>merge</li>
 </ul>
@@ -326,6 +369,7 @@ run;</code></pre>
     /* if inA; left join */
     /* if inB; right join */
 run;</code></pre>
+<hr>
 <ul>
 <li><code>PROC TRANSPOSE</code></li>
 </ul>
@@ -383,6 +427,7 @@ run;</code></pre>
 </tr>
 </tbody>
 </table>
+<hr>
 <ul>
 <li><code>PROC REPORT</code></li>
 </ul>
@@ -451,6 +496,7 @@ run;</code></pre>
     output out=summary mean=;
 run;</code></pre>
 <p>-&gt; <code>mean=</code> 의미: sas의 기본 이름 쓰라는 명령</p>
+<hr>
 <ul>
 <li><p>ttest</p></li>
 <li><p>one-sample ttest</p></li>
@@ -478,6 +524,7 @@ run;</code></pre>
     class trta;
     var aval;
 run;</code></pre>
+<hr>
 <ul>
 <li>ANOVA</li>
 </ul>
@@ -502,6 +549,7 @@ run;</code></pre>
     class trta;
     var aval;
 run;</code></pre>
+<hr>
 <ul>
 <li>chi square</li>
 </ul>
@@ -514,6 +562,7 @@ run;</code></pre>
 <pre class="sas"><code>proc freq data=adae;
     tables trta*aeflag / fisher;
 run;</code></pre>
+<hr>
 <ul>
 <li><code>BE guidance</code></li>
 </ul>
@@ -614,8 +663,1052 @@ run;</code></pre>
                                                        /* 90% CI 출력 */
 
 run;</code></pre>
+<hr>
+</section>
+<section id="문제" class="level2">
+<h2 class="anchored" data-anchor-id="문제">문제</h2>
+<ul>
+<li>ttest</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>USUBJID</th>
+<th>TRTP</th>
+<th>AVAL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>Placebo</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>02</td>
+<td>Placebo</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>03</td>
+<td>Placebo</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>04</td>
+<td>Drug</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>05</td>
+<td>Drug</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>06</td>
+<td>Drug</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>위 데이터를 이용해 SAS dataset data1 생성하라.</li>
+</ol>
+<pre class="sas"><code>data data1;
+    input USUBJID $ TRTP $ AVAL;
+    datalines;
+01 Placebo 12
+02 Placebo 15
+03 Placebo 14
+04 Drug 20
+05 Drug 18
+06 Drug 22
+;
+run;</code></pre>
+<ol start="2" type="1">
+<li>Treatment group (TRTP) 간 AVAL 평균 차이를 비교하라.</li>
+<li>적절한 PROC TTEST 코드를 작성하라.</li>
+</ol>
+<pre class="sas"><code>proc ttest data=data1 /*alpha=0.05*/;
+    class TRTP;
+    var AVAL;
+run;</code></pre>
+<ol start="4" type="1">
+<li>결과에서 어느 group 평균이 더 높은지 해석하라.</li>
+</ol>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 18%">
+<col style="width: 3%">
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>TRTP</th>
+<th>Method</th>
+<th>N</th>
+<th>Mean</th>
+<th>Std Dev</th>
+<th>Std Err</th>
+<th>Minimum</th>
+<th>Maximum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drug</td>
+<td></td>
+<td>3</td>
+<td>20.0000</td>
+<td>2.0000</td>
+<td>1.1547</td>
+<td>18.0000</td>
+<td>22.0000</td>
+</tr>
+<tr class="even">
+<td>Placebo</td>
+<td></td>
+<td>3</td>
+<td>13.6667</td>
+<td>1.5275</td>
+<td>0.8819</td>
+<td>12.0000</td>
+<td>15.0000</td>
+</tr>
+<tr class="odd">
+<td>Diff (1-2)</td>
+<td>Pooled</td>
+<td></td>
+<td>6.3333</td>
+<td>1.7795</td>
+<td>1.4530</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Diff (1-2)</td>
+<td>Satterthwaite</td>
+<td></td>
+<td>6.3333</td>
+<td></td>
+<td>1.4530</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 7%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>TRTP</th>
+<th>Method</th>
+<th>Mean</th>
+<th>95% CL Mean (Lower)</th>
+<th>95% CL Mean (Upper)</th>
+<th>Std Dev</th>
+<th>95% CL Std Dev (Lower)</th>
+<th>95% CL Std Dev (Upper)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drug</td>
+<td></td>
+<td>20.0000</td>
+<td>15.0317</td>
+<td>24.9683</td>
+<td>2.0000</td>
+<td>1.0413</td>
+<td>12.5695</td>
+</tr>
+<tr class="even">
+<td>Placebo</td>
+<td></td>
+<td>13.6667</td>
+<td>9.8721</td>
+<td>17.4612</td>
+<td>1.5275</td>
+<td>0.7953</td>
+<td>9.6001</td>
+</tr>
+<tr class="odd">
+<td>Diff (1-2)</td>
+<td>Pooled</td>
+<td>6.3333</td>
+<td>2.2993</td>
+<td>10.3674</td>
+<td>1.7795</td>
+<td>1.0662</td>
+<td>5.1135</td>
+</tr>
+<tr class="even">
+<td>Diff (1-2)</td>
+<td>Satterthwaite</td>
+<td>6.3333</td>
+<td>2.1866</td>
+<td>10.4800</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Variances</th>
+<th>DF</th>
+<th>t Value</th>
+<th>Pr &gt; |t|</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pooled</td>
+<td>Equal</td>
+<td>4</td>
+<td>4.36</td>
+<td>0.0121</td>
+</tr>
+<tr class="even">
+<td>Satterthwaite</td>
+<td>Unequal</td>
+<td>3.7409</td>
+<td>4.36</td>
+<td>0.0140</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Num DF</th>
+<th>Den DF</th>
+<th>F Value</th>
+<th>Pr &gt; F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Folded F</td>
+<td>2</td>
+<td>2</td>
+<td>1.71</td>
+<td>0.7368</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>independent two-sample t-test를 통해 treatment group 간 평균 차이를 비교하였다.</p></li>
+<li><p>drug의 평군은 placebo보다 높았다.</p></li>
+<li><p>Proc glm</p></li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>USUBJID</th>
+<th>TRTP</th>
+<th>BASE</th>
+<th>CHG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>Placebo</td>
+<td>10</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>02</td>
+<td>Placebo</td>
+<td>12</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>03</td>
+<td>Placebo</td>
+<td>11</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>04</td>
+<td>Drug</td>
+<td>10</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>05</td>
+<td>Drug</td>
+<td>13</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>06</td>
+<td>Drug</td>
+<td>12</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>SAS dataset 생성</li>
+</ol>
+<pre class="sas"><code>data data1;
+    input USUBJID $ TRTP $ BASE CHG;
+    datalines;
+01 Placebo 10 2
+02 Placebo 12 1
+03 Placebo 11 3
+04 Drug 10 7
+05 Drug 13 8
+06 Drug 12 6
+;
+run;</code></pre>
+<ol start="2" type="1">
+<li>Baseline(BASE)를 보정하여 treatment(TRTP) 간 CHG 차이를 비교하라</li>
+<li>적절한 PROC GLM 코드 작성</li>
+</ol>
+<pre class="sas"><code>proc glm data=data1; /*ANCOVA*/
+    class TRTP;
+    model CHG = TRTP BASE;
+    lsmeans TRTP / pdiff cl;
+run;
+quit;</code></pre>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 5%">
+<col style="width: 23%">
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>DF</th>
+<th>Sum of Squares</th>
+<th>Mean Square</th>
+<th>F Value</th>
+<th>Pr &gt; F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Model</td>
+<td>2</td>
+<td>37.50000000</td>
+<td>18.75000000</td>
+<td>14.06</td>
+<td>0.0299</td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td>3</td>
+<td>4.00000000</td>
+<td>1.33333333</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Corrected Total</td>
+<td>5</td>
+<td>41.50000000</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>유의수준 0.05에서 통계적으로 유의함(p = 0.0299)</li>
+<li>모델이 유의하다고 해석 가능</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>R-Square</th>
+<th>Coeff Var</th>
+<th>Root MSE</th>
+<th>CHG Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.903614</td>
+<td>25.66001</td>
+<td>1.154701</td>
+<td>4.500000</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="math inline">\(R^2\)</span>은 90%, 모델 설명력이 높음</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>DF</th>
+<th>Type I SS</th>
+<th>Mean Square</th>
+<th>F Value</th>
+<th>Pr &gt; F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TRTP</td>
+<td>1</td>
+<td>37.50000000</td>
+<td>37.50000000</td>
+<td>28.13</td>
+<td>0.0131</td>
+</tr>
+<tr class="even">
+<td>BASE</td>
+<td>1</td>
+<td>0.00000000</td>
+<td>0.00000000</td>
+<td>0.00</td>
+<td>1.0000</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>DF</th>
+<th>Type III SS</th>
+<th>Mean Square</th>
+<th>F Value</th>
+<th>Pr &gt; F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TRTP</td>
+<td>1</td>
+<td>34.09090909</td>
+<td>34.09090909</td>
+<td>25.57</td>
+<td>0.0149</td>
+</tr>
+<tr class="even">
+<td>BASE</td>
+<td>1</td>
+<td>0.00000000</td>
+<td>0.00000000</td>
+<td>0.00</td>
+<td>1.0000</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>type III 기준 TRTP가 유의함(p=0.0131)</li>
+<li>treatment group 간 CHG 차이가 통계적으로 유의함</li>
+<li>base는 영향 없음</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>TRTP</th>
+<th>CHG LSMEAN</th>
+<th>Pr &gt; |t|</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drug</td>
+<td>7.0000000</td>
+<td>0.0149</td>
+</tr>
+<tr class="even">
+<td>Placebo</td>
+<td>2.0000000</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>TRTP</th>
+<th>CHG LSMEAN</th>
+<th>Lower 95% CL</th>
+<th>Upper 95% CL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drug</td>
+<td>7.000000</td>
+<td>4.825975</td>
+<td>9.174025</td>
+</tr>
+<tr class="even">
+<td>Placebo</td>
+<td>2.000000</td>
+<td>-0.174025</td>
+<td>4.174025</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>i</th>
+<th>j</th>
+<th>Difference Between Means</th>
+<th>Lower 95% CL</th>
+<th>Upper 95% CL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>5.000000</td>
+<td>1.853113</td>
+<td>8.146887</td>
+</tr>
+</tbody>
+</table>
+<ol start="4" type="1">
+<li>어떤 treatment가 더 효과적인지 해석하라</li>
+</ol>
+<ul>
+<li><p>chg 평균이 더 높은 drug가 더 효과적임(chg mean 7 vs 2)</p></li>
+<li><p>Proc mixed</p></li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>USUBJID</th>
+<th>TRTP</th>
+<th>VISIT</th>
+<th>CHG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>Placebo</td>
+<td>Week1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>01</td>
+<td>Placebo</td>
+<td>Week2</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>02</td>
+<td>Placebo</td>
+<td>Week1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>02</td>
+<td>Placebo</td>
+<td>Week2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>03</td>
+<td>Drug</td>
+<td>Week1</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>03</td>
+<td>Drug</td>
+<td>Week2</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>04</td>
+<td>Drug</td>
+<td>Week1</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>04</td>
+<td>Drug</td>
+<td>Week2</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>SAS dataset 생성</li>
+</ol>
+<pre class="sas"><code>data data2;
+    input USUBJID $ TRTP $ VISIT $ CHG;
+    datalines;
+01 Placebo Week1 1
+01 Placebo Week2 2
+02 Placebo Week1 0
+02 Placebo Week2 1
+03 Drug Week1 3
+03 Drug Week2 5
+04 Drug Week1 4
+04 Drug Week2 6
+;
+run;</code></pre>
+<ol start="2" type="1">
+<li>Visit별 treatment effect를 평가하라</li>
+<li>적절한 PROC MIXED 코드 작성</li>
+</ol>
+<pre class="sas"><code>proc mixed data=data2 method=REML;
+    class USUBJID TRTP VISIT;
+
+    model CHG = TRTP VISIT TRTP*VISIT / solution;
+
+    repeated VISIT / subject=USUBJID;
+
+    lsmeans TRTP*VISIT / diff cl;
+run;</code></pre>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-2 Res Log Likelihood</td>
+<td>11.4</td>
+</tr>
+<tr class="even">
+<td>AIC (Smaller is Better)</td>
+<td>13.4</td>
+</tr>
+<tr class="odd">
+<td>AICC (Smaller is Better)</td>
+<td>15.4</td>
+</tr>
+<tr class="even">
+<td>BIC (Smaller is Better)</td>
+<td>12.7</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>DF</th>
+<th>Chi-Square</th>
+<th>Pr &gt; ChiSq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.00</td>
+<td>1.0000</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 20%">
+<col style="width: 4%">
+<col style="width: 11%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Effect</th>
+<th>TRTP</th>
+<th>VISIT</th>
+<th>Estimate</th>
+<th>Standard Error</th>
+<th>DF</th>
+<th>t Value</th>
+<th>Pr &gt; |t|</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intercept</td>
+<td></td>
+<td></td>
+<td>1.5000</td>
+<td>0.5000</td>
+<td>2</td>
+<td>3.00</td>
+<td>0.0955</td>
+</tr>
+<tr class="even">
+<td>TRTP</td>
+<td>Drug</td>
+<td></td>
+<td>4.0000</td>
+<td>0.7071</td>
+<td>2</td>
+<td>5.66</td>
+<td>0.0299</td>
+</tr>
+<tr class="odd">
+<td>TRTP</td>
+<td>Placebo</td>
+<td></td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>VISIT</td>
+<td></td>
+<td>Week1</td>
+<td>-1.0000</td>
+<td>0.7071</td>
+<td>2</td>
+<td>-1.41</td>
+<td>0.2929</td>
+</tr>
+<tr class="odd">
+<td>VISIT</td>
+<td></td>
+<td>Week2</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week1</td>
+<td>-1.0000</td>
+<td>1.0000</td>
+<td>2</td>
+<td>-1.00</td>
+<td>0.4226</td>
+</tr>
+<tr class="odd">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week2</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>TRTP*VISIT</td>
+<td>Placebo</td>
+<td>Week1</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>TRTP*VISIT</td>
+<td>Placebo</td>
+<td>Week2</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Effect</th>
+<th>Num DF</th>
+<th>Den DF</th>
+<th>F Value</th>
+<th>Pr &gt; F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TRTP</td>
+<td>1</td>
+<td>2</td>
+<td>49.00</td>
+<td>0.0198</td>
+</tr>
+<tr class="even">
+<td>VISIT</td>
+<td>1</td>
+<td>2</td>
+<td>9.00</td>
+<td>0.0955</td>
+</tr>
+<tr class="odd">
+<td>TRTP*VISIT</td>
+<td>1</td>
+<td>2</td>
+<td>1.00</td>
+<td>0.4226</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>type III fixed effect</li>
+<li>treatment group간 통계적으로 유의한 chg 차이가 존재</li>
+<li>visit에 따라 통계적으로 유의한 chg 차이가 존재하지 않음</li>
+<li>visit에 따라 treatment 효과가 달라진다고할 수 없음.(통계적으로 유의하지 않은 chg차이)</li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 15%">
+<col style="width: 3%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Effect</th>
+<th>TRTP</th>
+<th>VISIT</th>
+<th>Estimate</th>
+<th>Standard Error</th>
+<th>DF</th>
+<th>t Value</th>
+<th>Pr &gt; |t|</th>
+<th>Alpha</th>
+<th>Lower</th>
+<th>Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week1</td>
+<td>3.5000</td>
+<td>0.5000</td>
+<td>2</td>
+<td>7.00</td>
+<td>0.0198</td>
+<td>0.05</td>
+<td>1.3487</td>
+<td>5.6513</td>
+</tr>
+<tr class="even">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week2</td>
+<td>5.5000</td>
+<td>0.5000</td>
+<td>2</td>
+<td>11.00</td>
+<td>0.0082</td>
+<td>0.05</td>
+<td>3.3487</td>
+<td>7.6513</td>
+</tr>
+<tr class="odd">
+<td>TRTP*VISIT</td>
+<td>Placebo</td>
+<td>Week1</td>
+<td>0.5000</td>
+<td>0.5000</td>
+<td>2</td>
+<td>1.00</td>
+<td>0.4226</td>
+<td>0.05</td>
+<td>-1.6513</td>
+<td>2.6513</td>
+</tr>
+<tr class="even">
+<td>TRTP*VISIT</td>
+<td>Placebo</td>
+<td>Week2</td>
+<td>1.5000</td>
+<td>0.5000</td>
+<td>2</td>
+<td>3.00</td>
+<td>0.0955</td>
+<td>0.05</td>
+<td>-0.6513</td>
+<td>3.6513</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>모든 시점에서 drug가 placebo보다 평균적으로 추정치가 높다.</li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 3%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Effect</th>
+<th>TRTP</th>
+<th>VISIT</th>
+<th>_TRTP</th>
+<th>_VISIT</th>
+<th>Estimate</th>
+<th>Standard Error</th>
+<th>DF</th>
+<th>t Value</th>
+<th>Pr &gt; |t|</th>
+<th>Alpha</th>
+<th>Lower</th>
+<th>Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week1</td>
+<td>Drug</td>
+<td>Week2</td>
+<td>-2.0000</td>
+<td>0.7071</td>
+<td>2</td>
+<td>-2.83</td>
+<td>0.1056</td>
+<td>0.05</td>
+<td>-5.0424</td>
+<td>1.0424</td>
+</tr>
+<tr class="even">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week1</td>
+<td>Placebo</td>
+<td>Week1</td>
+<td>3.0000</td>
+<td>0.7071</td>
+<td>2</td>
+<td>4.24</td>
+<td>0.0513</td>
+<td>0.05</td>
+<td>-0.04243</td>
+<td>6.0424</td>
+</tr>
+<tr class="odd">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week1</td>
+<td>Placebo</td>
+<td>Week2</td>
+<td>2.0000</td>
+<td>0.7071</td>
+<td>2</td>
+<td>2.83</td>
+<td>0.1056</td>
+<td>0.05</td>
+<td>-1.0424</td>
+<td>5.0424</td>
+</tr>
+<tr class="even">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week2</td>
+<td>Placebo</td>
+<td>Week1</td>
+<td>5.0000</td>
+<td>0.7071</td>
+<td>2</td>
+<td>7.07</td>
+<td>0.0194</td>
+<td>0.05</td>
+<td>1.9576</td>
+<td>8.0424</td>
+</tr>
+<tr class="odd">
+<td>TRTP*VISIT</td>
+<td>Drug</td>
+<td>Week2</td>
+<td>Placebo</td>
+<td>Week2</td>
+<td>4.0000</td>
+<td>0.7071</td>
+<td>2</td>
+<td>5.66</td>
+<td>0.0299</td>
+<td>0.05</td>
+<td>0.9576</td>
+<td>7.0424</td>
+</tr>
+<tr class="even">
+<td>TRTP*VISIT</td>
+<td>Placebo</td>
+<td>Week1</td>
+<td>Placebo</td>
+<td>Week2</td>
+<td>-1.0000</td>
+<td>0.7071</td>
+<td>2</td>
+<td>-1.41</td>
+<td>0.2929</td>
+<td>0.05</td>
+<td>-4.0424</td>
+<td>2.0424</td>
+</tr>
+</tbody>
+</table>
+<ol start="4" type="1">
+<li>Repeated statement 의미 설명</li>
+</ol>
+<ul>
+<li>subject=USUBJID는 반복 측정 단위로, 같은 subject내 상관성 고려</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
