@@ -255,7 +255,14 @@ window.Quarto = {
    
   <ul>
   <li><a href="#코드" id="toc-코드" class="nav-link active" data-scroll-target="#코드">코드</a></li>
-  <li><a href="#문제" id="toc-문제" class="nav-link" data-scroll-target="#문제">문제</a></li>
+  <li><a href="#문제" id="toc-문제" class="nav-link" data-scroll-target="#문제">문제</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">1</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">3</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">4</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">5</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -496,6 +503,7 @@ run;</code></pre>
     output out=summary mean=;
 run;</code></pre>
 <p>-&gt; <code>mean=</code> 의미: sas의 기본 이름 쓰라는 명령</p>
+<p>-&gt; <code>nway</code> 가장 하위그룹의 통계량만 출력하도록 제한</p>
 <hr>
 <ul>
 <li><p>ttest</p></li>
@@ -667,6 +675,8 @@ run;</code></pre>
 </section>
 <section id="문제" class="level2">
 <h2 class="anchored" data-anchor-id="문제">문제</h2>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section">1</h3>
 <ul>
 <li>ttest</li>
 </ul>
@@ -916,9 +926,14 @@ run;</code></pre>
 </tbody>
 </table>
 <ul>
-<li><p>independent two-sample t-test를 통해 treatment group 간 평균 차이를 비교하였다.</p></li>
-<li><p>drug의 평군은 placebo보다 높았다.</p></li>
-<li><p>Proc glm</p></li>
+<li>independent two-sample t-test를 통해 treatment group 간 평균 차이를 비교하였다.</li>
+<li>drug의 평군은 placebo보다 높았다.</li>
+</ul>
+</section>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1">2</h3>
+<ul>
+<li>Proc glm</li>
 </ul>
 <table class="table">
 <thead>
@@ -1197,8 +1212,13 @@ quit;</code></pre>
 <li>어떤 treatment가 더 효과적인지 해석하라</li>
 </ol>
 <ul>
-<li><p>chg 평균이 더 높은 drug가 더 효과적임(chg mean 7 vs 2)</p></li>
-<li><p>Proc mixed</p></li>
+<li>chg 평균이 더 높은 drug가 더 효과적임(chg mean 7 vs 2)</li>
+</ul>
+</section>
+<section id="section-2" class="level3">
+<h3 class="anchored" data-anchor-id="section-2">3</h3>
+<ul>
+<li>Proc mixed</li>
 </ul>
 <table class="table">
 <thead>
@@ -1706,8 +1726,99 @@ run;</code></pre>
 <ul>
 <li>subject=USUBJID는 반복 측정 단위로, 같은 subject내 상관성 고려</li>
 </ul>
+</section>
+<section id="section-3" class="level3">
+<h3 class="anchored" data-anchor-id="section-3">4</h3>
+<ul>
+<li>merge</li>
+</ul>
+<pre class="sas"><code>data adsl;
+    input USUBJID $ TRTP $;
+    datalines;
+01 Drug
+02 Drug
+03 Placebo
+;
+run;
 
 
+data adlb;
+    input USUBJID $ BASE AVAL ;
+    datalines;
+01 10 15
+02 12 20
+03 11 13
+;
+run;</code></pre>
+<ol type="1">
+<li>두 dataset merge</li>
+<li>CHG = AVAL - BASE 생성</li>
+</ol>
+<pre class="sas"><code>proc sort data = adsl; by USUBJID; run;
+proc sort data = adlb; by USUBJID; run;
+
+data merged;
+    merge adsl(in=a) adlb(in=b);
+    by USUBJID;
+    if a and b;
+    chg = aval - base;
+run;</code></pre>
+<ol start="3" type="1">
+<li>treatment별 평균 CHG 계산</li>
+</ol>
+<pre class="sas"><code>proc means data = merged mean;
+    class TRTP;
+    var chg;
+run;</code></pre>
+<ul>
+<li>결과</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>TRTP</th>
+<th>관측값 수</th>
+<th>평균</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drug</td>
+<td>2</td>
+<td>6.5000000</td>
+</tr>
+<tr class="even">
+<td>Placebo</td>
+<td>1</td>
+<td>2.0000000</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section-4" class="level3">
+<h3 class="anchored" data-anchor-id="section-4">5</h3>
+<ol type="1">
+<li>Treatment별 AE 발생 빈도 계산</li>
+<li>Chi-square test 수행</li>
+</ol>
+<pre class="sas"><code>data adae;
+    input USUBJID $ TRTP $ AEFLAG $;
+    datalines;
+01 Drug Y
+02 Drug N
+03 Placebo Y
+04 Placebo N
+;
+run;
+
+proc freq data = adae;
+    tables trtp * aeflag / chisq;
+run;</code></pre>
+<p><em>WARNING: 100%개의 셀이 5보다 적은 기대빈도를 가지고 있습니다. 카이제곱 검정은 올바르지 않을 수 있습니다.</em></p>
+<p>-&gt; 따라서 fisher 결과 해석, fisher’s p값은 1</p>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
