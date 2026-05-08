@@ -350,13 +350,13 @@ run;</code></pre>
 <ul>
 <li>nodupkey</li>
 </ul>
-<pre class="sas"><code>proc sort data = data1; nodupkey;
+<pre class="sas"><code>proc sort data = data nodupkey;
     by usubjid;
 run;</code></pre>
 <ul>
 <li><code>PROC SORT</code>-&gt; Maximum</li>
 </ul>
-<pre class="sas"><code>proc sort data = datal
+<pre class="sas"><code>proc sort data = data;
     by usubjid descending aval;
 run;
 
